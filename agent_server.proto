@@ -1,0 +1,80 @@
+// python -m grpc_tools.protoc -I./pb --python_out=. --grpc_python_out=. ./pb/agent_server.proto
+// protoc pb/agent_server.proto --go_out=plugins=grpc:.
+
+syntax = "proto3";
+
+package agentServerProto;
+option go_package = "./pb";
+
+// message Device {
+//     string id = 1;
+//     string provisioning_token=2;
+//     string name = 3;
+//     string status = 4;
+//     string created_at = 5;
+// }
+
+
+message PingServerRequest {
+    bool status = 1;
+}
+
+message PingServerResponse {
+    bool status = 1;
+};
+
+// BATTERY STATUS
+message BatteryStatusServiceRequest{
+    string status = 1;
+    double current_capacity = 2;
+    double design_capacity = 3;
+    double charge_rate = 4;
+    double voltage  = 5;
+}
+message BatteryStatusServiceResponse {
+    
+}
+
+// DEVICE MESSGES
+// CREATE DEVICE
+message CreateDeviceRequest {
+    string name = 1;
+    string description = 2;
+    string type = 3;
+    string location = 4;
+}
+
+message CreateDeviceResponse{ 
+   string name = 1;
+    string description = 2;
+    string type = 3;
+    string location = 4;
+    string provisional_token = 5;
+}
+
+message AgentConfigRequest {
+    string provisional_token = 1;
+}
+
+message AgentConfigResponse {
+   string provisional_token = 1;
+   int32 battery_status_interval = 2;
+}
+
+message ValidateTokenRequest {
+    string provisional_token = 1;
+}
+
+message ValidateTokenResponse {
+    bool valid = 1;
+}
+
+
+
+service AgentService{
+    rpc PingServer (PingServerRequest) returns (PingServerResponse) {}
+    rpc BatteryStatusService (stream BatteryStatusServiceRequest) returns (BatteryStatusServiceResponse) {}
+    rpc CreateDeviceService (CreateDeviceRequest) returns (CreateDeviceResponse) {}
+    rpc AgentConfigService (AgentConfigRequest) returns (AgentConfigResponse) {}
+    rpc ValdiateTokenService (ValidateTokenRequest) returns (ValidateTokenResponse) {}
+}
