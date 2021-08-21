@@ -1,0 +1,157 @@
+    // protoc --go_out=plugins=grpc:. protos/rcc.proto
+    // python -m grpc_tools.protoc -I./protos --python_out=./ros_node --grpc_python_out=./ros_node ./pb/ros_agent.proto
+
+    syntax = "proto3";
+
+    package rccProto;
+    option go_package = "./protos/rccProto";
+    import "google/protobuf/any.proto";
+    import "google/protobuf/empty.proto";
+
+
+    message Response {
+        bool status = 1;
+        string message = 2;
+    }
+
+    //ROS MESSAGES
+    message Battery {
+        
+        float voltage = 1;
+        int32 percentage = 2;
+    }
+    message TaskInfo {
+        string item = 1;
+    }
+    message Task {
+        oneof optional_id {
+            int32 id = 1;
+        }
+         
+        string task = 2;
+        oneof optional_floor {
+            int32 floor = 3;
+        }     
+        TaskInfo info = 4;
+        string location = 5;
+        oneof optional_dependency {
+            bool dependency = 6;
+        }
+        oneof optional_dependency_task_id {
+            int32 dependency_task_id = 7;
+        }
+    }
+
+    // message Status {
+    //     int32 status=1;
+    //     string goal = 2;
+    //     string time = 3;
+    //     }
+
+    // message TaskFeedback {
+    //     Status task_feedback = 1;
+    //     Status plan_feedback = 2;
+    // }
+
+    message Payload {
+        Battery battery = 1;
+        repeated Task tasks = 2;
+        google.protobuf.Any taskFeedback = 3;
+    }
+
+    message Message {
+        string deviceId = 1;
+        string topic = 2;
+        string action = 3;
+         bytes payload = 4;
+        
+    }
+
+
+    //DEVICE INFO
+    message Memory{
+        uint64 total=1;
+        uint64 free = 2;
+        float used=3;
+    }
+    message Cpu{
+        float used = 1;
+    }
+    message DeviceUsageInfo {
+        Memory memory = 1;
+        Cpu cpu = 2;
+    }
+    message Empty {
+
+    }
+
+
+message PingServerRequest {
+    bool status = 1;
+}
+
+message PingServerResponse {
+    bool status = 1;
+};
+
+// BATTERY STATUS
+message BatteryStatusServiceRequest{
+    string status = 1;
+    double current_capacity = 2;
+    double design_capacity = 3;
+    double charge_rate = 4;
+    double voltage  = 5;
+}
+message BatteryStatusServiceResponse {
+    
+}
+
+// DEVICE MESSGES
+// CREATE DEVICE
+message CreateDeviceRequest {
+    string name = 1;
+    string description = 2;
+    string type = 3;
+    string location = 4;
+}
+
+message CreateDeviceResponse{ 
+   string name = 1;
+    string description = 2;
+    string type = 3;
+    string location = 4;
+    string provisional_token = 5;
+}
+
+message AgentConfigRequest {
+    string provisional_token = 1;
+}
+
+message AgentConfigResponse {
+   string provisional_token = 1;
+   int32 battery_status_interval = 2;
+}
+
+message ValidateTokenRequest {
+    string provisional_token = 1;
+}
+
+message ValidateTokenResponse {
+    bool valid = 1;
+}
+
+
+
+
+    service RosAgentService{
+        rpc SendBatteryStatus(Battery) returns (Response);
+        rpc SendRosMessage(stream Message) returns (stream Message) {}
+        rpc SendDeviceUsageInfo(stream DeviceUsageInfo) returns (Empty) {}
+
+        // rpc PingServer (PingServerRequest) returns (PingServerResponse) {}
+        rpc BatteryStatusService (stream BatteryStatusServiceRequest) returns (BatteryStatusServiceResponse) {}
+        rpc CreateDeviceService (CreateDeviceRequest) returns (CreateDeviceResponse) {}
+        rpc AgentConfigService (AgentConfigRequest) returns (AgentConfigResponse) {}
+        rpc ValdiateTokenService (ValidateTokenRequest) returns (ValidateTokenResponse) {}
+        
+    }
