@@ -1,12 +1,8 @@
-    // protoc --go_out=plugins=grpc:. protos/rcc.proto
-    // python -m grpc_tools.protoc -I./protos --python_out=./ros_node --grpc_python_out=./ros_node ./pb/ros_agent.proto
-
     syntax = "proto3";
 
     package rccProto;
     option go_package = "./protos/rccProto";
-    import "google/protobuf/any.proto";
-    import "google/protobuf/empty.proto";
+
 
 
     message Response {
@@ -14,72 +10,25 @@
         string message = 2;
     }
 
-    //ROS MESSAGES
     message Battery {
-        
-        float voltage = 1;
-        int32 percentage = 2;
-    }
-    message TaskInfo {
-        string item = 1;
-    }
-    message Task {
-        oneof optional_id {
-            int32 id = 1;
-        }
-         
-        string task = 2;
-        oneof optional_floor {
-            int32 floor = 3;
-        }     
-        TaskInfo info = 4;
-        string location = 5;
-        oneof optional_dependency {
-            bool dependency = 6;
-        }
-        oneof optional_dependency_task_id {
-            int32 dependency_task_id = 7;
-        }
-    }
-
-    // message Status {
-    //     int32 status=1;
-    //     string goal = 2;
-    //     string time = 3;
-    //     }
-
-    // message TaskFeedback {
-    //     Status task_feedback = 1;
-    //     Status plan_feedback = 2;
-    // }
-
-    message Payload {
-        Battery battery = 1;
-        repeated Task tasks = 2;
-        google.protobuf.Any taskFeedback = 3;
+        float voltage = 2;
+        int32 percentage = 3;
     }
 
     message Message {
-        string deviceId = 1;
+        string device_id = 1;
         string topic = 2;
         string action = 3;
          bytes payload = 4;
         
     }
 
-
-    //DEVICE INFO
-    message Memory{
-        uint64 total=1;
-        uint64 free = 2;
-        float used=3;
-    }
-    message Cpu{
-        float used = 1;
-    }
     message DeviceUsageInfo {
-        Memory memory = 1;
-        Cpu cpu = 2;
+        string device_id = 1;
+        uint64 memory_total = 2;
+        uint64 memory_free = 3;
+        float memory_used = 4;
+        float cpu_used = 5;
     }
     message Empty {
 
@@ -94,7 +43,6 @@ message PingServerResponse {
     bool status = 1;
 };
 
-// BATTERY STATUS
 message BatteryStatusServiceRequest{
     string status = 1;
     double current_capacity = 2;
@@ -106,8 +54,6 @@ message BatteryStatusServiceResponse {
     
 }
 
-// DEVICE MESSGES
-// CREATE DEVICE
 message CreateDeviceRequest {
     string name = 1;
     string description = 2;
@@ -125,12 +71,19 @@ message CreateDeviceResponse{
 
 message AgentConfigRequest {
     string provisional_token = 1;
+    
 }
 
+
 message AgentConfigResponse {
-   string provisional_token = 1;
-   int32 battery_status_interval = 2;
-}
+    bytes config = 1;
+ }
+
+// message AgentConfigResponse {
+//    string provisional_token = 1;
+//    string id = 2;
+//    repeated Topic initial_subscriptions = 3;
+// }
 
 message ValidateTokenRequest {
     string provisional_token = 1;
@@ -140,18 +93,78 @@ message ValidateTokenResponse {
     bool valid = 1;
 }
 
+message Topic {
+    string topic = 1;
+    int32 delay = 2;
+}
 
+message GetRosTopicToSubscribeResponse {
+    repeated Topic topics = 1;
+}
+
+message DeviceStatus {
+    Status status = 1;
+}
+
+enum Status {
+    ONLINE = 0;
+    OFFLINE = 1;
+    IDLE = 2;
+    FOLLOWING_GIVEN_GOAL=3;
+}
+
+message ListDevicesResponse {
+    bytes devices = 1;
+}
+
+message GetDeviceReponse {
+    bytes data = 1;
+}
+
+message UploadRequest {
+    oneof data {
+        FileInfo info = 1;
+    }
+    bytes Content = 2;
+    
+}
+
+message FileInfo {
+    string name = 1;
+        int32 version_code = 2;
+        string change_log = 3;
+        string version_name = 4;
+        string path = 5;
+  }
+
+message UploadResponse {
+    string message = 1;
+    bool status = 2;
+}
 
 
     service RosAgentService{
+        /*Sends battery status from ROS to Agent, Agent to RCC and the data is stored in RCC*/
         rpc SendBatteryStatus(Battery) returns (Response);
+        /*This is the primary dynamic message stream which sends data from ROS to RCC or vice versa at any point of time*/
         rpc SendRosMessage(stream Message) returns (stream Message) {}
+        /*Sends devcie usage info like cpu and memory usage from Agent to RCC */
         rpc SendDeviceUsageInfo(stream DeviceUsageInfo) returns (Empty) {}
-
-        // rpc PingServer (PingServerRequest) returns (PingServerResponse) {}
-        rpc BatteryStatusService (stream BatteryStatusServiceRequest) returns (BatteryStatusServiceResponse) {}
+        /*Sends the current status of the device*/
+        rpc SendDeviceStatus(DeviceStatus) returns (Response);
+        /*Upload agent binary files to rcc*/
+        rpc UploadBinary(stream UploadRequest) returns (UploadResponse) {}
+        /*Sends list of devices to Fleet Management System*/
+        rpc ListDevices(Empty) returns (ListDevicesResponse) {}
+        /*Sends single device detail to Fleet Management System*/
+        rpc GetDevice(Empty)returns (GetDeviceReponse){}
+        /*Used to create a new device which returns a provisional token to validate*/
         rpc CreateDeviceService (CreateDeviceRequest) returns (CreateDeviceResponse) {}
+        /*Sends the config to Agent from RCC*/
         rpc AgentConfigService (AgentConfigRequest) returns (AgentConfigResponse) {}
+        /*Validates the provisional token of the Agent and returns a status boolean*/
         rpc ValdiateTokenService (ValidateTokenRequest) returns (ValidateTokenResponse) {}
+        /*Gets the list of topics from Agent to subscribe initially*/
+        rpc GetRosTopicToSubscribe (Empty) returns (GetRosTopicToSubscribeResponse) {}
         
     }
