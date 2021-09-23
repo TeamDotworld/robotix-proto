@@ -110,7 +110,13 @@ enum Status {
     ONLINE = 0;
     OFFLINE = 1;
     IDLE = 2;
-    FOLLOWING_GIVEN_GOAL=3;
+    DOCKING=3;
+    CHARGING=4;
+    LOW_BATTERY=5;
+    CHARGING_READY=6;
+    IN_SERVICIE=7;
+    GOING_HOME=8;
+    MAPPING=9;
 }
 
 message ListDevicesResponse {
@@ -147,7 +153,10 @@ message UploadResponse {
         /*Sends battery status from ROS to Agent, Agent to RCC and the data is stored in RCC*/
         rpc SendBatteryStatus(Battery) returns (Response);
         /*This is the primary dynamic message stream which sends data from ROS to RCC or vice versa at any point of time*/
-        rpc SendRosMessage(stream Message) returns (stream Message) {}
+        rpc AgentMessageService(stream Message) returns (stream Message) {}
+
+        rpc ServerMessageService(stream Message) returns (stream Message) {}
+
         /*Sends devcie usage info like cpu and memory usage from Agent to RCC */
         rpc SendDeviceUsageInfo(stream DeviceUsageInfo) returns (Empty) {}
         /*Sends the current status of the device*/
