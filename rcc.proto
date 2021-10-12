@@ -114,7 +114,7 @@ enum Status {
     CHARGING=4;
     LOW_BATTERY=5;
     CHARGING_READY=6;
-    IN_SERVICIE=7;
+    IN_SERVICE=7;
     GOING_HOME=8;
     MAPPING=9;
 }
@@ -148,6 +148,10 @@ message UploadResponse {
     bool status = 2;
 }
 
+message DeviceRuntime {
+    int32 runtime = 1;
+}
+
 
     service RosAgentService{
         /*Sends battery status from ROS to Agent, Agent to RCC and the data is stored in RCC*/
@@ -161,6 +165,8 @@ message UploadResponse {
         rpc SendDeviceUsageInfo(stream DeviceUsageInfo) returns (Empty) {}
         /*Sends the current status of the device*/
         rpc SendDeviceStatus(DeviceStatus) returns (Response);
+
+        rpc SendDeviceRuntime(DeviceRuntime) returns (Response);
         /*Upload agent binary files to rcc*/
         rpc UploadBinary(stream UploadRequest) returns (UploadResponse) {}
         /*Sends list of devices to Fleet Management System*/
