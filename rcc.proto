@@ -3,6 +3,8 @@
     package rccProto;
     option go_package = "./proto";
 
+    import "google/protobuf/timestamp.proto";
+
 
 
     message Response {
@@ -162,6 +164,34 @@ message RosTopicResponse {
     repeated RosTopic ros_topics = 1;
 }
 
+enum Source {
+    SDK = 1;
+    WEB = 2;
+}
+
+enum Action {
+    COMMAND = 1;
+    CONTROL = 2;
+    SERVICE = 3;
+    WEBRTC = 4;
+    TELEMETRY = 5;
+}
+
+message MessagePayload {
+    Action action = 1;
+    string topic = 2;
+    bytes message = 3;
+}
+
+message StreamMessage {
+    google.protobuf.Timestamp timestamp = 1;
+    string destination = 2;
+    string request_id = 3;
+    Source source = 4;
+    string reponse_topic = 5;
+    MessagePayload payload = 6;
+}
+
 
     service RosAgentService{
         /*Get available published topics from ros*/
@@ -195,5 +225,8 @@ message RosTopicResponse {
         rpc ValdiateTokenService (ValidateTokenRequest) returns (ValidateTokenResponse) {}
         /*Gets the list of topics from Agent to subscribe initially*/
         rpc GetRosTopicToSubscribe (Empty) returns (GetRosTopicToSubscribeResponse) {}
+
+
+        rpc Stream (stream StreamMessage) returns (stream StreamMessage) {}
         
     }
