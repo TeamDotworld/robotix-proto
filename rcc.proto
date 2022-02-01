@@ -165,16 +165,16 @@ message RosTopicResponse {
 }
 
 enum Source {
-    SDK = 1;
-    WEB = 2;
+    SDK = 0;
+    WEB = 1;
 }
 
 enum Action {
-    COMMAND = 1;
-    CONTROL = 2;
-    SERVICE = 3;
-    WEBRTC = 4;
-    TELEMETRY = 5;
+    COMMAND = 0;
+    CONTROL = 1;
+    SERVICE = 2;
+    WEBRTC = 3;
+    TELEMETRY = 4;
 }
 
 message MessagePayload {
