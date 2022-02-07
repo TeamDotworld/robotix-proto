@@ -19,9 +19,10 @@
 
     message Message {
         string device_id = 1;
-        string topic = 2;
-        string action = 3;
-         bytes payload = 4;    
+        string request_id = 2;
+        string topic = 3;
+        string action = 4;
+         bytes payload = 5;    
     }
 
     message DeviceUsageInfo {
@@ -164,35 +165,6 @@ message RosTopicResponse {
     repeated RosTopic ros_topics = 1;
 }
 
-enum Source {
-    SDK = 0;
-    WEB = 1;
-}
-
-enum Action {
-    COMMAND = 0;
-    CONTROL = 1;
-    SERVICE = 2;
-    WEBRTC = 3;
-    TELEMETRY = 4;
-}
-
-message MessagePayload {
-    Action action = 1;
-    string topic = 2;
-    bytes message = 3;
-}
-
-message StreamMessage {
-    google.protobuf.Timestamp timestamp = 1;
-    string device_id = 2;
-    Source source = 3;
-    string request_id = 4;
-    string response_topic = 5;
-    MessagePayload payload = 6;
-}
-
-
     service RosAgentService{
         /*Get available published topics from ros*/
         rpc GetRosTopics (RosTopicRequest) returns (RosTopicResponse);
@@ -224,9 +196,5 @@ message StreamMessage {
         /*Validates the provisional token of the Agent and returns a status boolean*/
         rpc ValdiateTokenService (ValidateTokenRequest) returns (ValidateTokenResponse) {}
         /*Gets the list of topics from Agent to subscribe initially*/
-        rpc GetRosTopicToSubscribe (Empty) returns (GetRosTopicToSubscribeResponse) {}
-
-
-        rpc Stream (stream StreamMessage) returns (stream StreamMessage) {}
-        
+        rpc GetRosTopicToSubscribe (Empty) returns (GetRosTopicToSubscribeResponse) {}        
     }
