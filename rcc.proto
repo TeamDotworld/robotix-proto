@@ -185,10 +185,10 @@ message MessagePayload {
 
 message StreamMessage {
     google.protobuf.Timestamp timestamp = 1;
-    string destination = 2;
-    string request_id = 3;
-    Source source = 4;
-    string reponse_topic = 5;
+    string device_id = 2;
+    Source source = 3;
+    string request_id = 4;
+    string response_topic = 5;
     MessagePayload payload = 6;
 }
 
