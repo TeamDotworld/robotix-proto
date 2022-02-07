@@ -3,7 +3,6 @@
     package rccProto;
     option go_package = "./proto";
 
-    import "google/protobuf/timestamp.proto";
 
 
 
@@ -171,11 +170,7 @@ message RosTopicResponse {
         /*Sends battery status from ROS to Agent, Agent to RCC and the data is stored in RCC*/
         rpc SendBatteryStatus(Battery) returns (Response);
         /*This is the primary dynamic message stream which sends data from ROS to RCC or vice versa at any point of time*/
-        rpc AgentMessageService(stream Message) returns (stream Message) {}
-
-        rpc ClientMessageService(stream Message) returns (stream Message) {}
-
-        rpc ServerMessageService(stream Message) returns (stream Message) {}
+        rpc Stream(stream Message) returns (stream Message) {}
 
         /*Sends devcie usage info like cpu and memory usage from Agent to RCC */
         rpc SendDeviceUsageInfo(stream DeviceUsageInfo) returns (Empty) {}
