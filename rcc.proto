@@ -103,21 +103,28 @@ message GetRosTopicToSubscribeResponse {
     repeated Topic topics = 1;
 }
 
-message DeviceStatus {
-    Status status = 1;
+message UpdateDeviceStateRequest {
+    int32 device_state = 1;
+    int32 application_state = 2;
 }
 
-enum Status {
+message UpdateDeviceStateResponse {
+    bool status = 1;
+    string message = 2;
+}
+
+message UpdateDeviceStatusRequest {
+    DeviceStatus status = 1;
+}
+
+message UpdateDeviceStatusResponse {
+    bool status = 1;
+    string message = 2;
+}
+
+enum DeviceStatus {
     ONLINE = 0;
     OFFLINE = 1;
-    IDLE = 2;
-    DOCKING=3;
-    CHARGING=4;
-    LOW_BATTERY=5;
-    CHARGING_READY=6;
-    IN_SERVICE=7;
-    GOING_HOME=8;
-    MAPPING=9;
 }
 
 message ListDevicesResponse {
@@ -175,7 +182,11 @@ message RosTopicResponse {
         /*Sends devcie usage info like cpu and memory usage from Agent to RCC */
         rpc SendDeviceUsageInfo(stream DeviceUsageInfo) returns (Empty) {}
         /*Sends the current status of the device*/
-        rpc SendDeviceStatus(DeviceStatus) returns (Response);
+        // rpc SendDeviceStatus(DeviceStatus) returns (Response);
+
+        rpc UpdateDeviceState(UpdateDeviceStateRequest) returns (UpdateDeviceStateResponse);
+
+        rpc UpdateDeviceStatus(UpdateDeviceStatusRequest) returns (UpdateDeviceStatusResponse);
 
         rpc SendDeviceRuntime(DeviceRuntime) returns (Response);
         /*Upload agent binary files to rcc*/
