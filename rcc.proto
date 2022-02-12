@@ -12,8 +12,7 @@
     }
 
     message Battery {
-        float voltage = 2;
-        int32 percentage = 3;
+        int32 percentage = 1;
     }
 
     message Message {
