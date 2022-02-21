@@ -13,6 +13,7 @@
 
     message Battery {
         int32 percentage = 1;
+        bool charging = 2;
     }
 
     message Message {
