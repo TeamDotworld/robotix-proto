@@ -171,6 +171,9 @@ message RosTopicResponse {
     repeated RosTopic ros_topics = 1;
 }
 
+
+
+
     service RosAgentService{
         /*Get available published topics from ros*/
         rpc GetRosTopics (RosTopicRequest) returns (RosTopicResponse);
@@ -178,6 +181,9 @@ message RosTopicResponse {
         rpc SendBatteryStatus(Battery) returns (Response);
         /*This is the primary dynamic message stream which sends data from ROS to RCC or vice versa at any point of time*/
         rpc Stream(stream Message) returns (stream Message) {}
+
+        rpc TelemetryStream(stream Message) returns (stream Message) {}
+
 
         /*Sends devcie usage info like cpu and memory usage from Agent to RCC */
         rpc SendDeviceUsageInfo(stream DeviceUsageInfo) returns (Empty) {}
