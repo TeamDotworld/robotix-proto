@@ -172,6 +172,10 @@ message RosTopicResponse {
     repeated RosTopic ros_topics = 1;
 }
 
+message GetMapResponse {
+    bytes map = 1;
+}
+
 
 
 
@@ -184,6 +188,8 @@ message RosTopicResponse {
         rpc Stream(stream Message) returns (stream Message) {}
 
         rpc TelemetryStream(stream Message) returns (stream Message) {}
+
+        rpc GetMap(Empty) returns (GetMapResponse) {}
 
 
         /*Sends devcie usage info like cpu and memory usage from Agent to RCC */
