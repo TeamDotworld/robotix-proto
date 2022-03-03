@@ -19,9 +19,10 @@
     message Message {
         string device_id = 1;
         string request_id = 2;
-        string topic = 3;
-        string action = 4;
-         bytes payload = 5;    
+        string key = 3;
+        string topic = 4;
+        string action = 5;
+         bytes payload = 6;    
     }
 
     message DeviceUsageInfo {
