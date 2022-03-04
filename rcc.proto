@@ -176,7 +176,16 @@ message GetMapResponse {
     bytes map = 1;
 }
 
+message SendTelemetryRequest {
+    bytes data = 1;
+}
+message RequestTelemetryRequest {
+    repeated string devices = 1;
+}
 
+message RequestTelemetryResponse {
+    bytes data = 1;
+}
 
 
     service RosAgentService{
@@ -187,7 +196,10 @@ message GetMapResponse {
         /*This is the primary dynamic message stream which sends data from ROS to RCC or vice versa at any point of time*/
         rpc Stream(stream Message) returns (stream Message) {}
 
-        rpc TelemetryStream(stream Message) returns (stream Message) {}
+        rpc SendTelemetry(stream SendTelemetryRequest) returns (Empty) {}
+        
+        rpc RequestTelemetry(RequestTelemetryRequest) returns (stream RequestTelemetryResponse) {}
+
 
         rpc GetMap(Empty) returns (GetMapResponse) {}
 
