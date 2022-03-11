@@ -1,7 +1,7 @@
     syntax = "proto3";
 
     package rccProto;
-    // option go_package = "./proto";
+    option go_package = "./proto";
 
 
 
@@ -187,13 +187,6 @@ message RequestTelemetryResponse {
     bytes data = 1;
 }
 
-// ActionCall
-message ActionCallResponse {
-    bool status = 1;
-    int32 statusCode = 2;
-    string message = 3;
-}
-
 
     service RosAgentService{
         /*Get available published topics from ros*/
@@ -210,7 +203,7 @@ message ActionCallResponse {
 
         rpc GetMap(Empty) returns (GetMapResponse) {}
 
-        rpc ActionCall(Message) returns (ActionCallResponse) {}
+        rpc ActionCall(Message) returns (stream Message) {}
 
 
         /*Sends devcie usage info like cpu and memory usage from Agent to RCC */
