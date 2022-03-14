@@ -35,13 +35,11 @@
     message Empty {
 
     }
-
-
-message PingServerRequest {
-    bool status = 1;
+message PingAgentRequest {
+    string device_id = 1;
 }
 
-message PingServerResponse {
+message PingAgentResponse {
     bool status = 1;
 };
 
@@ -204,6 +202,8 @@ message RequestTelemetryResponse {
         rpc GetMap(Empty) returns (GetMapResponse) {}
 
         rpc ActionCall(Message) returns (stream Message) {}
+
+        rpc PingAgent(PingAgentRequest) returns (PingAgentResponse) {}
 
 
         /*Sends devcie usage info like cpu and memory usage from Agent to RCC */
