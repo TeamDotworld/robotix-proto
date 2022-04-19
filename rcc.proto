@@ -194,6 +194,14 @@ message RequestTelemetryResponse {
         /*This is the primary dynamic message stream which sends data from ROS to RCC or vice versa at any point of time*/
         rpc Stream(stream Message) returns (stream Message) {}
 
+        rpc GetCommandRequestStream(Message)
+        returns (stream Message) {
+        }
+        /* SendCommandResponse sends a response to a command request. */
+        rpc SendCommandResponse(Message)
+            returns (Message) {
+        }
+
         rpc SendTelemetry(stream SendTelemetryRequest) returns (Empty) {}
         
         rpc RequestTelemetry(RequestTelemetryRequest) returns (stream RequestTelemetryResponse) {}
@@ -219,7 +227,7 @@ message RequestTelemetryResponse {
         /*Upload agent binary files to rcc*/
         rpc UploadBinary(stream UploadRequest) returns (UploadResponse) {}
         /*Sends list of devices to Fleet Management System*/
-        rpc ListDevices(Empty) returns (ListDevicesResponse) {}
+        rpc ListDevices(Empty) returns (ListDevicesResponse) {} 
         /*Sends single device detail to Fleet Management System*/
         rpc GetDevice(Empty)returns (GetDeviceReponse){}
         /*Used to create a new device which returns a provisional token to validate*/
