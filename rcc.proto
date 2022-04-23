@@ -3,6 +3,8 @@
     package rccProto;
     option go_package = "./proto";
 
+    import "google/protobuf/wrappers.proto";
+
 
 
 
@@ -103,9 +105,9 @@ message GetRosTopicToSubscribeResponse {
 }
 
 message UpdateDeviceStateRequest {
-    oneof state  {
-    int32 device_state = 1;
-    int32 application_state = 2;
+     oneof state  {
+    google.protobuf.Int32Value device_state = 1;
+    google.protobuf.Int32Value application_state = 2;
     }
     
 }
@@ -158,6 +160,11 @@ message UploadResponse {
     bool status = 2;
 }
 
+message SendCommandResponseResponse {
+    string message = 1;
+    bool status = 2;
+}
+
 message DeviceRuntime {
     int32 runtime = 1;
 }
@@ -202,7 +209,7 @@ message RequestTelemetryResponse {
         }
         /* SendCommandResponse sends a response to a command request. */
         rpc SendCommandResponse(Message)
-            returns (Message) {
+            returns (SendCommandResponseResponse) {
         }
 
         rpc SendTelemetry(stream SendTelemetryRequest) returns (Empty) {}
