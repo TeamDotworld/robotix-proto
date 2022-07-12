@@ -7,7 +7,6 @@
 
 
 
-
     message Response {
         bool status = 1;
         string message = 2;
@@ -109,7 +108,6 @@ message UpdateDeviceStateRequest {
     google.protobuf.Int32Value device_state = 1;
     google.protobuf.Int32Value application_state = 2;
     }
-    
 }
 
 message UpdateDeviceStateResponse {
@@ -196,6 +194,44 @@ message RequestTelemetryResponse {
 }
 
 
+
+
+// Webrtc
+message GetRtcSignalRequest {
+    string offer = 1;
+
+}
+
+message GetRtcSignalResponse {
+    string answer = 1;
+    int32 streams_count = 2;
+    string error = 3;
+}
+
+message Vector3 {
+    google.protobuf.FloatValue x = 1;
+    google.protobuf.FloatValue y = 2;
+    google.protobuf.FloatValue z = 3;
+  }
+
+message Twist {
+    Vector3 linear = 1;
+    Vector3 angular = 2;
+}
+
+message GetTeleopControlDataStreamRequest {
+
+}
+
+message GetTeleopControlDataStreamResponse {
+    int64 timestamp = 1;  
+  oneof data { 
+    Twist twist = 2;
+  }
+}
+
+
+
     service RosAgentService{
         /*Get available published topics from ros*/
         rpc GetRosTopics (RosTopicRequest) returns (RosTopicResponse);
@@ -207,6 +243,7 @@ message RequestTelemetryResponse {
         rpc GetCommandRequestStream(Message)
         returns (stream Message) {
         }
+
         /* SendCommandResponse sends a response to a command request. */
         rpc SendCommandResponse(Message)
             returns (SendCommandResponseResponse) {
@@ -247,5 +284,14 @@ message RequestTelemetryResponse {
         /*Validates the provisional token of the Agent and returns a status boolean*/
         rpc ValdiateTokenService (ValidateTokenRequest) returns (ValidateTokenResponse) {}
         /*Gets the list of topics from Agent to subscribe initially*/
-        rpc GetRosTopicToSubscribe (Empty) returns (GetRosTopicToSubscribeResponse) {}        
+        rpc GetRosTopicToSubscribe (Empty) returns (GetRosTopicToSubscribeResponse) {}      
+        
+        /* Get rtc signal from Rcc server to agent */
+        rpc GetRtcSignal(stream GetRtcSignalResponse) returns (stream GetRtcSignalRequest) {}
+
+        /* GetTeleopControlDataStream returns a stream of datapoints sent to this device as
+        * they arrive from Formant teleop. */
+        rpc GetTeleopControlDataStream(GetTeleopControlDataStreamRequest)
+            returns (stream GetTeleopControlDataStreamResponse) {
+        }
     }
