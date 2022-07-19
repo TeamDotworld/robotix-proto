@@ -11,6 +11,10 @@ option go_package = "github.com/TeamDotworld/robotix-proto/protos/v1/agent";
 
 service AgentRosBridge { 
 
+        /* GetAgentConfiguration returns the Agent configuration. */
+        rpc GetAgentConfiguration(GetAgentConfigurationRequest)
+        returns (GetAgentConfigurationResponse) {
+       }
 
     /* Health can be used to check if the Agent is running and its gRPC API is
     * available. */
