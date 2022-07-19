@@ -1,0 +1,72 @@
+syntax = "proto3";
+
+package v1.agent;
+
+import "protos/model/v1/config.proto";
+import "protos/model/v1/commands.proto";
+import "protos/model/v1/datapoint.proto";
+
+
+option go_package = "github.com/TeamDotworld/robotix-proto/protos/v1/agent";
+
+service AgentRosBridge { 
+
+
+    /* Health can be used to check if the Agent is running and its gRPC API is
+    * available. */
+    rpc Health(HealthRequest) returns (HealthResponse) {
+    }
+
+    rpc GetCommandRequestStream(GetCommandRequestStreamRequest)
+    returns (stream GetCommandRequestStreamResponse) {
+    }
+
+    /* SendCommandResponse sends a response to a command request. */
+    rpc SendCommandResponse(SendCommandResponseRequest)
+        returns (SendCommandResponseResponse) {
+    }
+
+    rpc PostData(model.Datapoint) returns (PostDataResponse) {
+    }
+
+    /* StreamData accepts a stream of data points. See PostData for information on
+    * expected error conditions and codes. */
+    rpc StreamData(stream model.Datapoint) returns (StreamDataResponse) {
+    }
+}
+
+
+message GetAgentConfigurationRequest {
+}
+
+message GetAgentConfigurationResponse {
+  model.AgentConfiguration configuration = 1;
+}
+
+message HealthRequest {
+}
+
+message HealthResponse {
+}
+
+message SendCommandResponseRequest {
+model.CommandResponse response = 1;
+}
+
+message SendCommandResponseResponse {
+}
+
+message GetCommandRequestStreamRequest {
+repeated string command_filter = 1;
+}
+
+message GetCommandRequestStreamResponse {
+model.CommandRequest request = 1;
+}
+
+message PostDataResponse {
+    bool status = 1;
+}
+
+message StreamDataResponse {
+}
