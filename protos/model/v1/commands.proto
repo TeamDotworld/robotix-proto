@@ -9,12 +9,9 @@ option go_package="github.com/TeamDotworld/robotix-proto/protos/v1/model";
 
 message CommandRequest {
   string id = 1;
-  string command_type = 2;
-  oneof parameter {
-    ActionParameter action_parameter = 3;
-  }
-  string data = 4;
-  google.protobuf.Timestamp scrubber_time = 5;
+  string command = 2;
+  string data = 3;
+  google.protobuf.Timestamp scrubber_time = 4;
 }
 
 message CommandResponse {
@@ -22,16 +19,10 @@ message CommandResponse {
   bool success = 2;
   oneof result {
     model.Datapoint datapoint = 3;
-    bytes data = 4;
+    string data = 4;
   }
 }
 
-message ActionParameter {
-  string action_topic = 1;
-  string action_feedback_topic = 2;
-  string action_result_topic = 3;
-  string action_cancel_topic = 4;
-}
 
 message FileInfo {
   string id = 1;

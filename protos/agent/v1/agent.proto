@@ -33,6 +33,8 @@ service AgentRosBridge {
     * expected error conditions and codes. */
     rpc StreamData(stream model.Datapoint) returns (StreamDataResponse) {
     }
+
+    rpc GetRosCommandConfig (GetRosCommandConfigRequest) returns (GetRosCommandConfigResponse) {}
 }
 
 
@@ -69,4 +71,10 @@ message PostDataResponse {
 }
 
 message StreamDataResponse {
+}
+
+message GetRosCommandConfigRequest{}
+
+message GetRosCommandConfigResponse {
+    string config = 1;
 }
