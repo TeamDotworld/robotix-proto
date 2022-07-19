@@ -1,7 +1,7 @@
 #!/bin/bash
 
 protoc --go_out=plugins=grpc:/home/anand/go/src/ ./protos/rcc/v1/rcc.proto
-# protoc --go_out=plugins=grpc:/home/anand/go/src/github.com/anand-dotworld/robotix-proto ./go-multi-tenant/agent/v1/agent.proto
+protoc --go_out=plugins=grpc:/home/anand/go/src/ ./protos/agent/v1/agent.proto
 
 
 # python3 -m grpc_tools.protoc -I. --python_out=/home/anand/go/src/github.com/anand-dotworld/robotix-agent/node --grpc_python_out=/home/anand/go/src/github.com/anand-dotworld/robotix-agent/node ./go-multi-tenant/agent/v1/agent.proto
