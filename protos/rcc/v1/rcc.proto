@@ -19,7 +19,7 @@ service Agent {
 
     /* Health can be used to check if the Agent is running and its gRPC API is
     * available. */
-    rpc Health(HealthRequest) returns (HealthResponse) {
+    rpc Health(stream HealthResponse) returns (stream HealthRequest) {
     }
 
     rpc GetCommandRequestStream(GetCommandRequestStreamRequest)
@@ -58,9 +58,11 @@ message GetAgentConfigurationResponse {
 }
 
 message HealthRequest {
+    string id=1;
 }
 
 message HealthResponse {
+    string request_id=1;
 }
 
 message SendCommandResponseRequest {
