@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package v1.rcc;
+import "protos/model/v1/commands.proto";
+
+
+option go_package="github.com/TeamDotworld/robotix-proto/protos/v1/rcc";
+
+
+service NodeSdk { 
+    rpc ServiceCall (ServiceCallReqest) returns (ServiceCallResponse) {}
+}
+
+message ServiceCallReqest {
+    model.CommandRequest request = 1;
+}
+
+message ServiceCallResponse {
+    model.CommandResponse response = 1;
+}

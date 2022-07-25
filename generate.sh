@@ -1,6 +1,7 @@
 #!/bin/bash
 
 protoc --go_out=plugins=grpc:/home/anand/go/src/ ./protos/rcc/v1/rcc.proto
+protoc --go_out=plugins=grpc:/home/anand/go/src/ ./protos/node_sdk/v1/node_sdk.proto
 protoc --go_out=plugins=grpc:/home/anand/go/src/ ./protos/agent/v1/agent.proto
 
 

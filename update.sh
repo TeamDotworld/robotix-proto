@@ -1,5 +1,5 @@
 #!/bin/bash
-version=6
+version=7
 old_version=$version
 
 echo "Generating proto code"
