@@ -1,5 +1,5 @@
 #!/bin/bash
-version=5
+version=6
 old_version=$version
 
 echo "Generating proto code"
@@ -25,7 +25,7 @@ cd /home/anand/go/src/github.com/anand-dotworld/rcc-multi-tenant
 GOPRIVATE=github.com/TeamDotworld/robotix-proto go get github.com/TeamDotworld/robotix-proto@v1.0.$version
 go mod tidy
 
-sed -i "s/version=$old_version/version=$version/g" /home/anand/go/src/github.com/TeamDotworld/robotix-proto/test.sh
+sed -i "s/version=$old_version/version=$version/g" /home/anand/go/src/github.com/TeamDotworld/robotix-proto/update.sh
 echo "Done!"
 # git tag 
 

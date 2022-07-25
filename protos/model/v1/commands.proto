@@ -20,6 +20,7 @@ message CommandResponse {
   oneof result {
     model.Datapoint datapoint = 3;
     string data = 4;
+    string error = 5;
   }
 }
 
