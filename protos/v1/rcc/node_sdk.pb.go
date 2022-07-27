@@ -119,6 +119,100 @@ func (x *ServiceCallResponse) GetResponse() *model.CommandResponse {
 	return nil
 }
 
+type ActionCallReqest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Request *model.CommandRequest `protobuf:"bytes,1,opt,name=request,proto3" json:"request,omitempty"`
+}
+
+func (x *ActionCallReqest) Reset() {
+	*x = ActionCallReqest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_protos_node_sdk_v1_node_sdk_proto_msgTypes[2]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ActionCallReqest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ActionCallReqest) ProtoMessage() {}
+
+func (x *ActionCallReqest) ProtoReflect() protoreflect.Message {
+	mi := &file_protos_node_sdk_v1_node_sdk_proto_msgTypes[2]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ActionCallReqest.ProtoReflect.Descriptor instead.
+func (*ActionCallReqest) Descriptor() ([]byte, []int) {
+	return file_protos_node_sdk_v1_node_sdk_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *ActionCallReqest) GetRequest() *model.CommandRequest {
+	if x != nil {
+		return x.Request
+	}
+	return nil
+}
+
+type ActionCallResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Response *model.CommandResponse `protobuf:"bytes,1,opt,name=response,proto3" json:"response,omitempty"`
+}
+
+func (x *ActionCallResponse) Reset() {
+	*x = ActionCallResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_protos_node_sdk_v1_node_sdk_proto_msgTypes[3]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ActionCallResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ActionCallResponse) ProtoMessage() {}
+
+func (x *ActionCallResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_protos_node_sdk_v1_node_sdk_proto_msgTypes[3]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ActionCallResponse.ProtoReflect.Descriptor instead.
+func (*ActionCallResponse) Descriptor() ([]byte, []int) {
+	return file_protos_node_sdk_v1_node_sdk_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *ActionCallResponse) GetResponse() *model.CommandResponse {
+	if x != nil {
+		return x.Response
+	}
+	return nil
+}
+
 var File_protos_node_sdk_v1_node_sdk_proto protoreflect.FileDescriptor
 
 var file_protos_node_sdk_v1_node_sdk_proto_rawDesc = []byte{
@@ -136,16 +230,30 @@ var file_protos_node_sdk_v1_node_sdk_proto_rawDesc = []byte{
 	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x19, 0x2e,
 	0x76, 0x31, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x43, 0x6f, 0x6d, 0x6d, 0x61, 0x6e, 0x64,
 	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x52, 0x08, 0x72, 0x65, 0x73, 0x70, 0x6f, 0x6e,
-	0x73, 0x65, 0x32, 0x52, 0x0a, 0x07, 0x4e, 0x6f, 0x64, 0x65, 0x53, 0x64, 0x6b, 0x12, 0x47, 0x0a,
-	0x0b, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x43, 0x61, 0x6c, 0x6c, 0x12, 0x19, 0x2e, 0x76,
-	0x31, 0x2e, 0x72, 0x63, 0x63, 0x2e, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x43, 0x61, 0x6c,
-	0x6c, 0x52, 0x65, 0x71, 0x65, 0x73, 0x74, 0x1a, 0x1b, 0x2e, 0x76, 0x31, 0x2e, 0x72, 0x63, 0x63,
-	0x2e, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x43, 0x61, 0x6c, 0x6c, 0x52, 0x65, 0x73, 0x70,
-	0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x42, 0x35, 0x5a, 0x33, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62,
-	0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x54, 0x65, 0x61, 0x6d, 0x44, 0x6f, 0x74, 0x77, 0x6f, 0x72, 0x6c,
-	0x64, 0x2f, 0x72, 0x6f, 0x62, 0x6f, 0x74, 0x69, 0x78, 0x2d, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2f,
-	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x73, 0x2f, 0x76, 0x31, 0x2f, 0x72, 0x63, 0x63, 0x62, 0x06, 0x70,
-	0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x73, 0x65, 0x22, 0x46, 0x0a, 0x10, 0x41, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x43, 0x61, 0x6c, 0x6c,
+	0x52, 0x65, 0x71, 0x65, 0x73, 0x74, 0x12, 0x32, 0x0a, 0x07, 0x72, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x18, 0x2e, 0x76, 0x31, 0x2e, 0x6d, 0x6f, 0x64,
+	0x65, 0x6c, 0x2e, 0x43, 0x6f, 0x6d, 0x6d, 0x61, 0x6e, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x52, 0x07, 0x72, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x22, 0x4b, 0x0a, 0x12, 0x41, 0x63,
+	0x74, 0x69, 0x6f, 0x6e, 0x43, 0x61, 0x6c, 0x6c, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
+	0x12, 0x35, 0x0a, 0x08, 0x72, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x0b, 0x32, 0x19, 0x2e, 0x76, 0x31, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x43, 0x6f,
+	0x6d, 0x6d, 0x61, 0x6e, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x52, 0x08, 0x72,
+	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x32, 0x9a, 0x01, 0x0a, 0x07, 0x4e, 0x6f, 0x64, 0x65,
+	0x53, 0x64, 0x6b, 0x12, 0x47, 0x0a, 0x0b, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x43, 0x61,
+	0x6c, 0x6c, 0x12, 0x19, 0x2e, 0x76, 0x31, 0x2e, 0x72, 0x63, 0x63, 0x2e, 0x53, 0x65, 0x72, 0x76,
+	0x69, 0x63, 0x65, 0x43, 0x61, 0x6c, 0x6c, 0x52, 0x65, 0x71, 0x65, 0x73, 0x74, 0x1a, 0x1b, 0x2e,
+	0x76, 0x31, 0x2e, 0x72, 0x63, 0x63, 0x2e, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x43, 0x61,
+	0x6c, 0x6c, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12, 0x46, 0x0a, 0x0a,
+	0x41, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x43, 0x61, 0x6c, 0x6c, 0x12, 0x18, 0x2e, 0x76, 0x31, 0x2e,
+	0x72, 0x63, 0x63, 0x2e, 0x41, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x43, 0x61, 0x6c, 0x6c, 0x52, 0x65,
+	0x71, 0x65, 0x73, 0x74, 0x1a, 0x1a, 0x2e, 0x76, 0x31, 0x2e, 0x72, 0x63, 0x63, 0x2e, 0x41, 0x63,
+	0x74, 0x69, 0x6f, 0x6e, 0x43, 0x61, 0x6c, 0x6c, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
+	0x22, 0x00, 0x30, 0x01, 0x42, 0x35, 0x5a, 0x33, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63,
+	0x6f, 0x6d, 0x2f, 0x54, 0x65, 0x61, 0x6d, 0x44, 0x6f, 0x74, 0x77, 0x6f, 0x72, 0x6c, 0x64, 0x2f,
+	0x72, 0x6f, 0x62, 0x6f, 0x74, 0x69, 0x78, 0x2d, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2f, 0x70, 0x72,
+	0x6f, 0x74, 0x6f, 0x73, 0x2f, 0x76, 0x31, 0x2f, 0x72, 0x63, 0x63, 0x62, 0x06, 0x70, 0x72, 0x6f,
+	0x74, 0x6f, 0x33,
 }
 
 var (
@@ -160,23 +268,29 @@ func file_protos_node_sdk_v1_node_sdk_proto_rawDescGZIP() []byte {
 	return file_protos_node_sdk_v1_node_sdk_proto_rawDescData
 }
 
-var file_protos_node_sdk_v1_node_sdk_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_protos_node_sdk_v1_node_sdk_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
 var file_protos_node_sdk_v1_node_sdk_proto_goTypes = []interface{}{
 	(*ServiceCallReqest)(nil),     // 0: v1.rcc.ServiceCallReqest
 	(*ServiceCallResponse)(nil),   // 1: v1.rcc.ServiceCallResponse
-	(*model.CommandRequest)(nil),  // 2: v1.model.CommandRequest
-	(*model.CommandResponse)(nil), // 3: v1.model.CommandResponse
+	(*ActionCallReqest)(nil),      // 2: v1.rcc.ActionCallReqest
+	(*ActionCallResponse)(nil),    // 3: v1.rcc.ActionCallResponse
+	(*model.CommandRequest)(nil),  // 4: v1.model.CommandRequest
+	(*model.CommandResponse)(nil), // 5: v1.model.CommandResponse
 }
 var file_protos_node_sdk_v1_node_sdk_proto_depIdxs = []int32{
-	2, // 0: v1.rcc.ServiceCallReqest.request:type_name -> v1.model.CommandRequest
-	3, // 1: v1.rcc.ServiceCallResponse.response:type_name -> v1.model.CommandResponse
-	0, // 2: v1.rcc.NodeSdk.ServiceCall:input_type -> v1.rcc.ServiceCallReqest
-	1, // 3: v1.rcc.NodeSdk.ServiceCall:output_type -> v1.rcc.ServiceCallResponse
-	3, // [3:4] is the sub-list for method output_type
-	2, // [2:3] is the sub-list for method input_type
-	2, // [2:2] is the sub-list for extension type_name
-	2, // [2:2] is the sub-list for extension extendee
-	0, // [0:2] is the sub-list for field type_name
+	4, // 0: v1.rcc.ServiceCallReqest.request:type_name -> v1.model.CommandRequest
+	5, // 1: v1.rcc.ServiceCallResponse.response:type_name -> v1.model.CommandResponse
+	4, // 2: v1.rcc.ActionCallReqest.request:type_name -> v1.model.CommandRequest
+	5, // 3: v1.rcc.ActionCallResponse.response:type_name -> v1.model.CommandResponse
+	0, // 4: v1.rcc.NodeSdk.ServiceCall:input_type -> v1.rcc.ServiceCallReqest
+	2, // 5: v1.rcc.NodeSdk.ActionCall:input_type -> v1.rcc.ActionCallReqest
+	1, // 6: v1.rcc.NodeSdk.ServiceCall:output_type -> v1.rcc.ServiceCallResponse
+	3, // 7: v1.rcc.NodeSdk.ActionCall:output_type -> v1.rcc.ActionCallResponse
+	6, // [6:8] is the sub-list for method output_type
+	4, // [4:6] is the sub-list for method input_type
+	4, // [4:4] is the sub-list for extension type_name
+	4, // [4:4] is the sub-list for extension extendee
+	0, // [0:4] is the sub-list for field type_name
 }
 
 func init() { file_protos_node_sdk_v1_node_sdk_proto_init() }
@@ -209,6 +323,30 @@ func file_protos_node_sdk_v1_node_sdk_proto_init() {
 				return nil
 			}
 		}
+		file_protos_node_sdk_v1_node_sdk_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ActionCallReqest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_protos_node_sdk_v1_node_sdk_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ActionCallResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -216,7 +354,7 @@ func file_protos_node_sdk_v1_node_sdk_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_protos_node_sdk_v1_node_sdk_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   2,
+			NumMessages:   4,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
@@ -243,6 +381,7 @@ const _ = grpc.SupportPackageIsVersion6
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type NodeSdkClient interface {
 	ServiceCall(ctx context.Context, in *ServiceCallReqest, opts ...grpc.CallOption) (*ServiceCallResponse, error)
+	ActionCall(ctx context.Context, in *ActionCallReqest, opts ...grpc.CallOption) (NodeSdk_ActionCallClient, error)
 }
 
 type nodeSdkClient struct {
@@ -262,9 +401,42 @@ func (c *nodeSdkClient) ServiceCall(ctx context.Context, in *ServiceCallReqest, 
 	return out, nil
 }
 
+func (c *nodeSdkClient) ActionCall(ctx context.Context, in *ActionCallReqest, opts ...grpc.CallOption) (NodeSdk_ActionCallClient, error) {
+	stream, err := c.cc.NewStream(ctx, &_NodeSdk_serviceDesc.Streams[0], "/v1.rcc.NodeSdk/ActionCall", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &nodeSdkActionCallClient{stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+type NodeSdk_ActionCallClient interface {
+	Recv() (*ActionCallResponse, error)
+	grpc.ClientStream
+}
+
+type nodeSdkActionCallClient struct {
+	grpc.ClientStream
+}
+
+func (x *nodeSdkActionCallClient) Recv() (*ActionCallResponse, error) {
+	m := new(ActionCallResponse)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 // NodeSdkServer is the server API for NodeSdk service.
 type NodeSdkServer interface {
 	ServiceCall(context.Context, *ServiceCallReqest) (*ServiceCallResponse, error)
+	ActionCall(*ActionCallReqest, NodeSdk_ActionCallServer) error
 }
 
 // UnimplementedNodeSdkServer can be embedded to have forward compatible implementations.
@@ -273,6 +445,9 @@ type UnimplementedNodeSdkServer struct {
 
 func (*UnimplementedNodeSdkServer) ServiceCall(context.Context, *ServiceCallReqest) (*ServiceCallResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ServiceCall not implemented")
+}
+func (*UnimplementedNodeSdkServer) ActionCall(*ActionCallReqest, NodeSdk_ActionCallServer) error {
+	return status.Errorf(codes.Unimplemented, "method ActionCall not implemented")
 }
 
 func RegisterNodeSdkServer(s *grpc.Server, srv NodeSdkServer) {
@@ -297,6 +472,27 @@ func _NodeSdk_ServiceCall_Handler(srv interface{}, ctx context.Context, dec func
 	return interceptor(ctx, in, info, handler)
 }
 
+func _NodeSdk_ActionCall_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(ActionCallReqest)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(NodeSdkServer).ActionCall(m, &nodeSdkActionCallServer{stream})
+}
+
+type NodeSdk_ActionCallServer interface {
+	Send(*ActionCallResponse) error
+	grpc.ServerStream
+}
+
+type nodeSdkActionCallServer struct {
+	grpc.ServerStream
+}
+
+func (x *nodeSdkActionCallServer) Send(m *ActionCallResponse) error {
+	return x.ServerStream.SendMsg(m)
+}
+
 var _NodeSdk_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "v1.rcc.NodeSdk",
 	HandlerType: (*NodeSdkServer)(nil),
@@ -306,6 +502,12 @@ var _NodeSdk_serviceDesc = grpc.ServiceDesc{
 			Handler:    _NodeSdk_ServiceCall_Handler,
 		},
 	},
-	Streams:  []grpc.StreamDesc{},
+	Streams: []grpc.StreamDesc{
+		{
+			StreamName:    "ActionCall",
+			Handler:       _NodeSdk_ActionCall_Handler,
+			ServerStreams: true,
+		},
+	},
 	Metadata: "protos/node_sdk/v1/node_sdk.proto",
 }

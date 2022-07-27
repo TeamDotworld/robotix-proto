@@ -9,6 +9,7 @@ option go_package="github.com/TeamDotworld/robotix-proto/protos/v1/rcc";
 
 service NodeSdk { 
     rpc ServiceCall (ServiceCallReqest) returns (ServiceCallResponse) {}
+    rpc ActionCall (ActionCallReqest) returns (stream ActionCallResponse) {}
 }
 
 message ServiceCallReqest {
@@ -16,5 +17,13 @@ message ServiceCallReqest {
 }
 
 message ServiceCallResponse {
+    model.CommandResponse response = 1;
+}
+
+message ActionCallReqest {
+    model.CommandRequest request = 1;
+}
+
+message ActionCallResponse {
     model.CommandResponse response = 1;
 }
