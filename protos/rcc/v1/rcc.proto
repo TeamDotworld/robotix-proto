@@ -31,6 +31,10 @@ service Agent {
         returns (SendCommandResponseResponse) {
     }
 
+    rpc SendCommandResponseStream(stream SendCommandResponseRequest)
+    returns ( SendCommandResponseResponse) {
+}
+
     rpc PostData(model.Datapoint) returns (PostDataResponse) {
     }
 
