@@ -16,11 +16,12 @@ message CommandRequest {
 
 message CommandResponse {
   string request_id = 1;
-  bool success = 2;
+  bool status = 2;
+  bool isResult = 3;
   oneof result {
-    model.Datapoint datapoint = 3;
-    string data = 4;
-    string error = 5;
+    model.Datapoint datapoint = 4;
+    string data = 5;
+    string error = 6;
   }
 }
 
