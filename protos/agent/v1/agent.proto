@@ -31,7 +31,7 @@ service AgentRosBridge {
     }
 
     rpc SendCommandResponseStream(stream SendCommandResponseRequest)
-    returns ( SendCommandResponseResponse) {}
+    returns (stream SendCommandResponseResponse) {}
 
     rpc PostData(model.Datapoint) returns (PostDataResponse) {
     }
