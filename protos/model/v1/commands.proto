@@ -10,14 +10,16 @@ option go_package="github.com/TeamDotworld/robotix-proto/protos/v1/model";
 message CommandRequest {
   string id = 1;
   string command = 2;
-  string data = 3;
-  google.protobuf.Timestamp scrubber_time = 4;
+  bool compressed = 3;
+  string data = 4;
+  google.protobuf.Timestamp scrubber_time = 5;
 }
 
 message CommandResponse {
   string request_id = 1;
   bool status = 2;
   bool isResult = 3;
+  // string command = 4;
   oneof result {
     model.Datapoint datapoint = 4;
     string data = 5;
