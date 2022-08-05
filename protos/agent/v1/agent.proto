@@ -11,10 +11,10 @@ option go_package = "github.com/TeamDotworld/robotix-proto/protos/v1/agent";
 
 service AgentRosBridge { 
 
-        /* GetAgentConfiguration returns the Agent configuration. */
-        rpc GetAgentConfiguration(GetAgentConfigurationRequest)
+    /* GetAgentConfiguration returns the Agent configuration. */
+    rpc GetAgentConfiguration(GetAgentConfigurationRequest)
         returns (GetAgentConfigurationResponse) {
-       }
+    }
 
     /* Health can be used to check if the Agent is running and its gRPC API is
     * available. */
@@ -34,6 +34,9 @@ service AgentRosBridge {
     returns (stream SendCommandResponseResponse) {}
 
     rpc PostData(model.Datapoint) returns (PostDataResponse) {
+    }
+
+    rpc PostMultiData(PostMultiDataRequest) returns (PostMultiDataResponse) {
     }
 
     /* StreamData accepts a stream of data points. See PostData for information on
@@ -81,6 +84,14 @@ model.CommandRequest request = 1;
 }
 
 message PostDataResponse {
+    bool status = 1;
+}
+
+message PostMultiDataRequest {
+    repeated model.Datapoint data = 1;
+}
+
+message PostMultiDataResponse {
     bool status = 1;
 }
 

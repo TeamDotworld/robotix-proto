@@ -38,6 +38,9 @@ service Agent {
     rpc PostData(model.Datapoint) returns (PostDataResponse) {
     }
 
+    rpc PostMultiData(PostMultiDataRequest) returns (PostMultiDataResponse) {
+    }
+
     /* StreamData accepts a stream of data points. See PostData for information on
     * expected error conditions and codes. */
     rpc StreamData(stream model.Datapoint) returns (StreamDataResponse) {
@@ -91,6 +94,14 @@ model.CommandRequest request = 1;
 }
 
 message PostDataResponse {
+    bool status = 1;
+}
+
+message PostMultiDataRequest {
+    repeated model.Datapoint data = 1;
+}
+
+message PostMultiDataResponse {
     bool status = 1;
 }
 
