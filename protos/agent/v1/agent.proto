@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package v1.agent;
 
+import "protos/model/v1/text.proto";
 import "protos/model/v1/config.proto";
 import "protos/model/v1/commands.proto";
 import "protos/model/v1/datapoint.proto";
@@ -15,6 +16,13 @@ service AgentRosBridge {
     rpc GetAgentConfiguration(GetAgentConfigurationRequest)
         returns (GetAgentConfigurationResponse) {
     }
+
+    rpc GetRosSubscriptionConfig(GetRosSubscriptionConfigRequest)
+        returns (GetRosSubscriptionConfigResponse) {
+    }
+
+    rpc GetRosCommandConfig (GetRosCommandConfigRequest) returns (GetRosCommandConfigResponse) {}
+
 
     /* Health can be used to check if the Agent is running and its gRPC API is
     * available. */
@@ -43,8 +51,11 @@ service AgentRosBridge {
     * expected error conditions and codes. */
     rpc StreamData(stream model.Datapoint) returns (StreamDataResponse) {
     }
+}
 
-    rpc GetRosCommandConfig (GetRosCommandConfigRequest) returns (GetRosCommandConfigResponse) {}
+
+message Json {
+    string value = 1;
 }
 
 
@@ -102,4 +113,11 @@ message GetRosCommandConfigRequest{}
 
 message GetRosCommandConfigResponse {
     string config = 1;
+}
+
+message GetRosSubscriptionConfigRequest {
+}
+
+message GetRosSubscriptionConfigResponse {
+    Json config = 1;
 }
