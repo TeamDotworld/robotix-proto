@@ -33,6 +33,8 @@ service AgentRosBridge {
     returns (stream GetCommandRequestStreamResponse) {
     }
 
+    rpc GetSubscriptionRequestStream(GetSubscriptionRequestStreamRequest) returns (stream GetSubscriptionRequestStreamResponse) {}
+
     /* SendCommandResponse sends a response to a command request. */
     rpc SendCommandResponse(SendCommandResponseRequest)
         returns (SendCommandResponseResponse) {
@@ -120,4 +122,12 @@ message GetRosSubscriptionConfigRequest {
 
 message GetRosSubscriptionConfigResponse {
     Json config = 1;
+}
+
+message GetSubscriptionRequestStreamRequest{
+
+}
+
+message GetSubscriptionRequestStreamResponse {
+    model.StreamConfiguration topic = 1;
 }
