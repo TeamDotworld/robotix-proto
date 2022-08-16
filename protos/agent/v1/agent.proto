@@ -133,4 +133,5 @@ message GetSubscriptionRequestStreamResponse{
 message GetSubscriptionRequestStreamRequest {
     string id = 1;
     model.StreamConfiguration topic = 2;
+    string action = 3;
 }

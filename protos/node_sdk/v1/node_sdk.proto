@@ -12,6 +12,8 @@ service NodeSdk {
     rpc ServiceCall (ServiceCallReqest) returns (ServiceCallResponse) {}
     rpc ActionCall (ActionCallReqest) returns (stream ActionCallResponse) {}
     rpc Subscribe (SubscribeRequest) returns (SubscribeResponse) {}
+    rpc Unsubscribe (UnsubscribeRequest) returns (UnsubscribeResponse) {}
+
 }
 
 message ServiceCallReqest {
@@ -35,6 +37,15 @@ message SubscribeRequest {
 }
 
 message SubscribeResponse {
+    bool status = 2;
+    string error = 3;
+}
+
+message UnsubscribeRequest {
+    string topic = 1;
+}
+
+message UnsubscribeResponse {
     bool status = 2;
     string error = 3;
 }

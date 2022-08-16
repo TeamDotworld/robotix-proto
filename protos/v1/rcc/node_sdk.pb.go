@@ -315,6 +315,108 @@ func (x *SubscribeResponse) GetError() string {
 	return ""
 }
 
+type UnsubscribeRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Topic string `protobuf:"bytes,1,opt,name=topic,proto3" json:"topic,omitempty"`
+}
+
+func (x *UnsubscribeRequest) Reset() {
+	*x = UnsubscribeRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_protos_node_sdk_v1_node_sdk_proto_msgTypes[6]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UnsubscribeRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UnsubscribeRequest) ProtoMessage() {}
+
+func (x *UnsubscribeRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_protos_node_sdk_v1_node_sdk_proto_msgTypes[6]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UnsubscribeRequest.ProtoReflect.Descriptor instead.
+func (*UnsubscribeRequest) Descriptor() ([]byte, []int) {
+	return file_protos_node_sdk_v1_node_sdk_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *UnsubscribeRequest) GetTopic() string {
+	if x != nil {
+		return x.Topic
+	}
+	return ""
+}
+
+type UnsubscribeResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Status bool   `protobuf:"varint,2,opt,name=status,proto3" json:"status,omitempty"`
+	Error  string `protobuf:"bytes,3,opt,name=error,proto3" json:"error,omitempty"`
+}
+
+func (x *UnsubscribeResponse) Reset() {
+	*x = UnsubscribeResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_protos_node_sdk_v1_node_sdk_proto_msgTypes[7]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UnsubscribeResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UnsubscribeResponse) ProtoMessage() {}
+
+func (x *UnsubscribeResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_protos_node_sdk_v1_node_sdk_proto_msgTypes[7]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UnsubscribeResponse.ProtoReflect.Descriptor instead.
+func (*UnsubscribeResponse) Descriptor() ([]byte, []int) {
+	return file_protos_node_sdk_v1_node_sdk_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *UnsubscribeResponse) GetStatus() bool {
+	if x != nil {
+		return x.Status
+	}
+	return false
+}
+
+func (x *UnsubscribeResponse) GetError() string {
+	if x != nil {
+		return x.Error
+	}
+	return ""
+}
+
 var File_protos_node_sdk_v1_node_sdk_proto protoreflect.FileDescriptor
 
 var file_protos_node_sdk_v1_node_sdk_proto_rawDesc = []byte{
@@ -352,25 +454,36 @@ var file_protos_node_sdk_v1_node_sdk_proto_rawDesc = []byte{
 	0x6e, 0x73, 0x65, 0x12, 0x16, 0x0a, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x18, 0x02, 0x20,
 	0x01, 0x28, 0x08, 0x52, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x12, 0x14, 0x0a, 0x05, 0x65,
 	0x72, 0x72, 0x6f, 0x72, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x65, 0x72, 0x72, 0x6f,
-	0x72, 0x32, 0xde, 0x01, 0x0a, 0x07, 0x4e, 0x6f, 0x64, 0x65, 0x53, 0x64, 0x6b, 0x12, 0x47, 0x0a,
-	0x0b, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x43, 0x61, 0x6c, 0x6c, 0x12, 0x19, 0x2e, 0x76,
-	0x31, 0x2e, 0x72, 0x63, 0x63, 0x2e, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x43, 0x61, 0x6c,
-	0x6c, 0x52, 0x65, 0x71, 0x65, 0x73, 0x74, 0x1a, 0x1b, 0x2e, 0x76, 0x31, 0x2e, 0x72, 0x63, 0x63,
-	0x2e, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x43, 0x61, 0x6c, 0x6c, 0x52, 0x65, 0x73, 0x70,
-	0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12, 0x46, 0x0a, 0x0a, 0x41, 0x63, 0x74, 0x69, 0x6f, 0x6e,
-	0x43, 0x61, 0x6c, 0x6c, 0x12, 0x18, 0x2e, 0x76, 0x31, 0x2e, 0x72, 0x63, 0x63, 0x2e, 0x41, 0x63,
-	0x74, 0x69, 0x6f, 0x6e, 0x43, 0x61, 0x6c, 0x6c, 0x52, 0x65, 0x71, 0x65, 0x73, 0x74, 0x1a, 0x1a,
-	0x2e, 0x76, 0x31, 0x2e, 0x72, 0x63, 0x63, 0x2e, 0x41, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x43, 0x61,
-	0x6c, 0x6c, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x30, 0x01, 0x12, 0x42,
-	0x0a, 0x09, 0x53, 0x75, 0x62, 0x73, 0x63, 0x72, 0x69, 0x62, 0x65, 0x12, 0x18, 0x2e, 0x76, 0x31,
-	0x2e, 0x72, 0x63, 0x63, 0x2e, 0x53, 0x75, 0x62, 0x73, 0x63, 0x72, 0x69, 0x62, 0x65, 0x52, 0x65,
-	0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x19, 0x2e, 0x76, 0x31, 0x2e, 0x72, 0x63, 0x63, 0x2e, 0x53,
-	0x75, 0x62, 0x73, 0x63, 0x72, 0x69, 0x62, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
-	0x22, 0x00, 0x42, 0x35, 0x5a, 0x33, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d,
-	0x2f, 0x54, 0x65, 0x61, 0x6d, 0x44, 0x6f, 0x74, 0x77, 0x6f, 0x72, 0x6c, 0x64, 0x2f, 0x72, 0x6f,
-	0x62, 0x6f, 0x74, 0x69, 0x78, 0x2d, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2f, 0x70, 0x72, 0x6f, 0x74,
-	0x6f, 0x73, 0x2f, 0x76, 0x31, 0x2f, 0x72, 0x63, 0x63, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f,
-	0x33,
+	0x72, 0x22, 0x2a, 0x0a, 0x12, 0x55, 0x6e, 0x73, 0x75, 0x62, 0x73, 0x63, 0x72, 0x69, 0x62, 0x65,
+	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x14, 0x0a, 0x05, 0x74, 0x6f, 0x70, 0x69, 0x63,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x74, 0x6f, 0x70, 0x69, 0x63, 0x22, 0x43, 0x0a,
+	0x13, 0x55, 0x6e, 0x73, 0x75, 0x62, 0x73, 0x63, 0x72, 0x69, 0x62, 0x65, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x12, 0x16, 0x0a, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x18, 0x02,
+	0x20, 0x01, 0x28, 0x08, 0x52, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x12, 0x14, 0x0a, 0x05,
+	0x65, 0x72, 0x72, 0x6f, 0x72, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x65, 0x72, 0x72,
+	0x6f, 0x72, 0x32, 0xa8, 0x02, 0x0a, 0x07, 0x4e, 0x6f, 0x64, 0x65, 0x53, 0x64, 0x6b, 0x12, 0x47,
+	0x0a, 0x0b, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x43, 0x61, 0x6c, 0x6c, 0x12, 0x19, 0x2e,
+	0x76, 0x31, 0x2e, 0x72, 0x63, 0x63, 0x2e, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x43, 0x61,
+	0x6c, 0x6c, 0x52, 0x65, 0x71, 0x65, 0x73, 0x74, 0x1a, 0x1b, 0x2e, 0x76, 0x31, 0x2e, 0x72, 0x63,
+	0x63, 0x2e, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x43, 0x61, 0x6c, 0x6c, 0x52, 0x65, 0x73,
+	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12, 0x46, 0x0a, 0x0a, 0x41, 0x63, 0x74, 0x69, 0x6f,
+	0x6e, 0x43, 0x61, 0x6c, 0x6c, 0x12, 0x18, 0x2e, 0x76, 0x31, 0x2e, 0x72, 0x63, 0x63, 0x2e, 0x41,
+	0x63, 0x74, 0x69, 0x6f, 0x6e, 0x43, 0x61, 0x6c, 0x6c, 0x52, 0x65, 0x71, 0x65, 0x73, 0x74, 0x1a,
+	0x1a, 0x2e, 0x76, 0x31, 0x2e, 0x72, 0x63, 0x63, 0x2e, 0x41, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x43,
+	0x61, 0x6c, 0x6c, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x30, 0x01, 0x12,
+	0x42, 0x0a, 0x09, 0x53, 0x75, 0x62, 0x73, 0x63, 0x72, 0x69, 0x62, 0x65, 0x12, 0x18, 0x2e, 0x76,
+	0x31, 0x2e, 0x72, 0x63, 0x63, 0x2e, 0x53, 0x75, 0x62, 0x73, 0x63, 0x72, 0x69, 0x62, 0x65, 0x52,
+	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x19, 0x2e, 0x76, 0x31, 0x2e, 0x72, 0x63, 0x63, 0x2e,
+	0x53, 0x75, 0x62, 0x73, 0x63, 0x72, 0x69, 0x62, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x22, 0x00, 0x12, 0x48, 0x0a, 0x0b, 0x55, 0x6e, 0x73, 0x75, 0x62, 0x73, 0x63, 0x72, 0x69,
+	0x62, 0x65, 0x12, 0x1a, 0x2e, 0x76, 0x31, 0x2e, 0x72, 0x63, 0x63, 0x2e, 0x55, 0x6e, 0x73, 0x75,
+	0x62, 0x73, 0x63, 0x72, 0x69, 0x62, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1b,
+	0x2e, 0x76, 0x31, 0x2e, 0x72, 0x63, 0x63, 0x2e, 0x55, 0x6e, 0x73, 0x75, 0x62, 0x73, 0x63, 0x72,
+	0x69, 0x62, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x42, 0x35, 0x5a,
+	0x33, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x54, 0x65, 0x61, 0x6d,
+	0x44, 0x6f, 0x74, 0x77, 0x6f, 0x72, 0x6c, 0x64, 0x2f, 0x72, 0x6f, 0x62, 0x6f, 0x74, 0x69, 0x78,
+	0x2d, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x73, 0x2f, 0x76, 0x31,
+	0x2f, 0x72, 0x63, 0x63, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -385,7 +498,7 @@ func file_protos_node_sdk_v1_node_sdk_proto_rawDescGZIP() []byte {
 	return file_protos_node_sdk_v1_node_sdk_proto_rawDescData
 }
 
-var file_protos_node_sdk_v1_node_sdk_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
+var file_protos_node_sdk_v1_node_sdk_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
 var file_protos_node_sdk_v1_node_sdk_proto_goTypes = []interface{}{
 	(*ServiceCallReqest)(nil),         // 0: v1.rcc.ServiceCallReqest
 	(*ServiceCallResponse)(nil),       // 1: v1.rcc.ServiceCallResponse
@@ -393,27 +506,31 @@ var file_protos_node_sdk_v1_node_sdk_proto_goTypes = []interface{}{
 	(*ActionCallResponse)(nil),        // 3: v1.rcc.ActionCallResponse
 	(*SubscribeRequest)(nil),          // 4: v1.rcc.SubscribeRequest
 	(*SubscribeResponse)(nil),         // 5: v1.rcc.SubscribeResponse
-	(*model.CommandRequest)(nil),      // 6: v1.model.CommandRequest
-	(*model.CommandResponse)(nil),     // 7: v1.model.CommandResponse
-	(*model.StreamConfiguration)(nil), // 8: v1.model.StreamConfiguration
+	(*UnsubscribeRequest)(nil),        // 6: v1.rcc.UnsubscribeRequest
+	(*UnsubscribeResponse)(nil),       // 7: v1.rcc.UnsubscribeResponse
+	(*model.CommandRequest)(nil),      // 8: v1.model.CommandRequest
+	(*model.CommandResponse)(nil),     // 9: v1.model.CommandResponse
+	(*model.StreamConfiguration)(nil), // 10: v1.model.StreamConfiguration
 }
 var file_protos_node_sdk_v1_node_sdk_proto_depIdxs = []int32{
-	6, // 0: v1.rcc.ServiceCallReqest.request:type_name -> v1.model.CommandRequest
-	7, // 1: v1.rcc.ServiceCallResponse.response:type_name -> v1.model.CommandResponse
-	6, // 2: v1.rcc.ActionCallReqest.request:type_name -> v1.model.CommandRequest
-	7, // 3: v1.rcc.ActionCallResponse.response:type_name -> v1.model.CommandResponse
-	8, // 4: v1.rcc.SubscribeRequest.topic:type_name -> v1.model.StreamConfiguration
-	0, // 5: v1.rcc.NodeSdk.ServiceCall:input_type -> v1.rcc.ServiceCallReqest
-	2, // 6: v1.rcc.NodeSdk.ActionCall:input_type -> v1.rcc.ActionCallReqest
-	4, // 7: v1.rcc.NodeSdk.Subscribe:input_type -> v1.rcc.SubscribeRequest
-	1, // 8: v1.rcc.NodeSdk.ServiceCall:output_type -> v1.rcc.ServiceCallResponse
-	3, // 9: v1.rcc.NodeSdk.ActionCall:output_type -> v1.rcc.ActionCallResponse
-	5, // 10: v1.rcc.NodeSdk.Subscribe:output_type -> v1.rcc.SubscribeResponse
-	8, // [8:11] is the sub-list for method output_type
-	5, // [5:8] is the sub-list for method input_type
-	5, // [5:5] is the sub-list for extension type_name
-	5, // [5:5] is the sub-list for extension extendee
-	0, // [0:5] is the sub-list for field type_name
+	8,  // 0: v1.rcc.ServiceCallReqest.request:type_name -> v1.model.CommandRequest
+	9,  // 1: v1.rcc.ServiceCallResponse.response:type_name -> v1.model.CommandResponse
+	8,  // 2: v1.rcc.ActionCallReqest.request:type_name -> v1.model.CommandRequest
+	9,  // 3: v1.rcc.ActionCallResponse.response:type_name -> v1.model.CommandResponse
+	10, // 4: v1.rcc.SubscribeRequest.topic:type_name -> v1.model.StreamConfiguration
+	0,  // 5: v1.rcc.NodeSdk.ServiceCall:input_type -> v1.rcc.ServiceCallReqest
+	2,  // 6: v1.rcc.NodeSdk.ActionCall:input_type -> v1.rcc.ActionCallReqest
+	4,  // 7: v1.rcc.NodeSdk.Subscribe:input_type -> v1.rcc.SubscribeRequest
+	6,  // 8: v1.rcc.NodeSdk.Unsubscribe:input_type -> v1.rcc.UnsubscribeRequest
+	1,  // 9: v1.rcc.NodeSdk.ServiceCall:output_type -> v1.rcc.ServiceCallResponse
+	3,  // 10: v1.rcc.NodeSdk.ActionCall:output_type -> v1.rcc.ActionCallResponse
+	5,  // 11: v1.rcc.NodeSdk.Subscribe:output_type -> v1.rcc.SubscribeResponse
+	7,  // 12: v1.rcc.NodeSdk.Unsubscribe:output_type -> v1.rcc.UnsubscribeResponse
+	9,  // [9:13] is the sub-list for method output_type
+	5,  // [5:9] is the sub-list for method input_type
+	5,  // [5:5] is the sub-list for extension type_name
+	5,  // [5:5] is the sub-list for extension extendee
+	0,  // [0:5] is the sub-list for field type_name
 }
 
 func init() { file_protos_node_sdk_v1_node_sdk_proto_init() }
@@ -494,6 +611,30 @@ func file_protos_node_sdk_v1_node_sdk_proto_init() {
 				return nil
 			}
 		}
+		file_protos_node_sdk_v1_node_sdk_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*UnsubscribeRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_protos_node_sdk_v1_node_sdk_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*UnsubscribeResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -501,7 +642,7 @@ func file_protos_node_sdk_v1_node_sdk_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_protos_node_sdk_v1_node_sdk_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   6,
+			NumMessages:   8,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
@@ -530,6 +671,7 @@ type NodeSdkClient interface {
 	ServiceCall(ctx context.Context, in *ServiceCallReqest, opts ...grpc.CallOption) (*ServiceCallResponse, error)
 	ActionCall(ctx context.Context, in *ActionCallReqest, opts ...grpc.CallOption) (NodeSdk_ActionCallClient, error)
 	Subscribe(ctx context.Context, in *SubscribeRequest, opts ...grpc.CallOption) (*SubscribeResponse, error)
+	Unsubscribe(ctx context.Context, in *UnsubscribeRequest, opts ...grpc.CallOption) (*UnsubscribeResponse, error)
 }
 
 type nodeSdkClient struct {
@@ -590,11 +732,21 @@ func (c *nodeSdkClient) Subscribe(ctx context.Context, in *SubscribeRequest, opt
 	return out, nil
 }
 
+func (c *nodeSdkClient) Unsubscribe(ctx context.Context, in *UnsubscribeRequest, opts ...grpc.CallOption) (*UnsubscribeResponse, error) {
+	out := new(UnsubscribeResponse)
+	err := c.cc.Invoke(ctx, "/v1.rcc.NodeSdk/Unsubscribe", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // NodeSdkServer is the server API for NodeSdk service.
 type NodeSdkServer interface {
 	ServiceCall(context.Context, *ServiceCallReqest) (*ServiceCallResponse, error)
 	ActionCall(*ActionCallReqest, NodeSdk_ActionCallServer) error
 	Subscribe(context.Context, *SubscribeRequest) (*SubscribeResponse, error)
+	Unsubscribe(context.Context, *UnsubscribeRequest) (*UnsubscribeResponse, error)
 }
 
 // UnimplementedNodeSdkServer can be embedded to have forward compatible implementations.
@@ -609,6 +761,9 @@ func (*UnimplementedNodeSdkServer) ActionCall(*ActionCallReqest, NodeSdk_ActionC
 }
 func (*UnimplementedNodeSdkServer) Subscribe(context.Context, *SubscribeRequest) (*SubscribeResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Subscribe not implemented")
+}
+func (*UnimplementedNodeSdkServer) Unsubscribe(context.Context, *UnsubscribeRequest) (*UnsubscribeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Unsubscribe not implemented")
 }
 
 func RegisterNodeSdkServer(s *grpc.Server, srv NodeSdkServer) {
@@ -672,6 +827,24 @@ func _NodeSdk_Subscribe_Handler(srv interface{}, ctx context.Context, dec func(i
 	return interceptor(ctx, in, info, handler)
 }
 
+func _NodeSdk_Unsubscribe_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UnsubscribeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NodeSdkServer).Unsubscribe(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/v1.rcc.NodeSdk/Unsubscribe",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NodeSdkServer).Unsubscribe(ctx, req.(*UnsubscribeRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _NodeSdk_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "v1.rcc.NodeSdk",
 	HandlerType: (*NodeSdkServer)(nil),
@@ -683,6 +856,10 @@ var _NodeSdk_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Subscribe",
 			Handler:    _NodeSdk_Subscribe_Handler,
+		},
+		{
+			MethodName: "Unsubscribe",
+			Handler:    _NodeSdk_Unsubscribe_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
