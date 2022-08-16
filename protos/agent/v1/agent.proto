@@ -125,9 +125,12 @@ message GetRosSubscriptionConfigResponse {
 }
 
 message GetSubscriptionRequestStreamRequest{
-
+    string request_id = 1;
+    bool status = 2;
+    string error = 3;
 }
 
 message GetSubscriptionRequestStreamResponse {
-    model.StreamConfiguration topic = 1;
+    string id = 1;
+    model.StreamConfiguration topic = 2;
 }

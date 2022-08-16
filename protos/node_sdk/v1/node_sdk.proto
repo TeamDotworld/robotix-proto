@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package v1.rcc;
 import "protos/model/v1/commands.proto";
+import "protos/model/v1/config.proto";
 
 
 option go_package="github.com/TeamDotworld/robotix-proto/protos/v1/rcc";
@@ -10,6 +11,7 @@ option go_package="github.com/TeamDotworld/robotix-proto/protos/v1/rcc";
 service NodeSdk { 
     rpc ServiceCall (ServiceCallReqest) returns (ServiceCallResponse) {}
     rpc ActionCall (ActionCallReqest) returns (stream ActionCallResponse) {}
+    rpc Subscribe (SubscribeRequest) returns (SubscribeResponse) {}
 }
 
 message ServiceCallReqest {
@@ -26,4 +28,13 @@ message ActionCallReqest {
 
 message ActionCallResponse {
     model.CommandResponse response = 1;
+}
+
+message SubscribeRequest {
+    model.StreamConfiguration topic = 1;
+}
+
+message SubscribeResponse {
+    bool status = 2;
+    string error = 3;
 }
