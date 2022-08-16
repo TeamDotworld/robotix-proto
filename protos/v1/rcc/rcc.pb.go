@@ -727,7 +727,7 @@ func (*StreamDataResponse) Descriptor() ([]byte, []int) {
 	return file_protos_rcc_v1_rcc_proto_rawDescGZIP(), []int{14}
 }
 
-type GetSubscriptionRequestStreamRequest struct {
+type GetSubscriptionRequestStreamResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -737,72 +737,10 @@ type GetSubscriptionRequestStreamRequest struct {
 	Error     string `protobuf:"bytes,3,opt,name=error,proto3" json:"error,omitempty"`
 }
 
-func (x *GetSubscriptionRequestStreamRequest) Reset() {
-	*x = GetSubscriptionRequestStreamRequest{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_protos_rcc_v1_rcc_proto_msgTypes[15]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *GetSubscriptionRequestStreamRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetSubscriptionRequestStreamRequest) ProtoMessage() {}
-
-func (x *GetSubscriptionRequestStreamRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_protos_rcc_v1_rcc_proto_msgTypes[15]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetSubscriptionRequestStreamRequest.ProtoReflect.Descriptor instead.
-func (*GetSubscriptionRequestStreamRequest) Descriptor() ([]byte, []int) {
-	return file_protos_rcc_v1_rcc_proto_rawDescGZIP(), []int{15}
-}
-
-func (x *GetSubscriptionRequestStreamRequest) GetRequestId() string {
-	if x != nil {
-		return x.RequestId
-	}
-	return ""
-}
-
-func (x *GetSubscriptionRequestStreamRequest) GetStatus() bool {
-	if x != nil {
-		return x.Status
-	}
-	return false
-}
-
-func (x *GetSubscriptionRequestStreamRequest) GetError() string {
-	if x != nil {
-		return x.Error
-	}
-	return ""
-}
-
-type GetSubscriptionRequestStreamResponse struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Id    string                     `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Topic *model.StreamConfiguration `protobuf:"bytes,2,opt,name=topic,proto3" json:"topic,omitempty"`
-}
-
 func (x *GetSubscriptionRequestStreamResponse) Reset() {
 	*x = GetSubscriptionRequestStreamResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protos_rcc_v1_rcc_proto_msgTypes[16]
+		mi := &file_protos_rcc_v1_rcc_proto_msgTypes[15]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -815,7 +753,7 @@ func (x *GetSubscriptionRequestStreamResponse) String() string {
 func (*GetSubscriptionRequestStreamResponse) ProtoMessage() {}
 
 func (x *GetSubscriptionRequestStreamResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_protos_rcc_v1_rcc_proto_msgTypes[16]
+	mi := &file_protos_rcc_v1_rcc_proto_msgTypes[15]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -828,17 +766,79 @@ func (x *GetSubscriptionRequestStreamResponse) ProtoReflect() protoreflect.Messa
 
 // Deprecated: Use GetSubscriptionRequestStreamResponse.ProtoReflect.Descriptor instead.
 func (*GetSubscriptionRequestStreamResponse) Descriptor() ([]byte, []int) {
+	return file_protos_rcc_v1_rcc_proto_rawDescGZIP(), []int{15}
+}
+
+func (x *GetSubscriptionRequestStreamResponse) GetRequestId() string {
+	if x != nil {
+		return x.RequestId
+	}
+	return ""
+}
+
+func (x *GetSubscriptionRequestStreamResponse) GetStatus() bool {
+	if x != nil {
+		return x.Status
+	}
+	return false
+}
+
+func (x *GetSubscriptionRequestStreamResponse) GetError() string {
+	if x != nil {
+		return x.Error
+	}
+	return ""
+}
+
+type GetSubscriptionRequestStreamRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Id    string                     `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Topic *model.StreamConfiguration `protobuf:"bytes,2,opt,name=topic,proto3" json:"topic,omitempty"`
+}
+
+func (x *GetSubscriptionRequestStreamRequest) Reset() {
+	*x = GetSubscriptionRequestStreamRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_protos_rcc_v1_rcc_proto_msgTypes[16]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetSubscriptionRequestStreamRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetSubscriptionRequestStreamRequest) ProtoMessage() {}
+
+func (x *GetSubscriptionRequestStreamRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_protos_rcc_v1_rcc_proto_msgTypes[16]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetSubscriptionRequestStreamRequest.ProtoReflect.Descriptor instead.
+func (*GetSubscriptionRequestStreamRequest) Descriptor() ([]byte, []int) {
 	return file_protos_rcc_v1_rcc_proto_rawDescGZIP(), []int{16}
 }
 
-func (x *GetSubscriptionRequestStreamResponse) GetId() string {
+func (x *GetSubscriptionRequestStreamRequest) GetId() string {
 	if x != nil {
 		return x.Id
 	}
 	return ""
 }
 
-func (x *GetSubscriptionRequestStreamResponse) GetTopic() *model.StreamConfiguration {
+func (x *GetSubscriptionRequestStreamRequest) GetTopic() *model.StreamConfiguration {
 	if x != nil {
 		return x.Topic
 	}
@@ -909,17 +909,17 @@ var file_protos_rcc_v1_rcc_proto_rawDesc = []byte{
 	0x69, 0x44, 0x61, 0x74, 0x61, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x16, 0x0a,
 	0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x08, 0x52, 0x06, 0x73,
 	0x74, 0x61, 0x74, 0x75, 0x73, 0x22, 0x14, 0x0a, 0x12, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x44,
-	0x61, 0x74, 0x61, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x72, 0x0a, 0x23, 0x47,
+	0x61, 0x74, 0x61, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x73, 0x0a, 0x24, 0x47,
 	0x65, 0x74, 0x53, 0x75, 0x62, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x65,
-	0x71, 0x75, 0x65, 0x73, 0x74, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x52, 0x65, 0x71, 0x75, 0x65,
-	0x73, 0x74, 0x12, 0x1d, 0x0a, 0x0a, 0x72, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x5f, 0x69, 0x64,
-	0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09, 0x72, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x49,
-	0x64, 0x12, 0x16, 0x0a, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x18, 0x02, 0x20, 0x01, 0x28,
-	0x08, 0x52, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x12, 0x14, 0x0a, 0x05, 0x65, 0x72, 0x72,
-	0x6f, 0x72, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x65, 0x72, 0x72, 0x6f, 0x72, 0x22,
-	0x6b, 0x0a, 0x24, 0x47, 0x65, 0x74, 0x53, 0x75, 0x62, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69,
-	0x6f, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x52,
-	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x52, 0x65, 0x73, 0x70, 0x6f,
+	0x6e, 0x73, 0x65, 0x12, 0x1d, 0x0a, 0x0a, 0x72, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x5f, 0x69,
+	0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09, 0x72, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
+	0x49, 0x64, 0x12, 0x16, 0x0a, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x18, 0x02, 0x20, 0x01,
+	0x28, 0x08, 0x52, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x12, 0x14, 0x0a, 0x05, 0x65, 0x72,
+	0x72, 0x6f, 0x72, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x65, 0x72, 0x72, 0x6f, 0x72,
+	0x22, 0x6a, 0x0a, 0x23, 0x47, 0x65, 0x74, 0x53, 0x75, 0x62, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74,
+	0x69, 0x6f, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d,
+	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20,
 	0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x12, 0x33, 0x0a, 0x05, 0x74, 0x6f, 0x70, 0x69, 0x63,
 	0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1d, 0x2e, 0x76, 0x31, 0x2e, 0x6d, 0x6f, 0x64, 0x65,
 	0x6c, 0x2e, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x75, 0x72,
@@ -948,12 +948,12 @@ var file_protos_rcc_v1_rcc_proto_rawDesc = []byte{
 	0x65, 0x61, 0x6d, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x30, 0x01, 0x12,
 	0x7f, 0x0a, 0x1c, 0x47, 0x65, 0x74, 0x53, 0x75, 0x62, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69,
 	0x6f, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x12,
-	0x2b, 0x2e, 0x76, 0x31, 0x2e, 0x72, 0x63, 0x63, 0x2e, 0x47, 0x65, 0x74, 0x53, 0x75, 0x62, 0x73,
+	0x2c, 0x2e, 0x76, 0x31, 0x2e, 0x72, 0x63, 0x63, 0x2e, 0x47, 0x65, 0x74, 0x53, 0x75, 0x62, 0x73,
 	0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x53,
-	0x74, 0x72, 0x65, 0x61, 0x6d, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x2c, 0x2e, 0x76,
-	0x31, 0x2e, 0x72, 0x63, 0x63, 0x2e, 0x47, 0x65, 0x74, 0x53, 0x75, 0x62, 0x73, 0x63, 0x72, 0x69,
-	0x70, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x53, 0x74, 0x72, 0x65,
-	0x61, 0x6d, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x28, 0x01, 0x30, 0x01,
+	0x74, 0x72, 0x65, 0x61, 0x6d, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x1a, 0x2b, 0x2e,
+	0x76, 0x31, 0x2e, 0x72, 0x63, 0x63, 0x2e, 0x47, 0x65, 0x74, 0x53, 0x75, 0x62, 0x73, 0x63, 0x72,
+	0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x53, 0x74, 0x72,
+	0x65, 0x61, 0x6d, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x22, 0x00, 0x28, 0x01, 0x30, 0x01,
 	0x12, 0x60, 0x0a, 0x13, 0x53, 0x65, 0x6e, 0x64, 0x43, 0x6f, 0x6d, 0x6d, 0x61, 0x6e, 0x64, 0x52,
 	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x22, 0x2e, 0x76, 0x31, 0x2e, 0x72, 0x63, 0x63,
 	0x2e, 0x53, 0x65, 0x6e, 0x64, 0x43, 0x6f, 0x6d, 0x6d, 0x61, 0x6e, 0x64, 0x52, 0x65, 0x73, 0x70,
@@ -1015,8 +1015,8 @@ var file_protos_rcc_v1_rcc_proto_goTypes = []interface{}{
 	(*PostMultiDataRequest)(nil),                 // 12: v1.rcc.PostMultiDataRequest
 	(*PostMultiDataResponse)(nil),                // 13: v1.rcc.PostMultiDataResponse
 	(*StreamDataResponse)(nil),                   // 14: v1.rcc.StreamDataResponse
-	(*GetSubscriptionRequestStreamRequest)(nil),  // 15: v1.rcc.GetSubscriptionRequestStreamRequest
-	(*GetSubscriptionRequestStreamResponse)(nil), // 16: v1.rcc.GetSubscriptionRequestStreamResponse
+	(*GetSubscriptionRequestStreamResponse)(nil), // 15: v1.rcc.GetSubscriptionRequestStreamResponse
+	(*GetSubscriptionRequestStreamRequest)(nil),  // 16: v1.rcc.GetSubscriptionRequestStreamRequest
 	(*model.AgentConfigurationStore)(nil),        // 17: v1.model.AgentConfigurationStore
 	(*model.CommandResponse)(nil),                // 18: v1.model.CommandResponse
 	(*model.CommandRequest)(nil),                 // 19: v1.model.CommandRequest
@@ -1029,12 +1029,12 @@ var file_protos_rcc_v1_rcc_proto_depIdxs = []int32{
 	7,  // 2: v1.rcc.SendCommandResponseResponse.error:type_name -> v1.rcc.Error
 	19, // 3: v1.rcc.GetCommandRequestStreamResponse.request:type_name -> v1.model.CommandRequest
 	20, // 4: v1.rcc.PostMultiDataRequest.data:type_name -> v1.model.Datapoint
-	21, // 5: v1.rcc.GetSubscriptionRequestStreamResponse.topic:type_name -> v1.model.StreamConfiguration
+	21, // 5: v1.rcc.GetSubscriptionRequestStreamRequest.topic:type_name -> v1.model.StreamConfiguration
 	0,  // 6: v1.rcc.Agent.AuthenticateAgent:input_type -> v1.rcc.AuthRequest
 	2,  // 7: v1.rcc.Agent.GetAgentConfiguration:input_type -> v1.rcc.GetAgentConfigurationRequest
 	5,  // 8: v1.rcc.Agent.Health:input_type -> v1.rcc.HealthResponse
 	9,  // 9: v1.rcc.Agent.GetCommandRequestStream:input_type -> v1.rcc.GetCommandRequestStreamRequest
-	15, // 10: v1.rcc.Agent.GetSubscriptionRequestStream:input_type -> v1.rcc.GetSubscriptionRequestStreamRequest
+	15, // 10: v1.rcc.Agent.GetSubscriptionRequestStream:input_type -> v1.rcc.GetSubscriptionRequestStreamResponse
 	6,  // 11: v1.rcc.Agent.SendCommandResponse:input_type -> v1.rcc.SendCommandResponseRequest
 	6,  // 12: v1.rcc.Agent.SendCommandResponseStream:input_type -> v1.rcc.SendCommandResponseRequest
 	20, // 13: v1.rcc.Agent.PostData:input_type -> v1.model.Datapoint
@@ -1044,7 +1044,7 @@ var file_protos_rcc_v1_rcc_proto_depIdxs = []int32{
 	3,  // 17: v1.rcc.Agent.GetAgentConfiguration:output_type -> v1.rcc.GetAgentConfigurationResponse
 	4,  // 18: v1.rcc.Agent.Health:output_type -> v1.rcc.HealthRequest
 	10, // 19: v1.rcc.Agent.GetCommandRequestStream:output_type -> v1.rcc.GetCommandRequestStreamResponse
-	16, // 20: v1.rcc.Agent.GetSubscriptionRequestStream:output_type -> v1.rcc.GetSubscriptionRequestStreamResponse
+	16, // 20: v1.rcc.Agent.GetSubscriptionRequestStream:output_type -> v1.rcc.GetSubscriptionRequestStreamRequest
 	8,  // 21: v1.rcc.Agent.SendCommandResponse:output_type -> v1.rcc.SendCommandResponseResponse
 	8,  // 22: v1.rcc.Agent.SendCommandResponseStream:output_type -> v1.rcc.SendCommandResponseResponse
 	11, // 23: v1.rcc.Agent.PostData:output_type -> v1.rcc.PostDataResponse
@@ -1244,7 +1244,7 @@ func file_protos_rcc_v1_rcc_proto_init() {
 			}
 		}
 		file_protos_rcc_v1_rcc_proto_msgTypes[15].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetSubscriptionRequestStreamRequest); i {
+			switch v := v.(*GetSubscriptionRequestStreamResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1256,7 +1256,7 @@ func file_protos_rcc_v1_rcc_proto_init() {
 			}
 		}
 		file_protos_rcc_v1_rcc_proto_msgTypes[16].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetSubscriptionRequestStreamResponse); i {
+			switch v := v.(*GetSubscriptionRequestStreamRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1417,8 +1417,8 @@ func (c *agentClient) GetSubscriptionRequestStream(ctx context.Context, opts ...
 }
 
 type Agent_GetSubscriptionRequestStreamClient interface {
-	Send(*GetSubscriptionRequestStreamRequest) error
-	Recv() (*GetSubscriptionRequestStreamResponse, error)
+	Send(*GetSubscriptionRequestStreamResponse) error
+	Recv() (*GetSubscriptionRequestStreamRequest, error)
 	grpc.ClientStream
 }
 
@@ -1426,12 +1426,12 @@ type agentGetSubscriptionRequestStreamClient struct {
 	grpc.ClientStream
 }
 
-func (x *agentGetSubscriptionRequestStreamClient) Send(m *GetSubscriptionRequestStreamRequest) error {
+func (x *agentGetSubscriptionRequestStreamClient) Send(m *GetSubscriptionRequestStreamResponse) error {
 	return x.ClientStream.SendMsg(m)
 }
 
-func (x *agentGetSubscriptionRequestStreamClient) Recv() (*GetSubscriptionRequestStreamResponse, error) {
-	m := new(GetSubscriptionRequestStreamResponse)
+func (x *agentGetSubscriptionRequestStreamClient) Recv() (*GetSubscriptionRequestStreamRequest, error) {
+	m := new(GetSubscriptionRequestStreamRequest)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
 	}
@@ -1677,8 +1677,8 @@ func _Agent_GetSubscriptionRequestStream_Handler(srv interface{}, stream grpc.Se
 }
 
 type Agent_GetSubscriptionRequestStreamServer interface {
-	Send(*GetSubscriptionRequestStreamResponse) error
-	Recv() (*GetSubscriptionRequestStreamRequest, error)
+	Send(*GetSubscriptionRequestStreamRequest) error
+	Recv() (*GetSubscriptionRequestStreamResponse, error)
 	grpc.ServerStream
 }
 
@@ -1686,12 +1686,12 @@ type agentGetSubscriptionRequestStreamServer struct {
 	grpc.ServerStream
 }
 
-func (x *agentGetSubscriptionRequestStreamServer) Send(m *GetSubscriptionRequestStreamResponse) error {
+func (x *agentGetSubscriptionRequestStreamServer) Send(m *GetSubscriptionRequestStreamRequest) error {
 	return x.ServerStream.SendMsg(m)
 }
 
-func (x *agentGetSubscriptionRequestStreamServer) Recv() (*GetSubscriptionRequestStreamRequest, error) {
-	m := new(GetSubscriptionRequestStreamRequest)
+func (x *agentGetSubscriptionRequestStreamServer) Recv() (*GetSubscriptionRequestStreamResponse, error) {
+	m := new(GetSubscriptionRequestStreamResponse)
 	if err := x.ServerStream.RecvMsg(m); err != nil {
 		return nil, err
 	}

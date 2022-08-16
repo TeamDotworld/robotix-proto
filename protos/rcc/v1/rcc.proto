@@ -26,7 +26,7 @@ service Agent {
     returns (stream GetCommandRequestStreamResponse) {
     }
 
-    rpc GetSubscriptionRequestStream(stream GetSubscriptionRequestStreamRequest) returns (stream GetSubscriptionRequestStreamResponse) {}
+    rpc GetSubscriptionRequestStream(stream GetSubscriptionRequestStreamResponse) returns (stream GetSubscriptionRequestStreamRequest) {}
 
 
     /* SendCommandResponse sends a response to a command request. */
@@ -111,13 +111,13 @@ message PostMultiDataResponse {
 message StreamDataResponse {
 }
 
-message GetSubscriptionRequestStreamRequest{
+message GetSubscriptionRequestStreamResponse{
     string request_id = 1;
     bool status = 2;
     string error = 3;
 }
 
-message GetSubscriptionRequestStreamResponse {
+message GetSubscriptionRequestStreamRequest {
     string id = 1;
     model.StreamConfiguration topic = 2;
 }
