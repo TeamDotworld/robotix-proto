@@ -14,7 +14,6 @@ message Topics {
 message ROSTopic {
   string name = 1;
   string path = 2;
-  bool encode_video = 3;
 }
 
 message ROSLocalization {

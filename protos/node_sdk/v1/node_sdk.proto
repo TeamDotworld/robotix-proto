@@ -57,11 +57,15 @@ message UnsubscribeResponse {
 message GetTopicsRequest {}
 
 message GetTopicsResponse {
-    repeated model.ROSTopic topics = 1;
+    bool status = 2;
+    string error = 3;
+    repeated model.ROSTopic data = 1;
 }
 
 message GetSubscrbedTopicsRequest {}
 
 message GetSubscrbedTopicsResponse {
-    repeated model.ROSTopic topics = 1;
+    bool status = 2;
+    string error = 3;
+    repeated model.ROSTopic data = 1;
 }
