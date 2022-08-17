@@ -3,6 +3,8 @@ syntax = "proto3";
 package v1.rcc;
 import "protos/model/v1/commands.proto";
 import "protos/model/v1/config.proto";
+import "protos/model/v1/ros.proto";
+
 
 
 option go_package="github.com/TeamDotworld/robotix-proto/protos/v1/rcc";
@@ -13,6 +15,8 @@ service NodeSdk {
     rpc ActionCall (ActionCallReqest) returns (stream ActionCallResponse) {}
     rpc Subscribe (SubscribeRequest) returns (SubscribeResponse) {}
     rpc Unsubscribe (UnsubscribeRequest) returns (UnsubscribeResponse) {}
+    rpc GetTopics (GetTopicsRequest) returns (stream GetTopicsResponse) {}
+    rpc GetSubscrbedTopics (GetSubscrbedTopicsRequest) returns (stream GetSubscrbedTopicsResponse) {}
 
 }
 
@@ -48,4 +52,16 @@ message UnsubscribeRequest {
 message UnsubscribeResponse {
     bool status = 2;
     string error = 3;
+}
+
+message GetTopicsRequest {}
+
+message GetTopicsResponse {
+    repeated model.ROSTopic topics = 1;
+}
+
+message GetSubscrbedTopicsRequest {}
+
+message GetSubscrbedTopicsResponse {
+    repeated model.ROSTopic topics = 1;
 }

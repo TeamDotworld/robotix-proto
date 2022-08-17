@@ -5,6 +5,8 @@ package v1.rcc;
 import "protos/model/v1/config.proto";
 import "protos/model/v1/commands.proto";
 import "protos/model/v1/datapoint.proto";
+import "protos/model/v1/ros.proto";
+
 
 option go_package="github.com/TeamDotworld/robotix-proto/protos/v1/rcc";
 
@@ -115,6 +117,9 @@ message GetSubscriptionRequestStreamResponse{
     string request_id = 1;
     bool status = 2;
     string error = 3;
+    oneof data {
+        model.Topics topics = 4;
+    }
 }
 
 message GetSubscriptionRequestStreamRequest {
