@@ -15,8 +15,8 @@ service NodeSdk {
     rpc ActionCall (ActionCallReqest) returns (stream ActionCallResponse) {}
     rpc Subscribe (SubscribeRequest) returns (SubscribeResponse) {}
     rpc Unsubscribe (UnsubscribeRequest) returns (UnsubscribeResponse) {}
-    rpc GetTopics (GetTopicsRequest) returns (stream GetTopicsResponse) {}
-    rpc GetSubscrbedTopics (GetSubscrbedTopicsRequest) returns (stream GetSubscrbedTopicsResponse) {}
+    rpc GetTopics (GetTopicsRequest) returns (GetTopicsResponse) {}
+    rpc GetSubscribedTopics (GetSubscrbedTopicsRequest) returns (GetSubscrbedTopicsResponse) {}
 
 }
 

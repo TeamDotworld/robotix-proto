@@ -644,7 +644,7 @@ var file_protos_node_sdk_v1_node_sdk_proto_rawDesc = []byte{
 	0x6f, 0x70, 0x69, 0x63, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x2a, 0x0a,
 	0x06, 0x74, 0x6f, 0x70, 0x69, 0x63, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x12, 0x2e,
 	0x76, 0x31, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x52, 0x4f, 0x53, 0x54, 0x6f, 0x70, 0x69,
-	0x63, 0x52, 0x06, 0x74, 0x6f, 0x70, 0x69, 0x63, 0x73, 0x32, 0xcf, 0x03, 0x0a, 0x07, 0x4e, 0x6f,
+	0x63, 0x52, 0x06, 0x74, 0x6f, 0x70, 0x69, 0x63, 0x73, 0x32, 0xcc, 0x03, 0x0a, 0x07, 0x4e, 0x6f,
 	0x64, 0x65, 0x53, 0x64, 0x6b, 0x12, 0x47, 0x0a, 0x0b, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65,
 	0x43, 0x61, 0x6c, 0x6c, 0x12, 0x19, 0x2e, 0x76, 0x31, 0x2e, 0x72, 0x63, 0x63, 0x2e, 0x53, 0x65,
 	0x72, 0x76, 0x69, 0x63, 0x65, 0x43, 0x61, 0x6c, 0x6c, 0x52, 0x65, 0x71, 0x65, 0x73, 0x74, 0x1a,
@@ -663,21 +663,21 @@ var file_protos_node_sdk_v1_node_sdk_proto_rawDesc = []byte{
 	0x63, 0x63, 0x2e, 0x55, 0x6e, 0x73, 0x75, 0x62, 0x73, 0x63, 0x72, 0x69, 0x62, 0x65, 0x52, 0x65,
 	0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1b, 0x2e, 0x76, 0x31, 0x2e, 0x72, 0x63, 0x63, 0x2e, 0x55,
 	0x6e, 0x73, 0x75, 0x62, 0x73, 0x63, 0x72, 0x69, 0x62, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
-	0x73, 0x65, 0x22, 0x00, 0x12, 0x44, 0x0a, 0x09, 0x47, 0x65, 0x74, 0x54, 0x6f, 0x70, 0x69, 0x63,
+	0x73, 0x65, 0x22, 0x00, 0x12, 0x42, 0x0a, 0x09, 0x47, 0x65, 0x74, 0x54, 0x6f, 0x70, 0x69, 0x63,
 	0x73, 0x12, 0x18, 0x2e, 0x76, 0x31, 0x2e, 0x72, 0x63, 0x63, 0x2e, 0x47, 0x65, 0x74, 0x54, 0x6f,
 	0x70, 0x69, 0x63, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x19, 0x2e, 0x76, 0x31,
 	0x2e, 0x72, 0x63, 0x63, 0x2e, 0x47, 0x65, 0x74, 0x54, 0x6f, 0x70, 0x69, 0x63, 0x73, 0x52, 0x65,
-	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x30, 0x01, 0x12, 0x5f, 0x0a, 0x12, 0x47, 0x65,
-	0x74, 0x53, 0x75, 0x62, 0x73, 0x63, 0x72, 0x62, 0x65, 0x64, 0x54, 0x6f, 0x70, 0x69, 0x63, 0x73,
-	0x12, 0x21, 0x2e, 0x76, 0x31, 0x2e, 0x72, 0x63, 0x63, 0x2e, 0x47, 0x65, 0x74, 0x53, 0x75, 0x62,
-	0x73, 0x63, 0x72, 0x62, 0x65, 0x64, 0x54, 0x6f, 0x70, 0x69, 0x63, 0x73, 0x52, 0x65, 0x71, 0x75,
-	0x65, 0x73, 0x74, 0x1a, 0x22, 0x2e, 0x76, 0x31, 0x2e, 0x72, 0x63, 0x63, 0x2e, 0x47, 0x65, 0x74,
-	0x53, 0x75, 0x62, 0x73, 0x63, 0x72, 0x62, 0x65, 0x64, 0x54, 0x6f, 0x70, 0x69, 0x63, 0x73, 0x52,
-	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x30, 0x01, 0x42, 0x35, 0x5a, 0x33, 0x67,
-	0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x54, 0x65, 0x61, 0x6d, 0x44, 0x6f,
-	0x74, 0x77, 0x6f, 0x72, 0x6c, 0x64, 0x2f, 0x72, 0x6f, 0x62, 0x6f, 0x74, 0x69, 0x78, 0x2d, 0x70,
-	0x72, 0x6f, 0x74, 0x6f, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x73, 0x2f, 0x76, 0x31, 0x2f, 0x72,
-	0x63, 0x63, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12, 0x5e, 0x0a, 0x13, 0x47, 0x65, 0x74, 0x53,
+	0x75, 0x62, 0x73, 0x63, 0x72, 0x69, 0x62, 0x65, 0x64, 0x54, 0x6f, 0x70, 0x69, 0x63, 0x73, 0x12,
+	0x21, 0x2e, 0x76, 0x31, 0x2e, 0x72, 0x63, 0x63, 0x2e, 0x47, 0x65, 0x74, 0x53, 0x75, 0x62, 0x73,
+	0x63, 0x72, 0x62, 0x65, 0x64, 0x54, 0x6f, 0x70, 0x69, 0x63, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65,
+	0x73, 0x74, 0x1a, 0x22, 0x2e, 0x76, 0x31, 0x2e, 0x72, 0x63, 0x63, 0x2e, 0x47, 0x65, 0x74, 0x53,
+	0x75, 0x62, 0x73, 0x63, 0x72, 0x62, 0x65, 0x64, 0x54, 0x6f, 0x70, 0x69, 0x63, 0x73, 0x52, 0x65,
+	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x42, 0x35, 0x5a, 0x33, 0x67, 0x69, 0x74, 0x68,
+	0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x54, 0x65, 0x61, 0x6d, 0x44, 0x6f, 0x74, 0x77, 0x6f,
+	0x72, 0x6c, 0x64, 0x2f, 0x72, 0x6f, 0x62, 0x6f, 0x74, 0x69, 0x78, 0x2d, 0x70, 0x72, 0x6f, 0x74,
+	0x6f, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x73, 0x2f, 0x76, 0x31, 0x2f, 0x72, 0x63, 0x63, 0x62,
+	0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -724,13 +724,13 @@ var file_protos_node_sdk_v1_node_sdk_proto_depIdxs = []int32{
 	4,  // 9: v1.rcc.NodeSdk.Subscribe:input_type -> v1.rcc.SubscribeRequest
 	6,  // 10: v1.rcc.NodeSdk.Unsubscribe:input_type -> v1.rcc.UnsubscribeRequest
 	8,  // 11: v1.rcc.NodeSdk.GetTopics:input_type -> v1.rcc.GetTopicsRequest
-	10, // 12: v1.rcc.NodeSdk.GetSubscrbedTopics:input_type -> v1.rcc.GetSubscrbedTopicsRequest
+	10, // 12: v1.rcc.NodeSdk.GetSubscribedTopics:input_type -> v1.rcc.GetSubscrbedTopicsRequest
 	1,  // 13: v1.rcc.NodeSdk.ServiceCall:output_type -> v1.rcc.ServiceCallResponse
 	3,  // 14: v1.rcc.NodeSdk.ActionCall:output_type -> v1.rcc.ActionCallResponse
 	5,  // 15: v1.rcc.NodeSdk.Subscribe:output_type -> v1.rcc.SubscribeResponse
 	7,  // 16: v1.rcc.NodeSdk.Unsubscribe:output_type -> v1.rcc.UnsubscribeResponse
 	9,  // 17: v1.rcc.NodeSdk.GetTopics:output_type -> v1.rcc.GetTopicsResponse
-	11, // 18: v1.rcc.NodeSdk.GetSubscrbedTopics:output_type -> v1.rcc.GetSubscrbedTopicsResponse
+	11, // 18: v1.rcc.NodeSdk.GetSubscribedTopics:output_type -> v1.rcc.GetSubscrbedTopicsResponse
 	13, // [13:19] is the sub-list for method output_type
 	7,  // [7:13] is the sub-list for method input_type
 	7,  // [7:7] is the sub-list for extension type_name
@@ -925,8 +925,8 @@ type NodeSdkClient interface {
 	ActionCall(ctx context.Context, in *ActionCallReqest, opts ...grpc.CallOption) (NodeSdk_ActionCallClient, error)
 	Subscribe(ctx context.Context, in *SubscribeRequest, opts ...grpc.CallOption) (*SubscribeResponse, error)
 	Unsubscribe(ctx context.Context, in *UnsubscribeRequest, opts ...grpc.CallOption) (*UnsubscribeResponse, error)
-	GetTopics(ctx context.Context, in *GetTopicsRequest, opts ...grpc.CallOption) (NodeSdk_GetTopicsClient, error)
-	GetSubscrbedTopics(ctx context.Context, in *GetSubscrbedTopicsRequest, opts ...grpc.CallOption) (NodeSdk_GetSubscrbedTopicsClient, error)
+	GetTopics(ctx context.Context, in *GetTopicsRequest, opts ...grpc.CallOption) (*GetTopicsResponse, error)
+	GetSubscribedTopics(ctx context.Context, in *GetSubscrbedTopicsRequest, opts ...grpc.CallOption) (*GetSubscrbedTopicsResponse, error)
 }
 
 type nodeSdkClient struct {
@@ -996,68 +996,22 @@ func (c *nodeSdkClient) Unsubscribe(ctx context.Context, in *UnsubscribeRequest,
 	return out, nil
 }
 
-func (c *nodeSdkClient) GetTopics(ctx context.Context, in *GetTopicsRequest, opts ...grpc.CallOption) (NodeSdk_GetTopicsClient, error) {
-	stream, err := c.cc.NewStream(ctx, &_NodeSdk_serviceDesc.Streams[1], "/v1.rcc.NodeSdk/GetTopics", opts...)
+func (c *nodeSdkClient) GetTopics(ctx context.Context, in *GetTopicsRequest, opts ...grpc.CallOption) (*GetTopicsResponse, error) {
+	out := new(GetTopicsResponse)
+	err := c.cc.Invoke(ctx, "/v1.rcc.NodeSdk/GetTopics", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &nodeSdkGetTopicsClient{stream}
-	if err := x.ClientStream.SendMsg(in); err != nil {
-		return nil, err
-	}
-	if err := x.ClientStream.CloseSend(); err != nil {
-		return nil, err
-	}
-	return x, nil
+	return out, nil
 }
 
-type NodeSdk_GetTopicsClient interface {
-	Recv() (*GetTopicsResponse, error)
-	grpc.ClientStream
-}
-
-type nodeSdkGetTopicsClient struct {
-	grpc.ClientStream
-}
-
-func (x *nodeSdkGetTopicsClient) Recv() (*GetTopicsResponse, error) {
-	m := new(GetTopicsResponse)
-	if err := x.ClientStream.RecvMsg(m); err != nil {
-		return nil, err
-	}
-	return m, nil
-}
-
-func (c *nodeSdkClient) GetSubscrbedTopics(ctx context.Context, in *GetSubscrbedTopicsRequest, opts ...grpc.CallOption) (NodeSdk_GetSubscrbedTopicsClient, error) {
-	stream, err := c.cc.NewStream(ctx, &_NodeSdk_serviceDesc.Streams[2], "/v1.rcc.NodeSdk/GetSubscrbedTopics", opts...)
+func (c *nodeSdkClient) GetSubscribedTopics(ctx context.Context, in *GetSubscrbedTopicsRequest, opts ...grpc.CallOption) (*GetSubscrbedTopicsResponse, error) {
+	out := new(GetSubscrbedTopicsResponse)
+	err := c.cc.Invoke(ctx, "/v1.rcc.NodeSdk/GetSubscribedTopics", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &nodeSdkGetSubscrbedTopicsClient{stream}
-	if err := x.ClientStream.SendMsg(in); err != nil {
-		return nil, err
-	}
-	if err := x.ClientStream.CloseSend(); err != nil {
-		return nil, err
-	}
-	return x, nil
-}
-
-type NodeSdk_GetSubscrbedTopicsClient interface {
-	Recv() (*GetSubscrbedTopicsResponse, error)
-	grpc.ClientStream
-}
-
-type nodeSdkGetSubscrbedTopicsClient struct {
-	grpc.ClientStream
-}
-
-func (x *nodeSdkGetSubscrbedTopicsClient) Recv() (*GetSubscrbedTopicsResponse, error) {
-	m := new(GetSubscrbedTopicsResponse)
-	if err := x.ClientStream.RecvMsg(m); err != nil {
-		return nil, err
-	}
-	return m, nil
+	return out, nil
 }
 
 // NodeSdkServer is the server API for NodeSdk service.
@@ -1066,8 +1020,8 @@ type NodeSdkServer interface {
 	ActionCall(*ActionCallReqest, NodeSdk_ActionCallServer) error
 	Subscribe(context.Context, *SubscribeRequest) (*SubscribeResponse, error)
 	Unsubscribe(context.Context, *UnsubscribeRequest) (*UnsubscribeResponse, error)
-	GetTopics(*GetTopicsRequest, NodeSdk_GetTopicsServer) error
-	GetSubscrbedTopics(*GetSubscrbedTopicsRequest, NodeSdk_GetSubscrbedTopicsServer) error
+	GetTopics(context.Context, *GetTopicsRequest) (*GetTopicsResponse, error)
+	GetSubscribedTopics(context.Context, *GetSubscrbedTopicsRequest) (*GetSubscrbedTopicsResponse, error)
 }
 
 // UnimplementedNodeSdkServer can be embedded to have forward compatible implementations.
@@ -1086,11 +1040,11 @@ func (*UnimplementedNodeSdkServer) Subscribe(context.Context, *SubscribeRequest)
 func (*UnimplementedNodeSdkServer) Unsubscribe(context.Context, *UnsubscribeRequest) (*UnsubscribeResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Unsubscribe not implemented")
 }
-func (*UnimplementedNodeSdkServer) GetTopics(*GetTopicsRequest, NodeSdk_GetTopicsServer) error {
-	return status.Errorf(codes.Unimplemented, "method GetTopics not implemented")
+func (*UnimplementedNodeSdkServer) GetTopics(context.Context, *GetTopicsRequest) (*GetTopicsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetTopics not implemented")
 }
-func (*UnimplementedNodeSdkServer) GetSubscrbedTopics(*GetSubscrbedTopicsRequest, NodeSdk_GetSubscrbedTopicsServer) error {
-	return status.Errorf(codes.Unimplemented, "method GetSubscrbedTopics not implemented")
+func (*UnimplementedNodeSdkServer) GetSubscribedTopics(context.Context, *GetSubscrbedTopicsRequest) (*GetSubscrbedTopicsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetSubscribedTopics not implemented")
 }
 
 func RegisterNodeSdkServer(s *grpc.Server, srv NodeSdkServer) {
@@ -1172,46 +1126,40 @@ func _NodeSdk_Unsubscribe_Handler(srv interface{}, ctx context.Context, dec func
 	return interceptor(ctx, in, info, handler)
 }
 
-func _NodeSdk_GetTopics_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(GetTopicsRequest)
-	if err := stream.RecvMsg(m); err != nil {
-		return err
+func _NodeSdk_GetTopics_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetTopicsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
 	}
-	return srv.(NodeSdkServer).GetTopics(m, &nodeSdkGetTopicsServer{stream})
-}
-
-type NodeSdk_GetTopicsServer interface {
-	Send(*GetTopicsResponse) error
-	grpc.ServerStream
-}
-
-type nodeSdkGetTopicsServer struct {
-	grpc.ServerStream
-}
-
-func (x *nodeSdkGetTopicsServer) Send(m *GetTopicsResponse) error {
-	return x.ServerStream.SendMsg(m)
-}
-
-func _NodeSdk_GetSubscrbedTopics_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(GetSubscrbedTopicsRequest)
-	if err := stream.RecvMsg(m); err != nil {
-		return err
+	if interceptor == nil {
+		return srv.(NodeSdkServer).GetTopics(ctx, in)
 	}
-	return srv.(NodeSdkServer).GetSubscrbedTopics(m, &nodeSdkGetSubscrbedTopicsServer{stream})
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/v1.rcc.NodeSdk/GetTopics",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NodeSdkServer).GetTopics(ctx, req.(*GetTopicsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
-type NodeSdk_GetSubscrbedTopicsServer interface {
-	Send(*GetSubscrbedTopicsResponse) error
-	grpc.ServerStream
-}
-
-type nodeSdkGetSubscrbedTopicsServer struct {
-	grpc.ServerStream
-}
-
-func (x *nodeSdkGetSubscrbedTopicsServer) Send(m *GetSubscrbedTopicsResponse) error {
-	return x.ServerStream.SendMsg(m)
+func _NodeSdk_GetSubscribedTopics_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetSubscrbedTopicsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NodeSdkServer).GetSubscribedTopics(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/v1.rcc.NodeSdk/GetSubscribedTopics",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NodeSdkServer).GetSubscribedTopics(ctx, req.(*GetSubscrbedTopicsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 var _NodeSdk_serviceDesc = grpc.ServiceDesc{
@@ -1230,21 +1178,19 @@ var _NodeSdk_serviceDesc = grpc.ServiceDesc{
 			MethodName: "Unsubscribe",
 			Handler:    _NodeSdk_Unsubscribe_Handler,
 		},
+		{
+			MethodName: "GetTopics",
+			Handler:    _NodeSdk_GetTopics_Handler,
+		},
+		{
+			MethodName: "GetSubscribedTopics",
+			Handler:    _NodeSdk_GetSubscribedTopics_Handler,
+		},
 	},
 	Streams: []grpc.StreamDesc{
 		{
 			StreamName:    "ActionCall",
 			Handler:       _NodeSdk_ActionCall_Handler,
-			ServerStreams: true,
-		},
-		{
-			StreamName:    "GetTopics",
-			Handler:       _NodeSdk_GetTopics_Handler,
-			ServerStreams: true,
-		},
-		{
-			StreamName:    "GetSubscrbedTopics",
-			Handler:       _NodeSdk_GetSubscrbedTopics_Handler,
 			ServerStreams: true,
 		},
 	},
