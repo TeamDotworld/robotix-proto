@@ -55,6 +55,9 @@ service AgentRosBridge {
     * expected error conditions and codes. */
     rpc StreamData(stream model.Datapoint) returns (StreamDataResponse) {
     }
+
+    rpc ReceiveRosMessages(stream RecieveRosMessagesResponse) returns (stream RecieveRosMessagesRequest) {}
+
 }
 
 
@@ -139,4 +142,15 @@ message GetSubscriptionRequestStreamRequest {
     string id = 1;
     model.StreamConfiguration topic = 2;
     string action = 3;
+}
+
+message RecieveRosMessagesRequest {
+    string id = 1;
+    model.Datapoint data = 2;
+}
+
+message RecieveRosMessagesResponse {
+    string request_id = 1;
+    bool status = 2;
+    string error = 3;
 }

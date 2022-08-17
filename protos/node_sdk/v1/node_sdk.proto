@@ -4,7 +4,7 @@ package v1.rcc;
 import "protos/model/v1/commands.proto";
 import "protos/model/v1/config.proto";
 import "protos/model/v1/ros.proto";
-
+import "protos/model/v1/datapoint.proto";
 
 
 option go_package="github.com/TeamDotworld/robotix-proto/protos/v1/rcc";
@@ -17,7 +17,7 @@ service NodeSdk {
     rpc Unsubscribe (UnsubscribeRequest) returns (UnsubscribeResponse) {}
     rpc GetTopics (GetTopicsRequest) returns (GetTopicsResponse) {}
     rpc GetSubscribedTopics (GetSubscrbedTopicsRequest) returns (GetSubscrbedTopicsResponse) {}
-
+    rpc Publish (PublishRequest) returns (PublishResponse) {}
 }
 
 message ServiceCallReqest {
@@ -68,4 +68,14 @@ message GetSubscrbedTopicsResponse {
     bool status = 2;
     string error = 3;
     repeated model.ROSTopic data = 1;
+}
+
+message PublishRequest {
+    string id = 1;
+    model.Datapoint datapoint = 2;
+}
+
+message PublishResponse {
+    bool status = 2;
+    string error = 3;
 }
