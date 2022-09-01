@@ -72,7 +72,7 @@ message GetSubscrbedTopicsResponse {
 
 message PublishRequest {
     string id = 1;
-    model.Datapoint datapoint = 2;
+    model.ControlDatapoint control_datapoint = 2;
 }
 
 message PublishResponse {
