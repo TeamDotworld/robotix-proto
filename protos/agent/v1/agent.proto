@@ -146,7 +146,7 @@ message GetSubscriptionRequestStreamRequest {
 
 message RecieveRosMessagesRequest {
     string id = 1;
-    model.Datapoint data = 2;
+    model.ControlDatapoint control_datapoint = 2;
 }
 
 message RecieveRosMessagesResponse {

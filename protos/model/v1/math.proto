@@ -37,6 +37,11 @@ message Transform {
   Quaternion rotation = 2;
 }
 
+message Pose {
+  Vector3 translation = 1;
+  Quaternion rotation = 2;
+}
+
 message TransformFrame {
   string parent_frame = 1;
   string child_frame = 2;

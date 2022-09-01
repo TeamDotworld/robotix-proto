@@ -53,8 +53,8 @@ service Agent {
 
     rpc ReceiveRosMessages(stream RecieveRosMessagesResponse) returns (stream RecieveRosMessagesRequest) {}
 
-      /* Get rtc signal from Rcc server to agent */
-      rpc GetRtcSignal(stream GetRtcSignalResponse) returns (stream GetRtcSignalRequest) {}
+    /* Get rtc signal from Rcc server to agent */
+    rpc GetRtcSignal(stream GetRtcSignalResponse) returns (stream GetRtcSignalRequest) {}
 }
 
 message AuthRequest{
@@ -152,6 +152,5 @@ message GetRtcSignalRequest {
 
 message GetRtcSignalResponse {
     string answer = 1;
-    int32 streams_count = 2;
     string error = 3;
 }
