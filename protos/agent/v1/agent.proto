@@ -114,7 +114,7 @@ message PostMultiDataResponse {
 }
 
 message StreamDataRequest {
-    bool teleop_active = 1;
+    bool teleop_status = 1;
 }
 
 message GetRosCommandConfigRequest{}
