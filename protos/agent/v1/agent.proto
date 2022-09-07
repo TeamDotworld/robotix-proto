@@ -53,7 +53,7 @@ service AgentRosBridge {
 
     /* StreamData accepts a stream of data points. See PostData for information on
     * expected error conditions and codes. */
-    rpc StreamData(model.Datapoint ) returns (stream StreamDataRequest) {
+    rpc StreamData(stream model.Datapoint ) returns (stream StreamDataRequest) {
     }
 
     rpc ReceiveRosMessages(stream RecieveRosMessagesResponse) returns (stream RecieveRosMessagesRequest) {}
