@@ -31,6 +31,7 @@ message Datapoint {
     Battery battery = 15;
     Video video = 16;
     TransformTree transform_tree = 18;
+    bytes raw = 19;
   }
   reserved 6;
 }
