@@ -1,5 +1,5 @@
 #!/bin/bash
-version=33
+version=34
 old_version=$version
 
 echo -e '\033[4;32;1mGenerating Proto Code\033[m'
