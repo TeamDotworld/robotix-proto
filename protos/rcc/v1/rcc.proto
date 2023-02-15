@@ -147,7 +147,7 @@ message RecieveRosMessagesResponse {
 // Webrtc
 message GetRtcSignalRequest {
     string offer = 1;
-
+    string query = 2;
 }
 
 message GetRtcSignalResponse {

@@ -1,8 +1,8 @@
 #!/bin/bash
 
-protoc --go_out=plugins=grpc:/home/anand/go/src/ ./protos/rcc/v1/rcc.proto
-protoc --go_out=plugins=grpc:/home/anand/go/src/ ./protos/node_sdk/v1/node_sdk.proto
-protoc --go_out=plugins=grpc:/home/anand/go/src/ ./protos/agent/v1/agent.proto
+protoc --go-grpc_out=/home/anand/go/src/ ./protos/rcc/v1/rcc.proto
+protoc --go-grpc_out=/home/anand/go/src/ ./protos/node_sdk/v1/node_sdk.proto
+protoc --go-grpc_out=/home/anand/go/src/ ./protos/agent/v1/agent.proto
 
 
 python3 -m grpc_tools.protoc -I. --python_out=/home/anand/go/src/github.com/anand-dotworld/robotix-agent/node --grpc_python_out=/home/anand/go/src/github.com/anand-dotworld/robotix-agent/node ./protos/agent/v1/agent.proto
@@ -11,7 +11,7 @@ python3 -m grpc_tools.protoc -I. --python_out=/home/anand/go/src/github.com/anan
 
 for f in ./protos/model/v1/*.proto 
 do 
-    protoc --go_out=plugins=grpc:/home/anand/go/src/ $f
+    protoc --go-grpc_out=/home/anand/go/src/ $f
     python3 -m grpc_tools.protoc -I. --python_out=/home/anand/go/src/github.com/anand-dotworld/robotix-agent/node --grpc_python_out=/home/anand/go/src/github.com/anand-dotworld/robotix-agent/node $f
 
     echo "Processing $f file.."
