@@ -48,8 +48,8 @@ service Agent {
    such as "SUBSCRIBE", "UNSUBSCRIBE", "GET_TOPICS", "GET_SUBSCRIBED_TOPICS" and
    sends back the response to the server. This is previously implemented for
    node sdk with grpc, and not work with current implementation.*/
-  rpc GetSubscriptionRequestStream(GetSubscriptionRequestStreamResponse)
-      returns (stream GetSubscriptionRequestStreamRequest) {}
+  rpc GetSubscriptionRequestStream(GetSubscriptionRequestStreamRequest)
+      returns (stream GetSubscriptionRequestStreamResponse) {}
 
   /* SendSubscriptionResponse sends subscribed topic messages back to Rcc server
    */
@@ -133,9 +133,9 @@ message PostMultiDataResponse { bool status = 1; }
 
 message StreamDataResponse {}
 
-message GetSubscriptionRequestStreamResponse {}
+message GetSubscriptionRequestStreamRequest {}
 
-message GetSubscriptionRequestStreamRequest {
+message GetSubscriptionRequestStreamResponse {
   string id = 1;
   model.StreamConfiguration topic = 2;
   string action = 3;

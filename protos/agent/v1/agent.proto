@@ -45,8 +45,8 @@ service AgentRosBridge {
      such as "SUBSCRIBE", "UNSUBSCRIBE" and sends back the response to the
      server. This is previously implemented for node sdk with grpc, and not
      work with current implementation.*/
-  rpc GetSubscriptionRequestStream(GetSubscriptionRequestStreamResponse)
-      returns (stream GetSubscriptionRequestStreamRequest) {}
+  rpc GetSubscriptionRequestStream(GetSubscriptionRequestStreamRequest)
+      returns (stream GetSubscriptionRequestStreamResponse) {}
 
   /* SendSubscriptionResponse sends subscribed topic messages back to Rcc server
    */
@@ -128,9 +128,9 @@ message GetRosSubscriptionConfigRequest {}
 
 message GetRosSubscriptionConfigResponse { Json config = 1; }
 
-message GetSubscriptionRequestStreamResponse {}
+message GetSubscriptionRequestStreamRequest {}
 
-message GetSubscriptionRequestStreamRequest {
+message GetSubscriptionRequestStreamResponse {
   string id = 1;
   model.StreamConfiguration topic = 2;
   string action = 3;

@@ -894,58 +894,16 @@ func (x *GetRosSubscriptionConfigResponse) GetConfig() *Json {
 	return nil
 }
 
-type GetSubscriptionRequestStreamResponse struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-}
-
-func (x *GetSubscriptionRequestStreamResponse) Reset() {
-	*x = GetSubscriptionRequestStreamResponse{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_protos_agent_v1_agent_proto_msgTypes[19]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *GetSubscriptionRequestStreamResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetSubscriptionRequestStreamResponse) ProtoMessage() {}
-
-func (x *GetSubscriptionRequestStreamResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_protos_agent_v1_agent_proto_msgTypes[19]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetSubscriptionRequestStreamResponse.ProtoReflect.Descriptor instead.
-func (*GetSubscriptionRequestStreamResponse) Descriptor() ([]byte, []int) {
-	return file_protos_agent_v1_agent_proto_rawDescGZIP(), []int{19}
-}
-
 type GetSubscriptionRequestStreamRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
-
-	Id     string                     `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Topic  *model.StreamConfiguration `protobuf:"bytes,2,opt,name=topic,proto3" json:"topic,omitempty"`
-	Action string                     `protobuf:"bytes,3,opt,name=action,proto3" json:"action,omitempty"`
 }
 
 func (x *GetSubscriptionRequestStreamRequest) Reset() {
 	*x = GetSubscriptionRequestStreamRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_protos_agent_v1_agent_proto_msgTypes[20]
+		mi := &file_protos_agent_v1_agent_proto_msgTypes[19]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -958,7 +916,7 @@ func (x *GetSubscriptionRequestStreamRequest) String() string {
 func (*GetSubscriptionRequestStreamRequest) ProtoMessage() {}
 
 func (x *GetSubscriptionRequestStreamRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_protos_agent_v1_agent_proto_msgTypes[20]
+	mi := &file_protos_agent_v1_agent_proto_msgTypes[19]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -971,24 +929,66 @@ func (x *GetSubscriptionRequestStreamRequest) ProtoReflect() protoreflect.Messag
 
 // Deprecated: Use GetSubscriptionRequestStreamRequest.ProtoReflect.Descriptor instead.
 func (*GetSubscriptionRequestStreamRequest) Descriptor() ([]byte, []int) {
+	return file_protos_agent_v1_agent_proto_rawDescGZIP(), []int{19}
+}
+
+type GetSubscriptionRequestStreamResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Id     string                     `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Topic  *model.StreamConfiguration `protobuf:"bytes,2,opt,name=topic,proto3" json:"topic,omitempty"`
+	Action string                     `protobuf:"bytes,3,opt,name=action,proto3" json:"action,omitempty"`
+}
+
+func (x *GetSubscriptionRequestStreamResponse) Reset() {
+	*x = GetSubscriptionRequestStreamResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_protos_agent_v1_agent_proto_msgTypes[20]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetSubscriptionRequestStreamResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetSubscriptionRequestStreamResponse) ProtoMessage() {}
+
+func (x *GetSubscriptionRequestStreamResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_protos_agent_v1_agent_proto_msgTypes[20]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetSubscriptionRequestStreamResponse.ProtoReflect.Descriptor instead.
+func (*GetSubscriptionRequestStreamResponse) Descriptor() ([]byte, []int) {
 	return file_protos_agent_v1_agent_proto_rawDescGZIP(), []int{20}
 }
 
-func (x *GetSubscriptionRequestStreamRequest) GetId() string {
+func (x *GetSubscriptionRequestStreamResponse) GetId() string {
 	if x != nil {
 		return x.Id
 	}
 	return ""
 }
 
-func (x *GetSubscriptionRequestStreamRequest) GetTopic() *model.StreamConfiguration {
+func (x *GetSubscriptionRequestStreamResponse) GetTopic() *model.StreamConfiguration {
 	if x != nil {
 		return x.Topic
 	}
 	return nil
 }
 
-func (x *GetSubscriptionRequestStreamRequest) GetAction() string {
+func (x *GetSubscriptionRequestStreamResponse) GetAction() string {
 	if x != nil {
 		return x.Action
 	}
@@ -1295,12 +1295,12 @@ var file_protos_agent_v1_agent_proto_rawDesc = []byte{
 	0x6f, 0x6e, 0x66, 0x69, 0x67, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x26, 0x0a,
 	0x06, 0x63, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x0e, 0x2e,
 	0x76, 0x31, 0x2e, 0x61, 0x67, 0x65, 0x6e, 0x74, 0x2e, 0x4a, 0x73, 0x6f, 0x6e, 0x52, 0x06, 0x63,
-	0x6f, 0x6e, 0x66, 0x69, 0x67, 0x22, 0x26, 0x0a, 0x24, 0x47, 0x65, 0x74, 0x53, 0x75, 0x62, 0x73,
+	0x6f, 0x6e, 0x66, 0x69, 0x67, 0x22, 0x25, 0x0a, 0x23, 0x47, 0x65, 0x74, 0x53, 0x75, 0x62, 0x73,
 	0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x53,
-	0x74, 0x72, 0x65, 0x61, 0x6d, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x82, 0x01,
-	0x0a, 0x23, 0x47, 0x65, 0x74, 0x53, 0x75, 0x62, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f,
-	0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x52, 0x65,
-	0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x74, 0x72, 0x65, 0x61, 0x6d, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x22, 0x83, 0x01, 0x0a,
+	0x24, 0x47, 0x65, 0x74, 0x53, 0x75, 0x62, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e,
+	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x52, 0x65, 0x73,
+	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28,
 	0x09, 0x52, 0x02, 0x69, 0x64, 0x12, 0x33, 0x0a, 0x05, 0x74, 0x6f, 0x70, 0x69, 0x63, 0x18, 0x02,
 	0x20, 0x01, 0x28, 0x0b, 0x32, 0x1d, 0x2e, 0x76, 0x31, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e,
 	0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x43, 0x6f, 0x6e, 0x66, 0x69, 0x67, 0x75, 0x72, 0x61, 0x74,
@@ -1373,13 +1373,13 @@ var file_protos_agent_v1_agent_proto_rawDesc = []byte{
 	0x43, 0x6f, 0x6d, 0x6d, 0x61, 0x6e, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x52,
 	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12, 0x81, 0x01, 0x0a, 0x1c, 0x47, 0x65,
 	0x74, 0x53, 0x75, 0x62, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x71,
-	0x75, 0x65, 0x73, 0x74, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x12, 0x2e, 0x2e, 0x76, 0x31, 0x2e,
+	0x75, 0x65, 0x73, 0x74, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x12, 0x2d, 0x2e, 0x76, 0x31, 0x2e,
 	0x61, 0x67, 0x65, 0x6e, 0x74, 0x2e, 0x47, 0x65, 0x74, 0x53, 0x75, 0x62, 0x73, 0x63, 0x72, 0x69,
 	0x70, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x53, 0x74, 0x72, 0x65,
-	0x61, 0x6d, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x1a, 0x2d, 0x2e, 0x76, 0x31, 0x2e,
-	0x61, 0x67, 0x65, 0x6e, 0x74, 0x2e, 0x47, 0x65, 0x74, 0x53, 0x75, 0x62, 0x73, 0x63, 0x72, 0x69,
-	0x70, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x53, 0x74, 0x72, 0x65,
-	0x61, 0x6d, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x22, 0x00, 0x30, 0x01, 0x12, 0x73, 0x0a,
+	0x61, 0x6d, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x2e, 0x2e, 0x76, 0x31, 0x2e, 0x61,
+	0x67, 0x65, 0x6e, 0x74, 0x2e, 0x47, 0x65, 0x74, 0x53, 0x75, 0x62, 0x73, 0x63, 0x72, 0x69, 0x70,
+	0x74, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x53, 0x74, 0x72, 0x65, 0x61,
+	0x6d, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x30, 0x01, 0x12, 0x73, 0x0a,
 	0x18, 0x53, 0x65, 0x6e, 0x64, 0x53, 0x75, 0x62, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f,
 	0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x29, 0x2e, 0x76, 0x31, 0x2e, 0x61,
 	0x67, 0x65, 0x6e, 0x74, 0x2e, 0x53, 0x65, 0x6e, 0x64, 0x53, 0x75, 0x62, 0x73, 0x63, 0x72, 0x69,
@@ -1454,8 +1454,8 @@ var file_protos_agent_v1_agent_proto_goTypes = []interface{}{
 	(*GetRosCommandConfigResponse)(nil),          // 16: v1.agent.GetRosCommandConfigResponse
 	(*GetRosSubscriptionConfigRequest)(nil),      // 17: v1.agent.GetRosSubscriptionConfigRequest
 	(*GetRosSubscriptionConfigResponse)(nil),     // 18: v1.agent.GetRosSubscriptionConfigResponse
-	(*GetSubscriptionRequestStreamResponse)(nil), // 19: v1.agent.GetSubscriptionRequestStreamResponse
-	(*GetSubscriptionRequestStreamRequest)(nil),  // 20: v1.agent.GetSubscriptionRequestStreamRequest
+	(*GetSubscriptionRequestStreamRequest)(nil),  // 19: v1.agent.GetSubscriptionRequestStreamRequest
+	(*GetSubscriptionRequestStreamResponse)(nil), // 20: v1.agent.GetSubscriptionRequestStreamResponse
 	(*SendSubscriptionResponseRequest)(nil),      // 21: v1.agent.SendSubscriptionResponseRequest
 	(*SendSubscriptionResponseResponse)(nil),     // 22: v1.agent.SendSubscriptionResponseResponse
 	(*RecieveRosMessagesRequest)(nil),            // 23: v1.agent.RecieveRosMessagesRequest
@@ -1476,7 +1476,7 @@ var file_protos_agent_v1_agent_proto_depIdxs = []int32{
 	28, // 4: v1.agent.PostMultiDataRequest.data:type_name -> v1.model.Datapoint
 	28, // 5: v1.agent.StreamDataResponse.messages:type_name -> v1.model.Datapoint
 	0,  // 6: v1.agent.GetRosSubscriptionConfigResponse.config:type_name -> v1.agent.Json
-	29, // 7: v1.agent.GetSubscriptionRequestStreamRequest.topic:type_name -> v1.model.StreamConfiguration
+	29, // 7: v1.agent.GetSubscriptionRequestStreamResponse.topic:type_name -> v1.model.StreamConfiguration
 	30, // 8: v1.agent.SendSubscriptionResponseRequest.response:type_name -> v1.model.SubscriptionsResponse
 	6,  // 9: v1.agent.SendSubscriptionResponseResponse.error:type_name -> v1.agent.Error
 	31, // 10: v1.agent.RecieveRosMessagesRequest.control_datapoint:type_name -> v1.model.ControlDatapoint
@@ -1486,7 +1486,7 @@ var file_protos_agent_v1_agent_proto_depIdxs = []int32{
 	3,  // 14: v1.agent.AgentRosBridge.Health:input_type -> v1.agent.HealthRequest
 	8,  // 15: v1.agent.AgentRosBridge.GetCommandRequestStream:input_type -> v1.agent.GetCommandRequestStreamRequest
 	5,  // 16: v1.agent.AgentRosBridge.SendCommandResponse:input_type -> v1.agent.SendCommandResponseRequest
-	19, // 17: v1.agent.AgentRosBridge.GetSubscriptionRequestStream:input_type -> v1.agent.GetSubscriptionRequestStreamResponse
+	19, // 17: v1.agent.AgentRosBridge.GetSubscriptionRequestStream:input_type -> v1.agent.GetSubscriptionRequestStreamRequest
 	21, // 18: v1.agent.AgentRosBridge.SendSubscriptionResponse:input_type -> v1.agent.SendSubscriptionResponseRequest
 	5,  // 19: v1.agent.AgentRosBridge.SendCommandResponseStream:input_type -> v1.agent.SendCommandResponseRequest
 	28, // 20: v1.agent.AgentRosBridge.PostData:input_type -> v1.model.Datapoint
@@ -1499,7 +1499,7 @@ var file_protos_agent_v1_agent_proto_depIdxs = []int32{
 	4,  // 27: v1.agent.AgentRosBridge.Health:output_type -> v1.agent.HealthResponse
 	9,  // 28: v1.agent.AgentRosBridge.GetCommandRequestStream:output_type -> v1.agent.GetCommandRequestStreamResponse
 	7,  // 29: v1.agent.AgentRosBridge.SendCommandResponse:output_type -> v1.agent.SendCommandResponseResponse
-	20, // 30: v1.agent.AgentRosBridge.GetSubscriptionRequestStream:output_type -> v1.agent.GetSubscriptionRequestStreamRequest
+	20, // 30: v1.agent.AgentRosBridge.GetSubscriptionRequestStream:output_type -> v1.agent.GetSubscriptionRequestStreamResponse
 	22, // 31: v1.agent.AgentRosBridge.SendSubscriptionResponse:output_type -> v1.agent.SendSubscriptionResponseResponse
 	7,  // 32: v1.agent.AgentRosBridge.SendCommandResponseStream:output_type -> v1.agent.SendCommandResponseResponse
 	10, // 33: v1.agent.AgentRosBridge.PostData:output_type -> v1.agent.PostDataResponse
@@ -1748,7 +1748,7 @@ func file_protos_agent_v1_agent_proto_init() {
 			}
 		}
 		file_protos_agent_v1_agent_proto_msgTypes[19].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetSubscriptionRequestStreamResponse); i {
+			switch v := v.(*GetSubscriptionRequestStreamRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1760,7 +1760,7 @@ func file_protos_agent_v1_agent_proto_init() {
 			}
 		}
 		file_protos_agent_v1_agent_proto_msgTypes[20].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetSubscriptionRequestStreamRequest); i {
+			switch v := v.(*GetSubscriptionRequestStreamResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1875,7 +1875,7 @@ type AgentRosBridgeClient interface {
 	// such as "SUBSCRIBE", "UNSUBSCRIBE" and sends back the response to the
 	// server. This is previously implemented for node sdk with grpc, and not
 	// work with current implementation.
-	GetSubscriptionRequestStream(ctx context.Context, in *GetSubscriptionRequestStreamResponse, opts ...grpc.CallOption) (AgentRosBridge_GetSubscriptionRequestStreamClient, error)
+	GetSubscriptionRequestStream(ctx context.Context, in *GetSubscriptionRequestStreamRequest, opts ...grpc.CallOption) (AgentRosBridge_GetSubscriptionRequestStreamClient, error)
 	// SendSubscriptionResponse sends subscribed topic messages back to Rcc server
 	SendSubscriptionResponse(ctx context.Context, in *SendSubscriptionResponseRequest, opts ...grpc.CallOption) (*SendSubscriptionResponseResponse, error)
 	// (DEPRECATED) SendCommandResponseStream sends command response from agent to
@@ -1985,7 +1985,7 @@ func (c *agentRosBridgeClient) SendCommandResponse(ctx context.Context, in *Send
 	return out, nil
 }
 
-func (c *agentRosBridgeClient) GetSubscriptionRequestStream(ctx context.Context, in *GetSubscriptionRequestStreamResponse, opts ...grpc.CallOption) (AgentRosBridge_GetSubscriptionRequestStreamClient, error) {
+func (c *agentRosBridgeClient) GetSubscriptionRequestStream(ctx context.Context, in *GetSubscriptionRequestStreamRequest, opts ...grpc.CallOption) (AgentRosBridge_GetSubscriptionRequestStreamClient, error) {
 	stream, err := c.cc.NewStream(ctx, &_AgentRosBridge_serviceDesc.Streams[1], "/v1.agent.AgentRosBridge/GetSubscriptionRequestStream", opts...)
 	if err != nil {
 		return nil, err
@@ -2001,7 +2001,7 @@ func (c *agentRosBridgeClient) GetSubscriptionRequestStream(ctx context.Context,
 }
 
 type AgentRosBridge_GetSubscriptionRequestStreamClient interface {
-	Recv() (*GetSubscriptionRequestStreamRequest, error)
+	Recv() (*GetSubscriptionRequestStreamResponse, error)
 	grpc.ClientStream
 }
 
@@ -2009,8 +2009,8 @@ type agentRosBridgeGetSubscriptionRequestStreamClient struct {
 	grpc.ClientStream
 }
 
-func (x *agentRosBridgeGetSubscriptionRequestStreamClient) Recv() (*GetSubscriptionRequestStreamRequest, error) {
-	m := new(GetSubscriptionRequestStreamRequest)
+func (x *agentRosBridgeGetSubscriptionRequestStreamClient) Recv() (*GetSubscriptionRequestStreamResponse, error) {
+	m := new(GetSubscriptionRequestStreamResponse)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
 	}
@@ -2162,7 +2162,7 @@ type AgentRosBridgeServer interface {
 	// such as "SUBSCRIBE", "UNSUBSCRIBE" and sends back the response to the
 	// server. This is previously implemented for node sdk with grpc, and not
 	// work with current implementation.
-	GetSubscriptionRequestStream(*GetSubscriptionRequestStreamResponse, AgentRosBridge_GetSubscriptionRequestStreamServer) error
+	GetSubscriptionRequestStream(*GetSubscriptionRequestStreamRequest, AgentRosBridge_GetSubscriptionRequestStreamServer) error
 	// SendSubscriptionResponse sends subscribed topic messages back to Rcc server
 	SendSubscriptionResponse(context.Context, *SendSubscriptionResponseRequest) (*SendSubscriptionResponseResponse, error)
 	// (DEPRECATED) SendCommandResponseStream sends command response from agent to
@@ -2209,7 +2209,7 @@ func (*UnimplementedAgentRosBridgeServer) GetCommandRequestStream(*GetCommandReq
 func (*UnimplementedAgentRosBridgeServer) SendCommandResponse(context.Context, *SendCommandResponseRequest) (*SendCommandResponseResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SendCommandResponse not implemented")
 }
-func (*UnimplementedAgentRosBridgeServer) GetSubscriptionRequestStream(*GetSubscriptionRequestStreamResponse, AgentRosBridge_GetSubscriptionRequestStreamServer) error {
+func (*UnimplementedAgentRosBridgeServer) GetSubscriptionRequestStream(*GetSubscriptionRequestStreamRequest, AgentRosBridge_GetSubscriptionRequestStreamServer) error {
 	return status.Errorf(codes.Unimplemented, "method GetSubscriptionRequestStream not implemented")
 }
 func (*UnimplementedAgentRosBridgeServer) SendSubscriptionResponse(context.Context, *SendSubscriptionResponseRequest) (*SendSubscriptionResponseResponse, error) {
@@ -2347,7 +2347,7 @@ func _AgentRosBridge_SendCommandResponse_Handler(srv interface{}, ctx context.Co
 }
 
 func _AgentRosBridge_GetSubscriptionRequestStream_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(GetSubscriptionRequestStreamResponse)
+	m := new(GetSubscriptionRequestStreamRequest)
 	if err := stream.RecvMsg(m); err != nil {
 		return err
 	}
@@ -2355,7 +2355,7 @@ func _AgentRosBridge_GetSubscriptionRequestStream_Handler(srv interface{}, strea
 }
 
 type AgentRosBridge_GetSubscriptionRequestStreamServer interface {
-	Send(*GetSubscriptionRequestStreamRequest) error
+	Send(*GetSubscriptionRequestStreamResponse) error
 	grpc.ServerStream
 }
 
@@ -2363,7 +2363,7 @@ type agentRosBridgeGetSubscriptionRequestStreamServer struct {
 	grpc.ServerStream
 }
 
-func (x *agentRosBridgeGetSubscriptionRequestStreamServer) Send(m *GetSubscriptionRequestStreamRequest) error {
+func (x *agentRosBridgeGetSubscriptionRequestStreamServer) Send(m *GetSubscriptionRequestStreamResponse) error {
 	return x.ServerStream.SendMsg(m)
 }
 
