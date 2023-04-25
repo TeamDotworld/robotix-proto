@@ -5,7 +5,7 @@ package v1.model;
 import "protos/model/v1/ros.proto";
 import "google/protobuf/wrappers.proto";
 
-option go_package="github.com/TeamDotworld/robotix-proto/protos/v1/model";
+option go_package = "github.com/TeamDotworld/robotix-proto/protos/v1/model";
 
 message AgentConfigurationStore {
   string agent_version = 1;
@@ -58,12 +58,10 @@ message AdapterConfiguration {
 message TeleopConfiguration {
   string cmd_vel_topic = 1;
   repeated TeleopRosStreamConfiguration ros_streams = 2;
-  repeated TeleopHardwareStreamConfiguration hardware_streams=3;
+  repeated TeleopHardwareStreamConfiguration hardware_streams = 3;
 }
 
-message PortForwardingConfiguration {
-  google.protobuf.BoolValue enabled = 1;
-}
+message PortForwardingConfiguration { google.protobuf.BoolValue enabled = 1; }
 
 enum TeleopMode {
   COMMAND = 0;
@@ -79,7 +77,6 @@ message TeleopRosStreamConfiguration {
   string quality = 6;
   string base_reference_frame = 7;
   string local_frame = 8;
-
 }
 
 message TeleopHardwareStreamConfiguration {
@@ -100,7 +97,6 @@ message TeleopCustomStreamConfiguration {
   TeleopMode mode = 3;
   bool encode_video = 4;
   string quality = 5;
-
 }
 
 message TelemetryConfiguration {
@@ -108,9 +104,7 @@ message TelemetryConfiguration {
   ROSConfiguration ros = 2;
 }
 
-message ApplicationConfiguration {
-  map<string, string> configuration_map = 1;
-}
+message ApplicationConfiguration { map<string, string> configuration_map = 1; }
 
 message ResourcesConfiguration {
   DiskConfiguration disk = 1;
@@ -124,9 +118,7 @@ message DiskConfiguration {
   int64 on_demand_buffer_size = 2;
 }
 
-message ROSConfiguration {
-  string world_reference_frame_id = 1;
-}
+message ROSConfiguration { string world_reference_frame_id = 1; }
 
 message StreamConfiguration {
   string name = 1;
@@ -145,16 +137,13 @@ message StreamConfiguration {
   google.protobuf.BoolValue on_demand = 20;
   StreamTransformConfiguration transform = 21;
   string quality = 22;
-
 }
 
 message StreamTransformConfiguration {
   google.protobuf.BoolValue video_encoding_enabled = 1;
 }
 
-message BlobData {
-  string data = 1;
-}
+message BlobData { string data = 1; }
 
 message Diagnostics {
   google.protobuf.BoolValue report_logs = 1;
@@ -173,8 +162,7 @@ enum FileType {
   VIDEO = 5;
 }
 
-message Custom {
-}
+message Custom {}
 
 message Hardware {
   string hw_descriptor = 1;

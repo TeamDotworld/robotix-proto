@@ -6,156 +6,152 @@ import "protos/model/v1/text.proto";
 import "protos/model/v1/config.proto";
 import "protos/model/v1/commands.proto";
 import "protos/model/v1/datapoint.proto";
-import "protos/model/v1/ros.proto";
-
-
 
 option go_package = "github.com/TeamDotworld/robotix-proto/protos/v1/agent";
 
-service AgentRosBridge { 
+service AgentRosBridge {
 
-    /* GetAgentConfiguration returns the Agent configuration. */
-    rpc GetAgentConfiguration(GetAgentConfigurationRequest)
-        returns (GetAgentConfigurationResponse) {
-    }
+  /* GetAgentConfiguration returns the Agent configuration. */
+  rpc GetAgentConfiguration(GetAgentConfigurationRequest)
+      returns (GetAgentConfigurationResponse) {}
 
-    rpc GetRosSubscriptionConfig(GetRosSubscriptionConfigRequest)
-        returns (GetRosSubscriptionConfigResponse) {
-    }
+  /* GetRosSubscriptionConfig service returns the agent's subscription config
+   * (what topic to subscribe and their config) from the agent*/
+  rpc GetRosSubscriptionConfig(GetRosSubscriptionConfigRequest)
+      returns (GetRosSubscriptionConfigResponse) {}
 
-    rpc GetRosCommandConfig (GetRosCommandConfigRequest) returns (GetRosCommandConfigResponse) {}
+  /* GetRosCommandConfig service returns the agent's command config
+      from the agent*/
+  rpc GetRosCommandConfig(GetRosCommandConfigRequest)
+      returns (GetRosCommandConfigResponse) {}
 
+  /* (DEPRECATED) Health can be used to check if the Agent is running and its
+   * gRPC API is available. */
+  rpc Health(HealthRequest) returns (HealthResponse) {}
 
-    /* Health can be used to check if the Agent is running and its gRPC API is
-    * available. */
-    rpc Health(HealthRequest) returns (HealthResponse) {
-    }
+  /* GetCommandRequestStream service receives command from the server both
+  "SERVICE" and "ACTION" commands. The Command should be configured in the
+  agent's config first. Unconfigured command is not accepted */
+  rpc GetCommandRequestStream(GetCommandRequestStreamRequest)
+      returns (stream GetCommandRequestStreamResponse) {}
 
-    rpc GetCommandRequestStream(GetCommandRequestStreamRequest)
-    returns (stream GetCommandRequestStreamResponse) {
-    }
+  /* SendCommandResponse service sends command response (Just response if it is
+  service call, if Action call it sends both result and feedback ) for a
+  particular command to the server. */
+  rpc SendCommandResponse(SendCommandResponseRequest)
+      returns (SendCommandResponseResponse) {}
 
-    rpc GetSubscriptionRequestStream(stream GetSubscriptionRequestStreamResponse) returns (stream GetSubscriptionRequestStreamRequest) {}
+  /* GetSubscriptionRequestStream service recieves subscription related commands
+     such as "SUBSCRIBE", "UNSUBSCRIBE" and sends back the response to the
+     server. This is previously implemented for node sdk with grpc, and not
+     work with current implementation.*/
+  rpc GetSubscriptionRequestStream(GetSubscriptionRequestStreamResponse)
+      returns (stream GetSubscriptionRequestStreamRequest) {}
 
-    /* SendCommandResponse sends a response to a command request. */
-    rpc SendCommandResponse(SendCommandResponseRequest)
-        returns (SendCommandResponseResponse) {
-    }
+  /* SendSubscriptionResponse sends subscribed topic messages back to Rcc server
+   */
+  rpc SendSubscriptionResponse(SendSubscriptionResponseRequest)
+      returns (SendSubscriptionResponseResponse) {}
 
-    rpc SendCommandResponseStream(stream SendCommandResponseRequest)
-    returns (stream SendCommandResponseResponse) {}
+  /* (DEPRECATED) SendCommandResponseStream sends command response from agent to
+   * rcc. It is deprecated using SendCommandResponse service instead.*/
+  rpc SendCommandResponseStream(stream SendCommandResponseRequest)
+      returns (stream SendCommandResponseResponse) {}
 
-    rpc PostData(model.Datapoint) returns (PostDataResponse) {
-    }
+  /* PostData service sends single datapoints from agent to rcc. These
+    points include ros messages or system stats which is then sent to influx at
+    the server. */
+  rpc PostData(model.Datapoint) returns (PostDataResponse) {}
 
-    rpc PostMultiData(PostMultiDataRequest) returns (PostMultiDataResponse) {
-    }
+  /* PostMultiData service sends multiple datapoints from agent to rcc. These
+  points include ros messages or system stats which is then sent to influx at
+  the server. */
+  rpc PostMultiData(PostMultiDataRequest) returns (PostMultiDataResponse) {}
 
-    /* StreamData accepts a stream of data points. See PostData for information on
-    * expected error conditions and codes. */
-    rpc StreamData(stream StreamDataResponse) returns (stream StreamDataRequest) {
-    }
+  /* StreamData sends telemetry datapoints from rosnode to agent. This is used
+  for receiving telop data such as pose, realsense camera feed etc. from ros
+  node to agent and then agent sends the data to the client using webrtc
+  datachannel  */
+  rpc StreamData(stream StreamDataResponse) returns (stream StreamDataRequest) {
+  }
 
-    rpc ReceiveRosMessages(stream RecieveRosMessagesResponse) returns (stream RecieveRosMessagesRequest) {}
-
+  /* ReceiveRosMessages service is established between rosnode and agent. It
+  gets ros messages which needs to be published such as command velocity
+  messages, camera control messages from agent and then pubslishes to ros. */
+  rpc ReceiveRosMessages(stream RecieveRosMessagesResponse)
+      returns (stream RecieveRosMessagesRequest) {}
 }
 
+message Json { string value = 1; }
 
-message Json {
-    string value = 1;
-}
-
-
-message GetAgentConfigurationRequest {
-}
+message GetAgentConfigurationRequest {}
 
 message GetAgentConfigurationResponse {
   model.AgentConfiguration configuration = 1;
 }
 
-message HealthRequest {
-}
+message HealthRequest {}
 
-message HealthResponse {
-}
+message HealthResponse {}
 
-message SendCommandResponseRequest {
-model.CommandResponse response = 1;
-}
+message SendCommandResponseRequest { model.CommandResponse response = 1; }
 
 message Error {
-    string message = 1;
-    string code = 2;
+  string message = 1;
+  string code = 2;
 }
 
 message SendCommandResponseResponse {
-    bool status = 1;
-    Error error = 2;
+  bool status = 1;
+  Error error = 2;
 }
 
-message GetCommandRequestStreamRequest {
-repeated string command_filter = 1;
-}
+message GetCommandRequestStreamRequest { repeated string command_filter = 1; }
 
-message GetCommandRequestStreamResponse {
-model.CommandRequest request = 1;
-}
+message GetCommandRequestStreamResponse { model.CommandRequest request = 1; }
 
-message PostDataResponse {
-    bool status = 1;
-}
+message PostDataResponse { bool status = 1; }
 
-message PostMultiDataRequest {
-    repeated model.Datapoint data = 1;
-}
+message PostMultiDataRequest { repeated model.Datapoint data = 1; }
 
-message PostMultiDataResponse {
-    bool status = 1;
-}
+message PostMultiDataResponse { bool status = 1; }
 
-message StreamDataRequest {
-    bool teleop_status = 1;
-}
+message StreamDataRequest { bool teleop_status = 1; }
 
-message StreamDataResponse {
-    repeated model.Datapoint messages = 1;
-}
+message StreamDataResponse { repeated model.Datapoint messages = 1; }
 
-message GetRosCommandConfigRequest{}
+message GetRosCommandConfigRequest {}
 
-message GetRosCommandConfigResponse {
-    string config = 1;
-}
+message GetRosCommandConfigResponse { string config = 1; }
 
-message GetRosSubscriptionConfigRequest {
-}
+message GetRosSubscriptionConfigRequest {}
 
-message GetRosSubscriptionConfigResponse {
-    Json config = 1;
-}
+message GetRosSubscriptionConfigResponse { Json config = 1; }
 
-message GetSubscriptionRequestStreamResponse{
-    string request_id = 1;
-    bool status = 2;
-    string error = 3;
-    oneof data {
-        model.Topics topics = 4;
-    }
-}
+message GetSubscriptionRequestStreamResponse {}
 
 message GetSubscriptionRequestStreamRequest {
-    string id = 1;
-    model.StreamConfiguration topic = 2;
-    string action = 3;
+  string id = 1;
+  model.StreamConfiguration topic = 2;
+  string action = 3;
+}
+
+message SendSubscriptionResponseRequest {
+  model.SubscriptionsResponse response = 1;
+}
+
+message SendSubscriptionResponseResponse {
+  bool status = 1;
+  Error error = 2;
 }
 
 message RecieveRosMessagesRequest {
-    string id = 1;
-    model.ControlDatapoint control_datapoint = 2;
+  string id = 1;
+  model.ControlDatapoint control_datapoint = 2;
 }
 
 message RecieveRosMessagesResponse {
-    string request_id = 1;
-    bool status = 2;
-    string error = 3;
+  string request_id = 1;
+  bool status = 2;
+  string error = 3;
 }

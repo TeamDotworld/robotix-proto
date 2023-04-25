@@ -4,13 +4,14 @@ package v1.model;
 
 import "protos/model/v1/math.proto";
 
-option go_package="github.com/TeamDotworld/robotix-proto/protos/v1/model";
+option go_package = "github.com/TeamDotworld/robotix-proto/protos/v1/model";
 
 message Image {
   // e.g. "image/png" for png images.
   string content_type = 1;
   oneof data {
-    // Absolute path to a file on the local filesystem or valid remote URL for remote files
+    // Absolute path to a file on the local filesystem or valid remote URL for
+    // remote files
     string url = 2;
     // 2MB limit
     bytes raw = 3;
@@ -19,7 +20,8 @@ message Image {
 
 message PointCloud {
   oneof data {
-    // Absolute path to a file on the local filesystem or valid remote URL for remote files
+    // Absolute path to a file on the local filesystem or valid remote URL for
+    // remote files
     string url = 1;
     // 2MB limit
     bytes raw = 2;
@@ -31,13 +33,12 @@ message PointCloud {
 message RtcPointCloud {
   bytes data = 1;
   Transform world_to_local = 2;
-
 }
 
 message H264VideoFrame {
   // Index of current frame, used to ensure we are not decoding duplicates
   int32 index = 1;
-  // Flag to indicate special frame 
+  // Flag to indicate special frame
   // 0: post-initialization fmp4 frame
   // 1: fmp4 initialization segment
   // 2: bytestream access unit
@@ -57,12 +58,13 @@ message AudioChunk {
 }
 
 message Video {
-  // Mime Type 
+  // Mime Type
   string mime_type = 1; // Supported types:  ["video/mp4"]
   // Duration of video clip in milliseconds
   int64 duration = 2;
   oneof data {
-    // Absolute path to a file on the local filesystem or valid remote URL for remote files
+    // Absolute path to a file on the local filesystem or valid remote URL for
+    // remote files
     string url = 3;
     // 2MB limit
     bytes raw = 4;
@@ -70,8 +72,9 @@ message Video {
 }
 
 message TransformTree {
-    oneof data {
-    // Absolute path to a file on the local filesystem or valid remote URL for remote files
+  oneof data {
+    // Absolute path to a file on the local filesystem or valid remote URL for
+    // remote files
     string url = 1;
     // 2MB limit
     bytes raw = 2;

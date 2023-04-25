@@ -9,14 +9,13 @@ import "protos/model/v1/navigation.proto";
 import "protos/model/v1/text.proto";
 import "protos/model/v1/media.proto";
 
-option go_package="github.com/TeamDotworld/robotix-proto/protos/v1/model";
-
+option go_package = "github.com/TeamDotworld/robotix-proto/protos/v1/model";
 
 message Datapoint {
   string stream = 1;
-  int64 timestamp = 2;  // unix epoch time in milliseconds
+  int64 timestamp = 2; // unix epoch time in milliseconds
   map<string, string> tags = 3;
-  oneof data {  // payload, use one of the fields below.
+  oneof data { // payload, use one of the fields below.
     Text text = 4;
     Numeric numeric = 5;
     NumericSet numeric_set = 17;
@@ -37,11 +36,11 @@ message Datapoint {
 }
 
 /* ControlDatapoint contains data sent from Rcc teleop. */
- message ControlDatapoint {
+message ControlDatapoint {
   string stream = 1;
-  int64 timestamp = 2;  // unix epoch time in milliseconds
+  int64 timestamp = 2; // unix epoch time in milliseconds
   map<string, string> tags = 3;
-  oneof data {  // payload, use one of the fields below.
+  oneof data { // payload, use one of the fields below.
     Text text = 4;
     Numeric numeric = 5;
     Bitset bitset = 6;

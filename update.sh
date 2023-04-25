@@ -1,4 +1,10 @@
 #!/bin/bash
+
+# This script will do the following.
+# - Generate proto files
+# - Add to git, commit, update version, create tag, push both tag and commit.
+# - Also updates the proto dependency to latest in your local repo both agent and rcc server. (Change the path to your local path)
+
 version=38
 old_version=$version
 

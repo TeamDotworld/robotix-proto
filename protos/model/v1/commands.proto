@@ -5,7 +5,7 @@ import "protos/model/v1/datapoint.proto";
 
 package v1.model;
 
-option go_package="github.com/TeamDotworld/robotix-proto/protos/v1/model";
+option go_package = "github.com/TeamDotworld/robotix-proto/protos/v1/model";
 
 message CommandRequest {
   string id = 1;
@@ -19,7 +19,6 @@ message CommandResponse {
   string request_id = 1;
   bool status = 2;
   bool isResult = 3;
-  // string command = 4;
   oneof result {
     model.Datapoint datapoint = 4;
     string data = 5;
@@ -28,6 +27,16 @@ message CommandResponse {
   }
 }
 
+message SubscriptionsResponse {
+  string request_id = 1;
+  bool status = 2;
+  oneof result {
+    model.Datapoint datapoint = 4;
+    string data = 5;
+    bytes raw = 6;
+    string error = 7;
+  }
+}
 
 message FileInfo {
   string id = 1;

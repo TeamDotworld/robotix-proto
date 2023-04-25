@@ -2,11 +2,9 @@ syntax = "proto3";
 
 package v1.model;
 
-option go_package="github.com/TeamDotworld/robotix-proto/protos/v1/model";
+option go_package = "github.com/TeamDotworld/robotix-proto/protos/v1/model";
 
-message Numeric {
-  double value = 1;
-}
+message Numeric { double value = 1; }
 
 message NumericSetEntry {
   double value = 1;
@@ -14,18 +12,14 @@ message NumericSetEntry {
   string unit = 3;
 }
 
-message NumericSet {
-  repeated NumericSetEntry numerics = 1;
-}
+message NumericSet { repeated NumericSetEntry numerics = 1; }
 
 message Bit {
   string key = 1;
   bool value = 2;
 }
 
-message Bitset {
-  repeated Bit bits = 1;
-}
+message Bitset { repeated Bit bits = 1; }
 
 message Twist {
   Vector3 linear = 1;
@@ -59,7 +53,6 @@ message Point {
   double y = 2;
   double z = 3;
 }
-
 
 message Quaternion {
   double x = 1;
