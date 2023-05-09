@@ -5,7 +5,7 @@
 # - Add to git, commit, update version, create tag, push both tag and commit.
 # - Also updates the proto dependency to latest in your local repo both agent and rcc server. (Change the path to your local path)
 
-version=42
+version=43
 old_version=$version
 
 echo -e '\033[4;32;1mGenerating Proto Code\033[m'
@@ -20,7 +20,7 @@ version=$((version+1))
 echo "Creating a tag - v1.0.$version"
 git tag "v1.0.$version"
 echo -e '\033[4;32;1mPushing Code To Github\033[m'
-git push origin v2
+git push origin develop
 git push --tags
 echo -e '\033[4;32;1mUpdating Go Repository\033[m'
 

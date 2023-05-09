@@ -1,3 +1,13 @@
+/*
+    ##########################################################################################
+
+    THIS PROTO IS DEPRECATED AND NOT USED IN LATEST VERSIONS
+    LATEST VERSIONED AGENTS USE REST FOR COMMUNICATING BETWEEN WEB CLIENT /
+   NODEJS AND SERVER.
+
+    ##########################################################################################
+*/
+
 syntax = "proto3";
 
 package v1.rcc;
@@ -6,76 +16,63 @@ import "protos/model/v1/config.proto";
 import "protos/model/v1/ros.proto";
 import "protos/model/v1/datapoint.proto";
 
+option go_package = "github.com/TeamDotworld/robotix-proto/protos/v1/rcc";
 
-option go_package="github.com/TeamDotworld/robotix-proto/protos/v1/rcc";
-
-
-service NodeSdk { 
-    rpc ServiceCall (ServiceCallReqest) returns (ServiceCallResponse) {}
-    rpc ActionCall (ActionCallReqest) returns (stream ActionCallResponse) {}
-    rpc Subscribe (SubscribeRequest) returns (SubscribeResponse) {}
-    rpc Unsubscribe (UnsubscribeRequest) returns (UnsubscribeResponse) {}
-    rpc GetTopics (GetTopicsRequest) returns (GetTopicsResponse) {}
-    rpc GetSubscribedTopics (GetSubscrbedTopicsRequest) returns (GetSubscrbedTopicsResponse) {}
-    rpc Publish (PublishRequest) returns (PublishResponse) {}
+service NodeSdk {
+  rpc ServiceCall(ServiceCallReqest) returns (ServiceCallResponse) {}
+  rpc ActionCall(ActionCallReqest) returns (stream ActionCallResponse) {}
+  rpc Subscribe(SubscribeRequest) returns (SubscribeResponse) {}
+  rpc Unsubscribe(UnsubscribeRequest) returns (UnsubscribeResponse) {}
+  rpc GetTopics(GetTopicsRequest) returns (GetTopicsResponse) {}
+  rpc GetSubscribedTopics(GetSubscrbedTopicsRequest)
+      returns (GetSubscrbedTopicsResponse) {}
+  rpc Publish(PublishRequest) returns (PublishResponse) {}
 }
 
-message ServiceCallReqest {
-    model.CommandRequest request = 1;
-}
+message ServiceCallReqest { model.CommandRequest request = 1; }
 
-message ServiceCallResponse {
-    model.CommandResponse response = 1;
-}
+message ServiceCallResponse { model.CommandResponse response = 1; }
 
-message ActionCallReqest {
-    model.CommandRequest request = 1;
-}
+message ActionCallReqest { model.CommandRequest request = 1; }
 
-message ActionCallResponse {
-    model.CommandResponse response = 1;
-}
+message ActionCallResponse { model.CommandResponse response = 1; }
 
-message SubscribeRequest {
-    model.StreamConfiguration topic = 1;
-}
+message SubscribeRequest { model.StreamConfiguration topic = 1; }
 
 message SubscribeResponse {
-    bool status = 2;
-    string error = 3;
+  bool status = 2;
+  string error = 3;
 }
 
-message UnsubscribeRequest {
-    string topic = 1;
-}
+message UnsubscribeRequest { string topic = 1; }
 
 message UnsubscribeResponse {
-    bool status = 2;
-    string error = 3;
+  bool status = 2;
+  string error = 3;
 }
 
 message GetTopicsRequest {}
 
 message GetTopicsResponse {
-    bool status = 2;
-    string error = 3;
-    repeated model.ROSTopic data = 1;
+  bool status = 2;
+  string error = 3;
+  repeated model.ROSTopic data = 1;
 }
 
 message GetSubscrbedTopicsRequest {}
 
 message GetSubscrbedTopicsResponse {
-    bool status = 2;
-    string error = 3;
-    repeated model.ROSTopic data = 1;
+  bool status = 2;
+  string error = 3;
+  repeated model.ROSTopic data = 1;
 }
 
 message PublishRequest {
-    string id = 1;
-    model.ControlDatapoint control_datapoint = 2;
+  string id = 1;
+  model.ControlDatapoint control_datapoint = 2;
 }
 
 message PublishResponse {
-    bool status = 2;
-    string error = 3;
+  bool status = 2;
+  string error = 3;
 }
