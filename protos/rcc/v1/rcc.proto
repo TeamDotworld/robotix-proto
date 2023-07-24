@@ -165,6 +165,7 @@ message RecieveRosMessagesResponse {
 message GetRtcSignalRequest {
   string offer = 1;
   string query = 2;
+  string ice_candidate=3;
 }
 
 message GetRtcSignalResponse {
