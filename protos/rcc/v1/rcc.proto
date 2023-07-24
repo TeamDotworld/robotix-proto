@@ -169,5 +169,6 @@ message GetRtcSignalRequest {
 
 message GetRtcSignalResponse {
   string answer = 1;
+  string ice_candidate=2;
   string error = 3;
 }
