@@ -164,12 +164,14 @@ message RecieveRosMessagesResponse {
 // Webrtc
 message GetRtcSignalRequest {
   string offer = 1;
-  string query = 2;
-  string ice_candidate=3;
+  string id = 2;
+  string query = 3;
+  string ice_candidate=4;
 }
 
 message GetRtcSignalResponse {
   string answer = 1;
-  string ice_candidate=2;
-  string error = 3;
+  string id = 2;
+  string ice_candidate=3;
+  string error = 4;
 }
