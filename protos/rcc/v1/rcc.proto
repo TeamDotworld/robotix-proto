@@ -5,6 +5,8 @@ package v1.rcc;
 import "protos/model/v1/config.proto";
 import "protos/model/v1/commands.proto";
 import "protos/model/v1/datapoint.proto";
+import "protos/model/v1/webrtc.proto";
+
 
 option go_package = "github.com/TeamDotworld/robotix-proto/protos/v1/rcc";
 
@@ -167,6 +169,8 @@ message GetRtcSignalRequest {
   string id = 2;
   string query = 3;
   string ice_candidate=4;
+  model.Webrtctype request_type = 5;
+
 }
 
 message GetRtcSignalResponse {
