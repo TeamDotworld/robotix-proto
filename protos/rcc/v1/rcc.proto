@@ -92,6 +92,8 @@ the server. */
 
 message AuthRequest {
   string token = 1; // Provisional token of the device
+  string machine_id = 2;
+  double agent_version = 3;
 }
 
 message AuthResponse {

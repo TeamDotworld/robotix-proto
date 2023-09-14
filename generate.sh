@@ -8,7 +8,7 @@ protoc --go_out=plugins=grpc:/home/amizhthan/go/src/ ./protos/node_sdk/v1/node_s
 protoc --go_out=plugins=grpc:/home/amizhthan/go/src/ ./protos/agent/v1/agent.proto
 
 # This line is for compiling python files for the agent.proto file
-#python3 -m grpc_tools.protoc -I. --python_out=/home/amizhthan/go/src/github.com/anand-dotworld/robotix-agent/node --grpc_python_out=/home/anand/go/src/github.com/anand-dotworld/robotix-agent/node ./protos/agent/v1/agent.proto
+#python3 -m grpc_tools.protoc -I. --python_out=/home/amizhthan/go/src/github.com/amizhthan-dotworld/robotix-agent/node --grpc_python_out=/home/amizhthan/go/src/github.com/amizhthan-dotworld/robotix-agent/node ./protos/agent/v1/agent.proto
 
 # # cp rcc.proto /home/anand/Work/golang/src/delivery-robot-backend/go-multi-tenant/rcc.proto
 
@@ -16,7 +16,7 @@ protoc --go_out=plugins=grpc:/home/amizhthan/go/src/ ./protos/agent/v1/agent.pro
 for f in ./protos/model/v1/*.proto 
 do 
     protoc --go_out=plugins=grpc:/home/amizhthan/go/src/ $f
-    #python3 -m grpc_tools.protoc -I. --python_out=/home/amizhthan/go/src/github.com/anand-dotworld/robotix-agent/node --grpc_python_out=/home/anand/go/src/github.com/anand-dotworld/robotix-agent/node $f
+    #python3 -m grpc_tools.protoc -I. --python_out=/home/amizhthan/go/src/github.com/amizhthan-dotworld/robotix-agent/node --grpc_python_out=/home/amizhthan/go/src/github.com/amizhthan-dotworld/robotix-agent/node $f
 
     echo "Processing $f file.."
 done
