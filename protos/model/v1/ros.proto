@@ -60,3 +60,29 @@ enum ROSTopicType {
   GEOMETRY_MSGS_POINT = 14;
   VISUALIZATION_MSGS_MARKER_ARRAY = 15;
 }
+
+message State {
+  int64 State = 1;
+}
+
+message RobotPose {
+    Orientation orientation = 1;
+    Position position =2;
+}
+
+message PlanState {
+  int64 State = 1;
+}
+
+message Orientation {
+  double w = 1;
+  double x = 2;
+  double y = 3;
+  double z = 4;
+}
+
+message Position {
+  double x = 1;
+  double y = 2;
+  double z = 3;
+}

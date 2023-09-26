@@ -13,8 +13,7 @@ enum HealthStatus {
 message Health { HealthStatus status = 1; }
 
 message Battery {
-  double percentage = 1; // 0 to 1
-  double voltage = 2;    // Volts
-  double current = 3;    // Amps
-  double charge = 4;     // Amp-hours
+  double percentage = 1;
+  bool charging = 2;
+  bool manualcharging = 3;
 }

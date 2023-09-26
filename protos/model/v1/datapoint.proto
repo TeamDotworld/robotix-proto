@@ -8,6 +8,8 @@ import "protos/model/v1/math.proto";
 import "protos/model/v1/navigation.proto";
 import "protos/model/v1/text.proto";
 import "protos/model/v1/media.proto";
+import "protos/model/v1/ros.proto";
+
 
 option go_package = "github.com/TeamDotworld/robotix-proto/protos/v1/model";
 
@@ -31,6 +33,9 @@ message Datapoint {
     Video video = 16;
     TransformTree transform_tree = 18;
     bytes raw = 19;
+    State state = 20;
+    RobotPose robot_pose = 21;
+    PlanState plan_state = 22;
   }
   reserved 6;
 }
