@@ -62,7 +62,7 @@ enum ROSTopicType {
 }
 
 message State {
-  int64 State = 1;
+  int32 State = 1;
 }
 
 message RobotPose {
