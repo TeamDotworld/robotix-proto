@@ -11,9 +11,3 @@ enum HealthStatus {
   HEALTH_ERROR = 3;
 }
 message Health { HealthStatus status = 1; }
-
-message Battery {
-  float percentage = 1;
-  bool charging = 2;
-  bool manualcharging = 3;
-}

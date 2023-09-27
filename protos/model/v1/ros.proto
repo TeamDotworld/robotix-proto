@@ -61,6 +61,10 @@ enum ROSTopicType {
   VISUALIZATION_MSGS_MARKER_ARRAY = 15;
 }
 
+message Battery {
+  float value = 1;
+}
+
 message State {
   int32 State = 1;
 }
