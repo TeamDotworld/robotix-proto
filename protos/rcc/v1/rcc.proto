@@ -88,6 +88,9 @@ the server. */
   /* Get rtc signal from Rcc server to agent */
   rpc GetRtcSignal(stream GetRtcSignalResponse)
       returns (stream GetRtcSignalRequest) {}
+      
+  /*To transfer the signaling data between RCC server and agent*/
+  rpc SendSignalData(SignalDataRequest) returns (SignalDataResponse) {}
 }
 
 message AuthRequest {
@@ -180,4 +183,16 @@ message GetRtcSignalResponse {
   string id = 2;
   string ice_candidate=3;
   string error = 4;
+}
+
+message SignalDataRequest {
+  model.Webrtctype request_type = 1;
+  string id=2;
+  string value=3;
+}
+
+message SignalDataResponse {
+  string id = 1;
+  bool status = 2;
+  string error = 3;
 }

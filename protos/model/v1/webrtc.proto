@@ -8,4 +8,5 @@ enum Webrtctype {
     ADD_OFFER = 0;
     ADD_ICE = 1;
     REMOVE_PEER = 2;
+    ADD_ANSWER = 3;
 }
