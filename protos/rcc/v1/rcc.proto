@@ -130,7 +130,10 @@ message SendCommandResponseResponse {
 
 message GetCommandRequestStreamRequest {}
 
-message GetCommandRequestStreamResponse { model.CommandRequest request = 1; }
+message GetCommandRequestStreamResponse { 
+  model.CommandRequest request = 1;
+  string action = 2;
+}
 
 message PostDataResponse { bool status = 1; }
 
