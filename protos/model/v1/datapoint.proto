@@ -33,9 +33,6 @@ message Datapoint {
     Video video = 16;
     TransformTree transform_tree = 18;
     bytes raw = 19;
-    State state = 20;
-    RobotPose robot_pose = 21;
-    PlanState plan_state = 22;
   }
   reserved 6;
 }

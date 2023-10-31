@@ -12,10 +12,7 @@ message CommandRequest {
   string command = 2;
   bool compressed = 3;
   string data = 4;
-  string api_name = 5;
-  string type = 6;
-  string arguments = 7;
-  google.protobuf.Timestamp scrubber_time = 8;
+  google.protobuf.Timestamp scrubber_time = 5;
 }
 
 message CommandResponse {
