@@ -97,6 +97,7 @@ message AuthRequest {
   string token = 1; // Provisional token of the device
   string machine_id = 2;
   string agent_version = 3;
+  string ros_version = 4;
 }
 
 message AuthResponse {
