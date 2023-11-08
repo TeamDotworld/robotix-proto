@@ -4,7 +4,10 @@ package v1.model;
 
 option go_package = "github.com/TeamDotworld/robotix-proto/protos/v1/model";
 
-message Numeric { double value = 1; }
+message Numeric { 
+  double value = 1;
+  string data = 2;
+}
 
 message NumericSetEntry {
   double value = 1;
