@@ -114,7 +114,9 @@ message SpecsRequest {
   model.DeviceSpecifications specifications = 1;
 }
 
-message SpecsResponse {}
+message SpecsResponse {
+  bool status = 1; 
+}
 
 message GetAgentConfigurationRequest {}
 
