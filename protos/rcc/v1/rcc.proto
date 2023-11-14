@@ -110,11 +110,11 @@ message AuthResponse {
   string device_id = 2;
 }
 
-message SpecsRequest {}
-
-message SpecsResponse {
+message SpecsRequest {
   model.DeviceSpecifications specifications = 1;
 }
+
+message SpecsResponse {}
 
 message GetAgentConfigurationRequest {}
 
