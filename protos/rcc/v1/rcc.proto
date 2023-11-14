@@ -6,6 +6,8 @@ import "protos/model/v1/config.proto";
 import "protos/model/v1/commands.proto";
 import "protos/model/v1/datapoint.proto";
 import "protos/model/v1/webrtc.proto";
+import "protos/model/v1/specifications.proto";
+
 
 
 option go_package = "github.com/TeamDotworld/robotix-proto/protos/v1/rcc";
@@ -23,6 +25,9 @@ service Agent {
   /* AuthenticateAgent service authenticates the agent and return a boolean
     status which determines the authentication status of the agent */
   rpc AuthenticateAgent(AuthRequest) returns (AuthResponse) {}
+
+  /* GetDeviceSpecifications returns the device specification details. */
+  rpc GetDeviceSpecifications(SpecsRequest) returns (SpecsResponse) {}
 
   /* GetAgentConfiguration returns the Agent configuration. */
   rpc GetAgentConfiguration(GetAgentConfigurationRequest)
@@ -103,6 +108,12 @@ message AuthRequest {
 message AuthResponse {
   bool status = 1;
   string device_id = 2;
+}
+
+message SpecsRequest {}
+
+message SpecsResponse {
+  model.DeviceSpecifications specifications = 1;
 }
 
 message GetAgentConfigurationRequest {}

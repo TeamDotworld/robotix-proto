@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package v1.model;
+
+option go_package = "github.com/TeamDotworld/robotix-proto/protos/v1/model";
+
+message DeviceSpecifications {
+    string processor = 1;
+    string kernel_architecture = 2;
+    string kernel_version = 3;
+    uint32 cpu_cores = 4;
+    uint32 storage_size = 5;
+    uint32 memory_size = 6;
+    string memory_type = 7;
+    string firmware_version = 8;
+    string ip_address = 9;
+    string ubuntu_version = 10;
+    string os_architecture = 11;
+    string ros_distribution = 12;
+    string ros_version = 13;
+    string firewall = 14;
+}
