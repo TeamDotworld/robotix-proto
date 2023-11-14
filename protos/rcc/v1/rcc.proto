@@ -112,6 +112,7 @@ message AuthResponse {
 
 message SpecsRequest {
   model.DeviceSpecifications specifications = 1;
+  string device_id = 2;
 }
 
 message SpecsResponse {
