@@ -192,7 +192,8 @@ message GetRtcSignalRequest {
   string id = 2;
   string query = 3;
   string ice_candidate=4;
-  model.Webrtctype request_type = 5;
+  string token=5;
+  model.Webrtctype request_type = 6;
 
 }
 
