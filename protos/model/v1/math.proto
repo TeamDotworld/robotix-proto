@@ -37,12 +37,15 @@ message Transform {
 message Pose {
     Position  position = 1;
     Orientation orientation = 2;
+
 }
 
 message InitialPose {
+  message Covariance {
+    repeated float values = 1;
+  }
   Pose pose = 1;
-  repeated float covariance = 2;
-
+  Covariance covariance = 2;
 }
 
 message RobotPose {
