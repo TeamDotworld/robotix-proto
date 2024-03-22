@@ -47,7 +47,7 @@ message ControlDatapoint {
     Numeric numeric = 5;
     Bitset bitset = 6;
     Twist twist = 7;
-    Pose pose = 8;
+    RobotPose pose = 8;
     Point point = 9;
     GoalID goal_id = 10;
   }
