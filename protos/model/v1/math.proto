@@ -41,11 +41,8 @@ message Pose {
 }
 
 message InitialPose {
-  message Covariance {
-    repeated float values = 1;
-  }
   Pose pose = 1;
-  Covariance covariance = 2;
+  repeated float covariance = 2;
 }
 
 message RobotPose {
