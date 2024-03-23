@@ -5,7 +5,7 @@
 # - Add to git, commit, update version, create tag, push both tag and commit.
 # - Also updates the proto dependency to latest in your local repo both agent and rcc server. (Change the path to your local path)
 
-version=79
+version=80
 old_version=$version
 
 echo -e '\033[4;32;1mGenerating Proto Code\033[m'
