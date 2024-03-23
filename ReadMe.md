@@ -1,6 +1,6 @@
 # Robotix Proto
 
-This repo consists of the proto used by the RCC server, Agent and The node.
+This repo consists of the proto used by the RCC server, Agent and The node
 
 ## Installing Protoc
 
