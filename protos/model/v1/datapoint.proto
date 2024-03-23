@@ -48,7 +48,8 @@ message ControlDatapoint {
     Bitset bitset = 6;
     Twist twist = 7;
     bytes pose = 8;
-    Point point = 9;
-    GoalID goal_id = 10;
+    bytes initial_pose = 9;
+    Point point = 10;
+    GoalID goal_id = 11;
   }
 }
