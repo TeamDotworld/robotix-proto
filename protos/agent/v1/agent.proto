@@ -125,7 +125,10 @@ message StreamDataResponse { repeated model.Datapoint messages = 1; }
 
 message GetRosCommandConfigRequest {}
 
-message GetRosCommandConfigResponse { string config = 1; }
+message GetRosCommandConfigResponse { 
+  string config = 1;
+  string maps_directory = 2;
+}
 
 message GetRosSubscriptionConfigRequest {}
 
