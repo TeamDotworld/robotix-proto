@@ -20,4 +20,5 @@ message DeviceSpecifications {
     string ros_version = 13;
     string firewall = 14;
     string agent_version = 15;
+    string device_model = 16;
 }
