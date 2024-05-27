@@ -9,7 +9,7 @@ version=84
 old_version=$version
 
 echo -e '\033[4;32;1mGenerating Proto Code\033[m'
-./generate.sh
+# ./generate.sh
 
 echo -e '\033[4;32;1mAdding To Git\033[m'
 git add .
