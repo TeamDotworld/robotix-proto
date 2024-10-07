@@ -1,28 +1,32 @@
 #!/bin/bash
 
-# The protoc compiles the proto code to go code. The files will be generated in the following directory
-# /home/anand/go/src/github.com/TeamDotworld/robotix-proto/v1
-# The folder structure for this repository should be like above. change the username
-protoc --go_out=plugins=grpc,paths=source_relative:./protos/rcc/v1 \
-       ./protos/rcc/v1/rcc.proto
+RCC_PROTO="./protos/rcc/v1/rcc.proto"
+AGENT_PROTO="./protos/agent/v1/agent.proto"
+FLEET_MANAGER_PROTO="./protos/fleet_manager/v1/fleet_manager.proto"
 
-# ./protos/rcc/v1/rcc.proto
-# protoc --go_out=plugins=grpc:/home/amizhthan/go/src/ ./protos/node_sdk/v1/node_sdk.proto
-# protoc --go_out=plugins=grpc:/home/amizhthan/go/src/ ./protos/agent/v1/agent.proto
+# Generates Go files for GT Studio from the rcc.proto file
+protoc --go_out=. --go-grpc_out=. $RCC_PROTO
+echo "Processing $RCC_PROTO file.."
 
-# This line is for compiling python files for the agent.proto file
-python3 -m grpc_tools.protoc -I. --python_out=/home/amizhthan/go/src/github.com/robotix-agent/node --grpc_python_out=/home/amizhthan/go/src/github.com/robotix-agent/node ./protos/agent/v1/agent.proto
+# Generates Go files for GT Studio - Agent from the agent.proto file
+protoc --go_out=. --go-grpc_out=. $AGENT_PROTO
+echo "Processing $AGENT_PROTO file.."
 
-# # cp rcc.proto /home/anand/Work/golang/src/delivery-robot-backend/go-multi-tenant/rcc.proto
+# Generates Go files for GT Studio - Fleet Manager from the fleet_manager.proto file
+protoc --go_out=. --go-grpc_out=. $FLEET_MANAGER_PROTO
+echo "Processing $FLEET_MANAGER_PROTO file.."
 
-# This will loop over all the model files and create both go and python files.
-for f in ./protos/model/v1/*.proto 
-do 
-    # protoc --go_out=plugins=grpc:/home/amizhthan/go/src/ $f
-    protoc --go_out=./protos/v1/model --go_opt=paths=source_relative \
-    --go-grpc_out=./protos/v1/model --go-grpc_opt=paths=source_relative \
-    $f
-    python3 -m grpc_tools.protoc -I. --python_out=/home/amizhthan/go/src/github.com/robotix-agent/node --grpc_python_out=/home/amizhthan/go/src/github.com/robotix-agent/node $f
+# Compiles Python files for the agent.proto file
+# NOTE: Change the local agent project directory to save the generated Python files
+python3 -m grpc_tools.protoc -I. --python_out=/home/amizhthan/RCC/robotix-agent/node --grpc_python_out=/home/amizhthan/RCC/robotix-agent/node ./protos/agent/v1/agent.proto
+
+# Loops over all the model files and creates both Go and Python files
+for f in ./protos/model/v1/*.proto
+do
+    protoc --go_out=. --go-grpc_out=. $f
+    python3 -m grpc_tools.protoc -I. --python_out=/home/amizhthan/RCC/robotix-agent/node --grpc_python_out=/home/amizhthan/RCC/robotix-agent/node $f
 
     echo "Processing $f file.."
 done
+
+echo "### Protobuf files generated successfully ###"
