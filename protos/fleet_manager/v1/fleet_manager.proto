@@ -1,0 +1,119 @@
+syntax = "proto3";
+
+package v1.fleet_manager;
+
+option go_package = "protos/v1/fleet_manager";
+
+service FleetManager {
+
+    rpc Telemetry(stream RobotStatesRequest) returns (RobotStatesResponse) {}
+
+    rpc RobotsList(RobotsListRequest) returns (RobotsListResponse) {}
+
+    rpc Plans(PlanRequest) returns (PlanResponse) {}
+
+    rpc HerdServices(HerdServiceRequest) returns (HerdServiceResponse) {}
+
+    rpc GetConfigurations(stream GetConfigResponse) returns (stream GetConfigRequest) {}
+
+    rpc DockerTelemetry(DockerTelemetryRequest) returns (stream DockerTelemetryResponse) {}
+
+}
+
+// HerdIQ services
+enum Actions {
+    CREATE = 0;
+    UPDATE = 1;
+    DELETE = 2;
+    START = 3;
+    STOP = 4;
+    RESTART = 5;
+}
+
+message HerdServiceRequest {
+    Actions action = 1;
+    string organization = 2;
+    string token = 3;
+    string fleet_config = 4;
+    string nav_graph = 5;
+    string slug_name = 6;
+}
+
+message HerdServiceResponse {
+    bool status = 1;
+    string slug_name = 2;
+    string message = 3;
+}
+
+// Plans
+enum PlanActions {
+    EXECUTE = 0;
+    CANCEL = 1;
+}
+
+message PlanRequest {
+    PlanActions action =1;
+    string token = 2;
+    string slug_name = 3;
+    string plan_request = 4;
+    string plan_id = 5;
+}
+
+message PlanResponse {
+    string status = 1;
+    string message = 2;
+}
+
+// Robots states 
+message RobotStatesRequest {
+    string token = 1;
+    string slug_name = 2;
+    string robot_pose = 3;
+    string robot_status = 4;
+    string robot_battery = 5;
+    string current_map = 6;
+}
+
+message RobotStatesResponse {
+    string status = 1;
+    string message = 2;
+}
+
+// Robots list
+message RobotsListRequest {
+    string token = 1;
+    string slug_name = 2;
+}
+
+message RobotsListResponse {
+    string robots = 1;
+    string status = 2;
+    string message = 3;
+}
+
+// Get fleet and nav graph configurations
+message GetConfigRequest {
+    string token = 1;
+    string slug_name = 2;
+}
+
+message GetConfigResponse {
+    string fleet_config = 1;
+    string nav_graph = 2;
+}
+
+
+// Docker Telemetry
+message DockerTelemetryRequest {
+    string token = 1;
+    string slug_name = 2;
+}
+
+message DockerTelemetryResponse {
+    string status = 1;
+    string message = 2;
+    string cpu_usage = 3;
+    string memory_usage = 4;
+    string inspect = 5;
+    string logs = 6;
+}
