@@ -6,22 +6,61 @@ option go_package = "protos/v1/fleet_manager";
 
 service FleetManager {
 
-    rpc Telemetry(stream RobotStatesRequest) returns (RobotStatesResponse) {}
+    rpc CommandStream(stream CommandSteamRequest) returns (stream CommandSteamRespose) {} // Fleet manager (GT-server and each Docker service)
 
-    rpc RobotsList(RobotsListRequest) returns (RobotsListResponse) {}
+    rpc HerdServices(HerdServiceRequest) returns (HerdServiceResponse) {}  // GT-server to fleet manager
 
-    rpc Plans(PlanRequest) returns (PlanResponse) {}
+    rpc RobotTelemetry(stream RobotTelemetryData) returns (stream RobotTelemetryResponse) {} // Fleet manager (GT-server and each Docker service)
 
-    rpc HerdServices(HerdServiceRequest) returns (HerdServiceResponse) {}
+    rpc HerdTelemetry(stream HerdTelemetryReqest) returns (stream HerdTelemetryResponse) {} // HerdIQ -> Fleet manager -> GT-server
 
-    rpc GetConfigurations(stream GetConfigResponse) returns (stream GetConfigRequest) {}
-
-    rpc DockerTelemetry(DockerTelemetryRequest) returns (stream DockerTelemetryResponse) {}
+    rpc NavigationTelemetry(stream NavTelemetryRequest) returns (stream NavTelemetryResponse) {} 
 
 }
 
-// HerdIQ services
-enum Actions {
+// Command stream service
+enum CommandStreamCommands {
+    FLOW_EXECUTE = 0;
+    FLOW_CANCEL = 1;
+    ROBOT_LIST = 2;
+    GET_CONFIGS = 3;
+    NAVIGATION = 4; 
+    TRIGGER_CHARGER = 5;
+    TRIGGER_HOME_CHARGER = 6;
+    TRIGGER_EMERGENCY = 7;
+}
+
+enum CommandStreamActions {
+    CANCEL_GOAL = 0;
+    SEND_GOAL = 1;
+}
+
+message CommandSteamRequest {
+    string slug_name = 1;
+    CommandStreamCommands command = 2;
+    CommandStreamActions action = 3;
+    string device_id = 4;
+    string robot = 5;
+    string data = 6;
+    bool status = 7;
+    string message = 8;
+    string request_id = 9;
+}
+
+message CommandSteamRespose {
+    string slug_name = 1;
+    CommandStreamCommands command = 2;
+    CommandStreamActions action = 3;
+    bool status = 4;
+    string message = 5;
+    string robot = 6;
+    string device_id = 7;
+    string data = 8;
+    string request_id = 9;
+}
+
+// Herd Service 
+enum HerdActions {
     CREATE = 0;
     UPDATE = 1;
     DELETE = 2;
@@ -30,90 +69,81 @@ enum Actions {
     RESTART = 5;
 }
 
-message HerdServiceRequest {
-    Actions action = 1;
+message HerdData {
+    string slug_name = 1;
     string organization = 2;
     string token = 3;
-    string fleet_config = 4;
-    string nav_graph = 5;
-    string slug_name = 6;
+}
+
+message HerdServiceRequest {
+    HerdActions action = 1;
+    string device_id = 2;
+    HerdData data = 3;
+}
+
+message HerdServiceResponseData {
+    string slug_name = 1;
+    string token = 2;
 }
 
 message HerdServiceResponse {
     bool status = 1;
-    string slug_name = 2;
+    HerdServiceResponseData data = 2;
     string message = 3;
 }
 
-// Plans
-enum PlanActions {
-    EXECUTE = 0;
-    CANCEL = 1;
+// RobotTelemetry service
+message RobotTelemetryData {
+    string slug_name = 1;
+    string robot = 3;
+    string device_id = 4;
+    string data = 5;
 }
 
-message PlanRequest {
-    PlanActions action =1;
-    string token = 2;
-    string slug_name = 3;
-    string plan_request = 4;
-    string plan_id = 5;
+message RobotTelemetryResponse {
+    string slug_name = 1;
+    string robot = 3;
+    string device_id = 4;
+    string data = 5;
+    bool status = 6;
+    string message = 7;
 }
 
-message PlanResponse {
-    string status = 1;
-    string message = 2;
+// HerdIQ Telemetry (fleet states, dispatch states)
+enum HerdTelemetryActions {
+    FLEET_STATES = 0;
+    DISAPTCH_STATES = 1;
 }
 
-// Robots states 
-message RobotStatesRequest {
-    string token = 1;
-    string slug_name = 2;
-    string robot_pose = 3;
-    string robot_status = 4;
-    string robot_battery = 5;
-    string current_map = 6;
+message HerdTelemetryReqest {
+    string slug_name = 1;
+    HerdTelemetryActions action = 2;
+    string data = 3;
 }
 
-message RobotStatesResponse {
-    string status = 1;
-    string message = 2;
+message HerdTelemetryResponse {
+    string slug_name = 1;
+    HerdTelemetryActions action = 2;
+    string data = 3;
+    bool status = 4;
+    string message = 5;
 }
 
-// Robots list
-message RobotsListRequest {
-    string token = 1;
-    string slug_name = 2;
+// Navigation telemetry stream
+message NavTelemetryRequest {
+    string slug_name = 1;
+    string robot = 2;
+    string device_id = 3;
+    string data = 4;
+    string status = 5;
+    string message = 6;
 }
 
-message RobotsListResponse {
-    string robots = 1;
-    string status = 2;
-    string message = 3;
-}
-
-// Get fleet and nav graph configurations
-message GetConfigRequest {
-    string token = 1;
-    string slug_name = 2;
-}
-
-message GetConfigResponse {
-    string fleet_config = 1;
-    string nav_graph = 2;
-}
-
-
-// Docker Telemetry
-message DockerTelemetryRequest {
-    string token = 1;
-    string slug_name = 2;
-}
-
-message DockerTelemetryResponse {
-    string status = 1;
-    string message = 2;
-    string cpu_usage = 3;
-    string memory_usage = 4;
-    string inspect = 5;
-    string logs = 6;
+message NavTelemetryResponse {
+    string slug_name = 1;
+    string robot = 2;
+    string device_id = 3;
+    string data = 4;
+    string status = 5;
+    string message = 6;
 }
