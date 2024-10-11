@@ -19,11 +19,12 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	FleetManager_CommandStream_FullMethodName       = "/v1.fleet_manager.FleetManager/CommandStream"
-	FleetManager_HerdServices_FullMethodName        = "/v1.fleet_manager.FleetManager/HerdServices"
-	FleetManager_RobotTelemetry_FullMethodName      = "/v1.fleet_manager.FleetManager/RobotTelemetry"
-	FleetManager_HerdTelemetry_FullMethodName       = "/v1.fleet_manager.FleetManager/HerdTelemetry"
-	FleetManager_NavigationTelemetry_FullMethodName = "/v1.fleet_manager.FleetManager/NavigationTelemetry"
+	FleetManager_CommandStream_FullMethodName        = "/v1.fleet_manager.FleetManager/CommandStream"
+	FleetManager_HerdServices_FullMethodName         = "/v1.fleet_manager.FleetManager/HerdServices"
+	FleetManager_RobotTelemetry_FullMethodName       = "/v1.fleet_manager.FleetManager/RobotTelemetry"
+	FleetManager_HerdTelemetry_FullMethodName        = "/v1.fleet_manager.FleetManager/HerdTelemetry"
+	FleetManager_NavigationTelemetry_FullMethodName  = "/v1.fleet_manager.FleetManager/NavigationTelemetry"
+	FleetManager_DockerStatsTelemetry_FullMethodName = "/v1.fleet_manager.FleetManager/DockerStatsTelemetry"
 )
 
 // FleetManagerClient is the client API for FleetManager service.
@@ -35,6 +36,7 @@ type FleetManagerClient interface {
 	RobotTelemetry(ctx context.Context, opts ...grpc.CallOption) (grpc.BidiStreamingClient[RobotTelemetryData, RobotTelemetryResponse], error)
 	HerdTelemetry(ctx context.Context, opts ...grpc.CallOption) (grpc.BidiStreamingClient[HerdTelemetryReqest, HerdTelemetryResponse], error)
 	NavigationTelemetry(ctx context.Context, opts ...grpc.CallOption) (grpc.BidiStreamingClient[NavTelemetryRequest, NavTelemetryResponse], error)
+	DockerStatsTelemetry(ctx context.Context, in *DockerTelemetryRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[DockerTelemetryResponse], error)
 }
 
 type fleetManagerClient struct {
@@ -107,6 +109,25 @@ func (c *fleetManagerClient) NavigationTelemetry(ctx context.Context, opts ...gr
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
 type FleetManager_NavigationTelemetryClient = grpc.BidiStreamingClient[NavTelemetryRequest, NavTelemetryResponse]
 
+func (c *fleetManagerClient) DockerStatsTelemetry(ctx context.Context, in *DockerTelemetryRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[DockerTelemetryResponse], error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	stream, err := c.cc.NewStream(ctx, &FleetManager_ServiceDesc.Streams[4], FleetManager_DockerStatsTelemetry_FullMethodName, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &grpc.GenericClientStream[DockerTelemetryRequest, DockerTelemetryResponse]{ClientStream: stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type FleetManager_DockerStatsTelemetryClient = grpc.ServerStreamingClient[DockerTelemetryResponse]
+
 // FleetManagerServer is the server API for FleetManager service.
 // All implementations must embed UnimplementedFleetManagerServer
 // for forward compatibility.
@@ -116,6 +137,7 @@ type FleetManagerServer interface {
 	RobotTelemetry(grpc.BidiStreamingServer[RobotTelemetryData, RobotTelemetryResponse]) error
 	HerdTelemetry(grpc.BidiStreamingServer[HerdTelemetryReqest, HerdTelemetryResponse]) error
 	NavigationTelemetry(grpc.BidiStreamingServer[NavTelemetryRequest, NavTelemetryResponse]) error
+	DockerStatsTelemetry(*DockerTelemetryRequest, grpc.ServerStreamingServer[DockerTelemetryResponse]) error
 	mustEmbedUnimplementedFleetManagerServer()
 }
 
@@ -140,6 +162,9 @@ func (UnimplementedFleetManagerServer) HerdTelemetry(grpc.BidiStreamingServer[He
 }
 func (UnimplementedFleetManagerServer) NavigationTelemetry(grpc.BidiStreamingServer[NavTelemetryRequest, NavTelemetryResponse]) error {
 	return status.Errorf(codes.Unimplemented, "method NavigationTelemetry not implemented")
+}
+func (UnimplementedFleetManagerServer) DockerStatsTelemetry(*DockerTelemetryRequest, grpc.ServerStreamingServer[DockerTelemetryResponse]) error {
+	return status.Errorf(codes.Unimplemented, "method DockerStatsTelemetry not implemented")
 }
 func (UnimplementedFleetManagerServer) mustEmbedUnimplementedFleetManagerServer() {}
 func (UnimplementedFleetManagerServer) testEmbeddedByValue()                      {}
@@ -208,6 +233,17 @@ func _FleetManager_NavigationTelemetry_Handler(srv interface{}, stream grpc.Serv
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
 type FleetManager_NavigationTelemetryServer = grpc.BidiStreamingServer[NavTelemetryRequest, NavTelemetryResponse]
 
+func _FleetManager_DockerStatsTelemetry_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(DockerTelemetryRequest)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(FleetManagerServer).DockerStatsTelemetry(m, &grpc.GenericServerStream[DockerTelemetryRequest, DockerTelemetryResponse]{ServerStream: stream})
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type FleetManager_DockerStatsTelemetryServer = grpc.ServerStreamingServer[DockerTelemetryResponse]
+
 // FleetManager_ServiceDesc is the grpc.ServiceDesc for FleetManager service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -244,6 +280,11 @@ var FleetManager_ServiceDesc = grpc.ServiceDesc{
 			Handler:       _FleetManager_NavigationTelemetry_Handler,
 			ServerStreams: true,
 			ClientStreams: true,
+		},
+		{
+			StreamName:    "DockerStatsTelemetry",
+			Handler:       _FleetManager_DockerStatsTelemetry_Handler,
+			ServerStreams: true,
 		},
 	},
 	Metadata: "protos/fleet_manager/v1/fleet_manager.proto",

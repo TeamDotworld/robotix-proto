@@ -16,6 +16,8 @@ service FleetManager {
 
     rpc NavigationTelemetry(stream NavTelemetryRequest) returns (stream NavTelemetryResponse) {} 
 
+    rpc DockerStatsTelemetry(DockerTelemetryRequest) returns (stream DockerTelemetryResponse) {}
+
 }
 
 // Command stream service
@@ -146,4 +148,30 @@ message NavTelemetryResponse {
     string data = 4;
     string status = 5;
     string message = 6;
+}
+
+// Docker stats telemetry stream
+message DockerTelemetryData {
+    double cpu = 1;
+    double memory = 2;
+    string name = 3;
+    string container_id = 4;
+    uint64 num_of_procs = 6;
+    uint64 current_pid = 7;
+    string created_at = 8;
+    string updated_at = 9;
+    string version = 11;
+}
+
+message DockerTelemetryRequest {
+    string slug_name = 1;
+    bool status = 2;
+    string message = 3;
+}
+
+message DockerTelemetryResponse {
+    string slug_name = 1;
+    DockerTelemetryData data = 2;
+    bool status = 3;
+    string message = 4;
 }
