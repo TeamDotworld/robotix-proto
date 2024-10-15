@@ -1,6 +1,7 @@
 #!/bin/bash
 
 RCC_PROTO="./protos/rcc/v1/rcc.proto"
+NODE_SDK="./protos/node_sdk/v1/node_sdk.proto"
 AGENT_PROTO="./protos/agent/v1/agent.proto"
 FLEET_MANAGER_PROTO="./protos/fleet_manager/v1/fleet_manager.proto"
 
@@ -13,6 +14,10 @@ mkdir ./protos/v1
 # Generates Go files for GT Studio from the rcc.proto file
 protoc --go_out=. --go-grpc_out=. $RCC_PROTO
 echo "Processing $RCC_PROTO file.."
+
+# Generates Go files for GT Studio - Node SDK from the node_sdk.proto file
+protoc --go_out=. --go-grpc_out=. $NODE_SDK
+echo "Processing $NODE_SDK file.."
 
 # Generates Go files for GT Studio - Agent from the agent.proto file
 protoc --go_out=. --go-grpc_out=. $AGENT_PROTO
