@@ -4,7 +4,7 @@ package v1.model;
 
 import "protos/model/v1/math.proto";
 
-option go_package = "/protos/v1/model";
+option go_package = "/github.com/TeamDotworld/robotix-proto/protos/v1/model";
 
 message Image {
   // e.g. "image/png" for png images.

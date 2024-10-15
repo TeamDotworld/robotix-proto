@@ -16,7 +16,7 @@ import "protos/model/v1/config.proto";
 import "protos/model/v1/ros.proto";
 import "protos/model/v1/datapoint.proto";
 
-option go_package = "/protos/v1/rcc";
+option go_package = "/github.com/TeamDotworld/robotix-proto/protos/v1/rcc";
 
 service NodeSdk {
   rpc ServiceCall(ServiceCallReqest) returns (ServiceCallResponse) {}
