@@ -10,7 +10,7 @@ import "protos/model/v1/specifications.proto";
 
 
 
-option go_package = "protos/v1/rcc";
+option go_package = "github.com/TeamDotworld/robotix-proto/protos/v1/rcc";
 
 /*
 NOTE:
