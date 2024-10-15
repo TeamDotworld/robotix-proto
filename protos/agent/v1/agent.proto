@@ -7,7 +7,7 @@ import "protos/model/v1/config.proto";
 import "protos/model/v1/commands.proto";
 import "protos/model/v1/datapoint.proto";
 
-option go_package = "github.com/TeamDotworld/robotix-proto/protos/v1/agent";
+option go_package = "/protos/v1/agent";
 
 service AgentRosBridge {
 
