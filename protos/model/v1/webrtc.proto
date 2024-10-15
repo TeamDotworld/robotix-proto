@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package v1.model;
 
-option go_package = "/github.com/TeamDotworld/robotix-proto/protos/v1/model";
+option go_package = "github.com/TeamDotworld/robotix-proto/protos/v1/model";
 
 enum Webrtctype {
     ADD_OFFER = 0;

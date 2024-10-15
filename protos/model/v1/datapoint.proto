@@ -11,7 +11,7 @@ import "protos/model/v1/media.proto";
 import "protos/model/v1/ros.proto";
 
 
-option go_package = "/github.com/TeamDotworld/robotix-proto/protos/v1/model";
+option go_package = "github.com/TeamDotworld/robotix-proto/protos/v1/model";
 
 message Datapoint {
   string stream = 1;
