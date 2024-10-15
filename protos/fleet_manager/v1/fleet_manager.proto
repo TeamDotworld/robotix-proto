@@ -28,15 +28,15 @@ enum CommandStreamCommands {
     ROBOT_LIST = 3;
     GET_CONFIGS = 4;
     NAVIGATION = 5; 
-    TRIGGER_CHARGER = 6;
-    TRIGGER_HOME_CHARGER = 7;
-    TRIGGER_EMERGENCY = 8;
+    TRIGGER = 6;
 }
 
 enum CommandStreamActions {
     COMMAND_ACTION_UNKNOWN = 0;
     CANCEL_GOAL = 1;
     SEND_GOAL = 2;
+    HOME = 3;
+    CHARGER = 4;
 }
 
 message CommandSteamRequest {
