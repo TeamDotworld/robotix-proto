@@ -7,7 +7,7 @@
 package rcc
 
 import (
-	model "github.com/TeamDotworld/robotix-proto/protos/v1/model"
+	model "/protos/v1/model"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"

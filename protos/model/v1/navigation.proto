@@ -5,7 +5,7 @@ package v1.model;
 import "protos/model/v1/math.proto";
 import "protos/model/v1/media.proto";
 
-option go_package = "github.com/TeamDotworld/robotix-proto/protos/v1/model";
+option go_package = "/protos/v1/model";
 
 message Location {
   double latitude = 1;

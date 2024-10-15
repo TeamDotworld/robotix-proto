@@ -3,7 +3,7 @@ syntax = "proto3";
 
 package v1.model;
 
-option go_package = "github.com/TeamDotworld/robotix-proto/protos/v1/model";
+option go_package = "/protos/v1/model";
 
 /* A File contains either raw bytes of data or an absolute path to a file on the
  * local filesystem. Filename is optional and will be auto-generated if it is
