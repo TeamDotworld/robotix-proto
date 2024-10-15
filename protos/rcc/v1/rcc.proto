@@ -8,8 +8,6 @@ import "protos/model/v1/datapoint.proto";
 import "protos/model/v1/webrtc.proto";
 import "protos/model/v1/specifications.proto";
 
-
-
 option go_package = "github.com/TeamDotworld/robotix-proto/protos/v1/rcc";
 
 /*
