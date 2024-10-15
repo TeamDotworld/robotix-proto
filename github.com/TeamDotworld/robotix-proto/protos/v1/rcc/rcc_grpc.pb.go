@@ -8,10 +8,10 @@ package rcc
 
 import (
 	context "context"
+	model "github.com/TeamDotworld/robotix-proto/protos/v1/model"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
-	model "protos/v1/model"
 )
 
 // This is a compile-time assertion to ensure that this generated file

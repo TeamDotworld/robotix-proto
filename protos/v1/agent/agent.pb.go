@@ -7,9 +7,9 @@
 package agent
 
 import (
+	model "github.com/TeamDotworld/robotix-proto/protos/v1/model"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
-	model "protos/v1/model"
 	reflect "reflect"
 	sync "sync"
 )
