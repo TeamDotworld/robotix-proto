@@ -37,6 +37,9 @@ enum CommandStreamActions {
     SEND_GOAL = 2;
     HOME = 3;
     CHARGER = 4;
+    GOAT_RESPONSE = 5;
+    PAUSE_GOAL = 6;
+    RESUME_GOAL = 7;
 }
 
 message CommandSteamRequest {
