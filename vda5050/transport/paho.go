@@ -14,6 +14,7 @@ import (
 // Logger is the minimal logging surface the transport needs. herdIQ passes
 // its logrus entry; tests pass nil.
 type Logger interface {
+	Debugf(format string, args ...any)
 	Infof(format string, args ...any)
 	Warnf(format string, args ...any)
 	Errorf(format string, args ...any)
@@ -21,6 +22,7 @@ type Logger interface {
 
 type nopLogger struct{}
 
+func (nopLogger) Debugf(string, ...any) {}
 func (nopLogger) Infof(string, ...any)  {}
 func (nopLogger) Warnf(string, ...any)  {}
 func (nopLogger) Errorf(string, ...any) {}
@@ -245,7 +247,7 @@ func (b *PahoBroker) resubscribe(c mqtt.Client) {
 			b.log.Errorf("[vda5050] re-subscribing to %s failed: %v", f, tok.Error())
 			continue
 		}
-		b.log.Infof("[vda5050] subscribed to %s (qos %d)", f, qos)
+		b.log.Debugf("[vda5050] subscribed to %s (qos %d)", f, qos)
 	}
 }
 

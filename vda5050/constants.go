@@ -86,6 +86,9 @@ const (
 	ActionShutdown            = "shutdown"
 	ActionStartCharging       = "startCharging"
 	ActionStopCharging        = "stopCharging"
+	// 3.0.0 renamed this from 2.x's initPosition. We implement 3.0.0 only, so
+	// the 3.0.0 spelling is correct here -- a 2.x vehicle would not match it,
+	// and that is intentional.
 	ActionInitializePosition  = "initializePosition"
 	ActionEnableMap           = "enableMap"
 	ActionDownloadMap         = "downloadMap"

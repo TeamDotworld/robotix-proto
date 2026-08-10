@@ -187,7 +187,6 @@ func (f *Fleet) Start(ctx context.Context) error {
 	f.mu.Lock()
 	f.started = true
 	f.mu.Unlock()
-	f.log.Infof("[vda5050] fleet control started (discovery=%v)", f.opts.Discover)
 	return nil
 }
 

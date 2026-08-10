@@ -124,9 +124,12 @@ func FactsheetRequest() InstantAction { return NewInstantAction(ActionFactsheetR
 
 // InitializePosition overrides the vehicle's pose, e.g. after a manual move.
 func InitializePosition(x, y, theta float64, mapID, lastNodeID string) InstantAction {
+	// lastNodeSequenceId is part of the action per the standard and defaults to
+	// zero. Sending it explicitly avoids relying on a vehicle to default it.
 	return NewInstantAction(ActionInitializePosition,
 		Param("x", x), Param("y", y), Param("theta", theta),
 		Param("mapId", mapID), Param("lastNodeId", lastNodeID),
+		Param("lastNodeSequenceId", 0),
 	)
 }
 

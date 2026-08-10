@@ -1,6 +1,7 @@
 package transport
 
 import (
+	"hash/fnv"
 	"os"
 	"strconv"
 	"strings"
@@ -25,11 +26,15 @@ const (
 //
 // VDA5050 is off unless a broker URL is present. That is the whole
 // feature-flag mechanism: bring up an MQTT broker, point VDA5050_BROKER_URL
-// at it, and herdIQ starts speaking VDA5050; leave it unset and herdIQ
-// behaves exactly as it did before. VDA5050_ENABLED=false forces it off even
-// when a URL is configured, which is useful for turning the integration off
-// in one environment without editing the shared broker settings.
-func ConfigFromEnv() Config {
+// at it, and the service starts speaking VDA5050; leave it unset and it
+// behaves exactly as before. VDA5050_ENABLED=false forces it off even when a
+// URL is configured, which is useful for disabling the integration in one
+// environment without editing shared broker settings.
+//
+// clientPrefix names the connecting service, e.g. "gtstudio". A broker evicts
+// any existing session using the same client ID, so two services sharing a
+// prefix on one host would repeatedly disconnect each other.
+func ConfigFromEnv(clientPrefix string) Config {
 	if v := os.Getenv(EnvEnabled); v != "" && !truthy(v) {
 		return Config{}
 	}
@@ -55,25 +60,37 @@ func ConfigFromEnv() Config {
 		}
 	}
 	if cfg.ClientID == "" {
-		cfg.ClientID = defaultClientID()
+		cfg.ClientID = defaultClientID(clientPrefix)
 	}
 	return cfg
 }
 
 // defaultClientID derives a broker client ID that is stable across restarts
-// but distinct per herdIQ instance. Stability matters: a client ID that
-// changed on every restart would leave orphaned sessions on the broker.
-func defaultClientID() string {
-	id := "herdiq"
-	if slug := os.Getenv("HERD_SLUG_NAME"); slug != "" {
-		id += "-" + slug
+// but distinct per service and host. Stability matters: an ID that changed on
+// every restart would leave orphaned sessions on the broker.
+func defaultClientID(prefix string) string {
+	if prefix == "" {
+		prefix = "vda5050"
 	}
+	id := prefix
 	if host, err := os.Hostname(); err == nil && host != "" {
 		id += "-" + host
 	}
-	// MQTT 3.1.1 brokers may reject client IDs longer than 23 characters.
-	if len(id) > 23 {
-		id = id[:23]
+
+	// MQTT 3.1.1 brokers may reject client IDs longer than 23 characters, and
+	// a broker evicts any existing session using the same ID. Plain truncation
+	// would therefore make two long hostnames collide and repeatedly kick each
+	// other off, so the tail is replaced with a hash of the full value.
+	const maxLen = 23
+	if len(id) > maxLen {
+		sum := fnv.New32a()
+		_, _ = sum.Write([]byte(id))
+		suffix := "-" + strconv.FormatUint(uint64(sum.Sum32()), 36)
+		keep := maxLen - len(suffix)
+		if keep < 1 {
+			keep = 1
+		}
+		id = id[:keep] + suffix
 	}
 	return id
 }
