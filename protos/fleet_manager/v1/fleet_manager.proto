@@ -36,6 +36,7 @@ enum CommandStreamCommands {
     LANE = 11;
     SETTINGS = 12;
     PLATFORM = 13;
+    UPDATE_STATION = 14;
 }
 
 enum CommandStreamActions {
@@ -70,6 +71,8 @@ enum CommandStreamActions {
     UPDATE_PLATFORM_MODELS = 28;
     UPDATE_PLATFORM_INSTANCES = 29;
     UPDATE_ROBOT_CONFIG = 30;
+    GET_STATIONS = 31;
+    UPDATE_STATIONS = 32;
 }
 
 message CommandStreamRequest {
@@ -139,11 +142,18 @@ message HerdServiceResponse {
 }
 
 // RobotTelemetry service
+enum StationStatus {
+    STATION_STATUS_UNKNOWN = 0;
+    STATION_STATUS_ONLINE = 1;
+    STATION_STATUS_OFFLINE = 2;
+}
+
 message RobotTelemetryData {
     string slug_name = 1;
     string robot = 3;
     string device_id = 4;
     string data = 5;
+    StationStatus station_status = 6;
 }
 
 message RobotTelemetryResponse {
@@ -153,6 +163,7 @@ message RobotTelemetryResponse {
     string data = 5;
     bool status = 6;
     string message = 7;
+    StationStatus station_status = 8;
 }
 
 // HerdIQ Telemetry (fleet states, dispatch states)
