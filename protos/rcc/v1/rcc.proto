@@ -125,6 +125,7 @@ message SpecsRequest {
   model.DeviceSpecifications specifications = 1;
   string device_id = 2;
   string hardware_specs = 3;
+  string sensor_tf = 4;
 }
 
 message SpecsResponse {
