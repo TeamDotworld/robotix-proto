@@ -99,7 +99,7 @@
                                         "boolean",
                                         "number",
                                         "integer",
-                                        "string", 
+                                        "string",
                                         "object"
                                     ],
                                     "description": "The value of the action parameter",
@@ -121,6 +121,11 @@
                                 }
                             }
                         }
+                    },
+                    "retriable": {
+                        "type": "boolean",
+                        "description": "True: action can enter the RETRIABLE state if it fails. False: action enters FAILED directly after it fails. Default: false.",
+                        "default": false
                     }
                 }
             }

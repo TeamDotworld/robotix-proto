@@ -36,6 +36,7 @@ enum CommandStreamCommands {
     LANE = 11;
     SETTINGS = 12;
     PLATFORM = 13;
+    ANNOUNCE = 14; // Fire-and-forget advisory status text pushed to a robot (traffic holds, occupied goal, ...). Never affects navigation.
 }
 
 enum CommandStreamActions {

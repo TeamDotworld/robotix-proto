@@ -166,13 +166,17 @@ func (v RequestType) IsValid() bool {
 	return false
 }
 
-// RequestStatus When stating a request, this is set to REQUESTED. After response or update from
-// fleet control set to GRANTED or REVOKED. If lease time expires set to EXPIRED.
+// RequestStatus Life cycle of the request (Section 6.9). When stating a request, this is set to
+// REQUESTED. Fleet control may acknowledge with QUEUED before deciding. After a response set to
+// GRANTED or REJECTED, or to REVOKED when a grant is withdrawn. If the lease expires, set to
+// EXPIRED.
 type RequestStatus string
 
 const (
 	RequestStatusRequested RequestStatus = "REQUESTED"
+	RequestStatusQueued    RequestStatus = "QUEUED"
 	RequestStatusGranted   RequestStatus = "GRANTED"
+	RequestStatusRejected  RequestStatus = "REJECTED"
 	RequestStatusRevoked   RequestStatus = "REVOKED"
 	RequestStatusExpired   RequestStatus = "EXPIRED"
 )
@@ -180,7 +184,7 @@ const (
 // IsValid reports whether v is one of the values defined by the specification.
 func (v RequestStatus) IsValid() bool {
 	switch v {
-	case RequestStatusRequested, RequestStatusGranted, RequestStatusRevoked, RequestStatusExpired:
+	case RequestStatusRequested, RequestStatusQueued, RequestStatusGranted, RequestStatusRejected, RequestStatusRevoked, RequestStatusExpired:
 		return true
 	}
 	return false
@@ -721,7 +725,7 @@ type Edge struct {
 	ReachOrientationBeforeEntering *bool `json:"reachOrientationBeforeEntering,omitempty"`
 	// Maximum rotation speed in rad/s. Optional: No limit, if not set. Unit: rad/s.
 	// Optional.
-	MaxRotationSpeed *float64 `json:"maxRotationSpeed,omitempty"`
+	MaximumRotationSpeed *float64 `json:"maximumRotationSpeed,omitempty"`
 	// Trajectory JSON-object for this edge as a NURBS. Defines the curve, on which the mobile robot
 	// should move between the start node and the end node. Optional: Can be omitted, if mobile robot
 	// cannot process trajectories or if mobile robot plans its own trajectory.
@@ -786,6 +790,10 @@ type InstantAction struct {
 	// Action parameters for the indicated action, e.g., deviceId, loadId, external Triggers.
 	// Optional.
 	ActionParameters []ActionParameter `json:"actionParameters,omitempty"`
+	// True: action can enter the RETRIABLE state if it fails. False: action enters FAILED directly
+	// after it fails. Default: false.
+	// Optional.
+	Retriable *bool `json:"retriable,omitempty"`
 }
 
 // InstantActions JSON Schema for publishing instantActions that the mobile robot is to execute as
@@ -1016,8 +1024,9 @@ type ZoneRequest struct {
 	ZoneID string `json:"zoneId"`
 	// Due to the zoneId only being unique to a zoneSet, the zoneSetId is part of the request.
 	ZoneSetID string `json:"zoneSetId"`
-	// When stating a request, this is set to REQUESTED. After response or update from fleet control
-	// set to GRANTED or REVOKED. If lease time expires, shall be to EXPIRED.
+	// Life cycle of the request (Section 6.9). When stating a request, this is set to REQUESTED. Fleet
+	// control may acknowledge with QUEUED before deciding. After a response set to GRANTED or
+	// REJECTED, or to REVOKED when a grant is withdrawn. If the lease expires, set to EXPIRED.
 	RequestStatus RequestStatus `json:"requestStatus"`
 	// The trajectory is to be communicated as a NURBS and is defined in chapter 6.7 Implementation of
 	// the Order message. Trajectory segments reach from the point, where the mobile robot starts to
@@ -1037,8 +1046,9 @@ type EdgeRequest struct {
 	// Tracking number for sequence of edge within order. Required to uniquely identify the referenced
 	// edge within the order.
 	SequenceID uint32 `json:"sequenceId"`
-	// When stating a request, this is set to REQUESTED. After response or update from fleet control
-	// set to GRANTED or REVOKED. If lease time expires set to EXPIRED.
+	// Life cycle of the request (Section 6.9). When stating a request, this is set to REQUESTED. Fleet
+	// control may acknowledge with QUEUED before deciding. After a response set to GRANTED or
+	// REJECTED, or to REVOKED when a grant is withdrawn. If the lease expires, set to EXPIRED.
 	RequestStatus RequestStatus `json:"requestStatus"`
 }
 

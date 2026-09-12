@@ -628,8 +628,8 @@
 				},
 				"requestStatus": {
 					"type": "string",
-					"enum": ["REQUESTED", "GRANTED", "REVOKED", "EXPIRED"],
-					"description": "When stating a request, this is set to REQUESTED. After response or update from fleet control set to GRANTED or REVOKED. If lease time expires, shall be to EXPIRED."
+					"enum": ["REQUESTED", "QUEUED", "GRANTED", "REJECTED", "REVOKED", "EXPIRED"],
+					"description": "Life cycle of the request (Section 6.9). When stating a request, this is set to REQUESTED. Fleet control may acknowledge with QUEUED before deciding. After a response set to GRANTED or REJECTED, or to REVOKED when a grant is withdrawn. If the lease expires, set to EXPIRED."
 				},
 				"trajectory": {
 					"$ref": "#/definitions/trajectory"
@@ -666,8 +666,8 @@
 				},
 				"requestStatus": {
 					"type": "string",
-					"enum": ["REQUESTED", "GRANTED", "REVOKED", "EXPIRED"],
-					"description": "When stating a request, this is set to REQUESTED. After response or update from fleet control set to GRANTED or REVOKED. If lease time expires set to EXPIRED."
+					"enum": ["REQUESTED", "QUEUED", "GRANTED", "REJECTED", "REVOKED", "EXPIRED"],
+					"description": "Life cycle of the request (Section 6.9). When stating a request, this is set to REQUESTED. Fleet control may acknowledge with QUEUED before deciding. After a response set to GRANTED or REJECTED, or to REVOKED when a grant is withdrawn. If the lease expires, set to EXPIRED."
 				}
 			}
 		},

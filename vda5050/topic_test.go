@@ -90,10 +90,14 @@ func TestIdentityRejectsTopicBreakingCharacters(t *testing.T) {
 }
 
 func TestQoSAndRetainMatchTheSpecification(t *testing.T) {
-	// §4.1: QoS 0 everywhere except connection. §6.5: connection is retained.
+	// §4.1: QoS 0 everywhere except connection, which is QoS 1.
+	// §6.5: connection is retained, so a fleet control learns connectivity on
+	// subscribe. §6.10: "all messages on this topic shall be sent with a
+	// retained flag" for factsheet, for the same reason -- a fleet control
+	// joining later must learn the vehicle's capabilities without asking.
 	for _, topic := range AllTopics {
 		wantQoS := byte(0)
-		wantRetain := false
+		wantRetain := topic == TopicFactsheet
 		if topic == TopicConnection {
 			wantQoS, wantRetain = 1, true
 		}

@@ -74,6 +74,18 @@ type Options struct {
 	// vehicles contend for space on the same terms as native robots.
 	OnZoneRequest func(*Vehicle, vda5050.ZoneRequest) Decision
 	OnEdgeRequest func(*Vehicle, vda5050.EdgeRequest) Decision
+
+	// ReviewActiveRequests also passes requests the fleet control has already
+	// answered -- those sitting in QUEUED or GRANTED -- back to the hooks on
+	// every state message, so that a decision can be changed after the fact.
+	//
+	// Without it there is no path to REVOKED at all: §6.9 has the fleet
+	// control withdraw a permission it has granted, and Figure 16 shows
+	// exactly that transition, but a hook that only ever sees REQUESTED can
+	// never issue one. The cost is that the hooks are called once per active
+	// request per state message, so a hook that logs unconditionally will be
+	// noisy; returning a zero Decision means "no change" and is free.
+	ReviewActiveRequests bool
 }
 
 // Decision is the fleet control's answer to a vehicle request.
@@ -474,10 +486,25 @@ func (f *Fleet) dispatch(id vda5050.Identity, topic vda5050.Topic, m transport.M
 	return nil
 }
 
+// decidable reports whether a request in this state still wants a decision
+// from the fleet control.
+//
+// REQUESTED always does. QUEUED and GRANTED do only when the fleet control
+// asked to review them, which is what makes revocation and lease extension
+// possible. REJECTED, REVOKED and EXPIRED are terminal: the vehicle is about
+// to drop the request from its state, and answering again would churn it.
+func (f *Fleet) decidable(status vda5050.RequestStatus) bool {
+	switch status {
+	case vda5050.RequestStatusRequested:
+		return true
+	case vda5050.RequestStatusQueued, vda5050.RequestStatusGranted:
+		return f.opts.ReviewActiveRequests
+	}
+	return false
+}
+
 // answerRequests replies to zone and corridor requests carried in a state
-// message. Only requests still in REQUESTED are considered: the others are
-// echoes of decisions already made, and answering them again would churn the
-// vehicle's state.
+// message (§6.9).
 func (f *Fleet) answerRequests(v *Vehicle, s *vda5050.State) {
 	if f.opts.OnZoneRequest == nil && f.opts.OnEdgeRequest == nil {
 		return
@@ -486,7 +513,7 @@ func (f *Fleet) answerRequests(v *Vehicle, s *vda5050.State) {
 
 	if f.opts.OnZoneRequest != nil {
 		for _, r := range s.ZoneRequests {
-			if r.RequestStatus != vda5050.RequestStatusRequested {
+			if !f.decidable(r.RequestStatus) {
 				continue
 			}
 			if resp, ok := toResponse(r.RequestID, f.opts.OnZoneRequest(v, r)); ok {
@@ -496,7 +523,7 @@ func (f *Fleet) answerRequests(v *Vehicle, s *vda5050.State) {
 	}
 	if f.opts.OnEdgeRequest != nil {
 		for _, r := range s.EdgeRequests {
-			if r.RequestStatus != vda5050.RequestStatusRequested {
+			if !f.decidable(r.RequestStatus) {
 				continue
 			}
 			if resp, ok := toResponse(r.RequestID, f.opts.OnEdgeRequest(v, r)); ok {
@@ -510,6 +537,40 @@ func (f *Fleet) answerRequests(v *Vehicle, s *vda5050.State) {
 	if err := f.SendResponses(context.Background(), v.ID, responses...); err != nil {
 		f.log.Errorf("[vda5050] answering requests from %s: %v", v.ID, err)
 	}
+}
+
+// RevokeRequests withdraws permissions the fleet control granted earlier
+// (§6.9). The vehicle reacts according to the releaseLossBehavior defined for
+// the resource: stopping, continuing, or evacuating a zone; returning to the
+// predefined trajectory of an edge.
+//
+// A revoked grant is not instantaneous. The fleet control "shall assume a
+// REVOKED request as still being GRANTED until the requestStatus of the
+// mobile robot is set to REVOKED", so the space stays committed until the
+// vehicle's own state confirms it has let go.
+func (f *Fleet) RevokeRequests(ctx context.Context, id vda5050.Identity, requestIDs ...string) error {
+	if len(requestIDs) == 0 {
+		return nil
+	}
+	responses := make([]vda5050.Response, 0, len(requestIDs))
+	for _, rid := range requestIDs {
+		responses = append(responses, vda5050.Response{
+			RequestID: rid,
+			GrantType: vda5050.GrantTypeRevoked,
+		})
+	}
+	return f.SendResponses(ctx, id, responses...)
+}
+
+// ExtendLease re-grants a request with a later expiry (§6.9). Sending an
+// updated response with the same requestId and a new leaseExpiry is the only
+// way to keep a vehicle inside a RELEASE zone past its original lease.
+func (f *Fleet) ExtendLease(ctx context.Context, id vda5050.Identity, requestID string, until time.Time) error {
+	resp, ok := toResponse(requestID, Grant(until))
+	if !ok {
+		return errors.New("vda5050: lease extension needs a grant decision")
+	}
+	return f.SendResponses(ctx, id, resp)
 }
 
 func toResponse(requestID string, d Decision) (vda5050.Response, bool) {

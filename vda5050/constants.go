@@ -70,22 +70,25 @@ func (t Topic) QoS() byte {
 
 // Retained reports whether messages on this topic must be published with the
 // MQTT retained flag. §6.5 requires it for `connection` so that a fleet
-// control learns a robot's connectivity as soon as it subscribes.
+// control learns a robot's connectivity as soon as it subscribes, and §6.10
+// requires it for `factsheet` -- "all messages on this topic shall be sent
+// with a retained flag" -- so that a fleet control joining later learns the
+// vehicle's capabilities without having to ask for them.
 func (t Topic) Retained() bool {
-	return t == TopicConnection
+	return t == TopicConnection || t == TopicFactsheet
 }
 
 // Predefined action types (§6.2.3). Vehicles must support cancelOrder,
 // startPause and stopPause; the rest are used when the vehicle's factsheet
 // advertises them under protocolFeatures.mobileRobotActions.
 const (
-	ActionStartPause          = "startPause"
-	ActionStopPause           = "stopPause"
-	ActionStartHibernation    = "startHibernation"
-	ActionStopHibernation     = "stopHibernation"
-	ActionShutdown            = "shutdown"
-	ActionStartCharging       = "startCharging"
-	ActionStopCharging        = "stopCharging"
+	ActionStartPause       = "startPause"
+	ActionStopPause        = "stopPause"
+	ActionStartHibernation = "startHibernation"
+	ActionStopHibernation  = "stopHibernation"
+	ActionShutdown         = "shutdown"
+	ActionStartCharging    = "startCharging"
+	ActionStopCharging     = "stopCharging"
 	// 3.0.0 renamed this from 2.x's initPosition. We implement 3.0.0 only, so
 	// the 3.0.0 spelling is correct here -- a 2.x vehicle would not match it,
 	// and that is intentional.
@@ -167,9 +170,70 @@ func (v ConnectionState) IsConnected() bool {
 	return v == ConnectionStateOnline
 }
 
-// CanDrive reports whether the vehicle's operating mode permits fleet-control
-// driven motion. In every other mode the vehicle is under local or manual
-// control and orders will be rejected or ignored.
+// CanDrive reports whether the vehicle's operating mode puts fleet control in
+// charge of motion (Table 11, "Fleet Control in control"). In every other mode
+// the vehicle is steered locally, even where it still accepts orders.
 func (v OperatingMode) CanDrive() bool {
 	return v == OperatingModeAutomatic || v == OperatingModeSemiautomatic
+}
+
+// AcceptsOrders reports whether the vehicle will take an order in this mode
+// (Table 11, "Sending orders allowed"). INTERVENED is included: an intervened
+// vehicle is being steered by hand, but the specification explicitly allows
+// fleet control to send orders and order updates to be executed once it
+// returns to AUTOMATIC or SEMIAUTOMATIC, and §6.1.4.9 raises
+// MOBILE_ROBOT_NOT_AVAILABLE only outside these three modes.
+func (v OperatingMode) AcceptsOrders() bool {
+	switch v {
+	case OperatingModeAutomatic, OperatingModeSemiautomatic, OperatingModeIntervened:
+		return true
+	}
+	return false
+}
+
+// AcceptsInstantAction reports whether an instant action of the given type may
+// be sent in this mode (Table 11, "Sending instant actions allowed"). In
+// INTERVENED only cancelOrder is permitted; in MANUAL, STARTUP, SERVICE and
+// TEACH_IN nothing is.
+func (v OperatingMode) AcceptsInstantAction(actionType string) bool {
+	switch v {
+	case OperatingModeAutomatic, OperatingModeSemiautomatic:
+		return true
+	case OperatingModeIntervened:
+		return actionType == ActionCancelOrder
+	}
+	return false
+}
+
+// ClearsOrderOnEntry reports whether entering this mode makes the vehicle
+// abandon its current order (Table 11, "Clear order when entering", and
+// §6.6.7).
+func (v OperatingMode) ClearsOrderOnEntry() bool {
+	switch v {
+	case OperatingModeManual, OperatingModeStartup, OperatingModeService, OperatingModeTeachIn:
+		return true
+	}
+	return false
+}
+
+// ClearsZoneRequestsOnEntry reports whether entering this mode makes the
+// vehicle drop every zone request from its state (Table 11, "Clear zone
+// requests when entering"). INTERVENED is included even though it keeps the
+// order: a hand-steered vehicle must not hold a reservation the fleet control
+// is still honouring on its behalf.
+func (v OperatingMode) ClearsZoneRequestsOnEntry() bool {
+	switch v {
+	case OperatingModeIntervened, OperatingModeManual, OperatingModeStartup,
+		OperatingModeService, OperatingModeTeachIn:
+		return true
+	}
+	return false
+}
+
+// HasValidStateContent reports whether the fields of a state message published
+// in this mode can be trusted (Table 11, "Valid state message content"). Only
+// STARTUP is exempt: a vehicle that has not finished booting may publish
+// incomplete or invalid values.
+func (v OperatingMode) HasValidStateContent() bool {
+	return v != OperatingModeStartup
 }

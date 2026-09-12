@@ -177,7 +177,7 @@ func TestOptionalFieldsAreOmittedNotZeroed(t *testing.T) {
 	if err := json.Unmarshal(raw, &decoded); err != nil {
 		t.Fatalf("unmarshal: %v", err)
 	}
-	for _, absent := range []string{"maximumSpeed", "orientation", "trajectory", "corridor", "maxRotationSpeed"} {
+	for _, absent := range []string{"maximumSpeed", "orientation", "trajectory", "corridor", "maximumRotationSpeed"} {
 		if _, present := decoded[absent]; present {
 			t.Errorf("optional field %q must be omitted when unset, not serialised as a zero value", absent)
 		}
